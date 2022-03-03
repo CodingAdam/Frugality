@@ -117,7 +117,7 @@ public class RecipeEvents {
                         }
 
                         player.swing(player.getUsedItemHand());
-                        world.addParticle(ParticleTypes.FALLING_WATER, pos.getX(), pos.getY(), pos.getZ(), 5.0D, 5.0D, 5.0D);
+                        world.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER, pos.getX() + 0.3 * initialFluidLevel, pos.getY() + 1, pos.getZ() + 0.3 * initialFluidLevel, 5.0D, 5.0D, 5.0D);
 
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.CONSUME);
