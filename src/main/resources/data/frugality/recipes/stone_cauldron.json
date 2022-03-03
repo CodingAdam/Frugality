@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "P P",
+    "P P",
+    "PPP"
+  ],
+  "key": {
+    "P": {
+      "item": "minecraft:smooth_stone"
+    }
+  },
+  "result": {
+    "item": "frugality:stone_cauldron"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern":
+  [
+    "XXX",
+    "XGG",
+    "GG "
+  ],
+  "key":
+  {
+    "X":
+    {
+      "item": "minecraft:copper_ingot"
+    },
+    "G":
+    {
+      "item": "minecraft:gold_ingot"
+    }
+  },
+  "result":
+  {
+    "item": "frugality:rose_gold_ingot",
+    "count": 1
+  }
+}

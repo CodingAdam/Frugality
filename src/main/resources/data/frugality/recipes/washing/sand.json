@@ -1,0 +1,24 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:sand"
+  },
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "minecraft:bone_meal",
+      "count": 1,
+      "chance": 0.85
+    },
+    {
+      "item": "minecraft:clay_ball",
+      "count": 1,
+      "chance": 0.25
+    },
+    {
+      "item": "minecraft:kelp",
+      "count": 1,
+      "chance": 0.05
+    }
+  ]
+}

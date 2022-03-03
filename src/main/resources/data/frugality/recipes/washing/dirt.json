@@ -1,0 +1,24 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:dirt"
+  },
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "frugality:raw_silica",
+      "count": 1,
+      "chance": 0.55
+    },
+    {
+      "item": "frugality:fiber",
+      "count": 1,
+      "chance": 0.05
+    },
+    {
+      "item": "minecraft:wheat_seeds",
+      "count": 1,
+      "chance": 0.15
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+
+  "block.frugality.large_composter" : "Large Composter",
+  "block.frugality.wood_cauldron" : "Wooden Cauldron",
+  "block.frugality.stone_cauldron" : "Stone Cauldron",
+  "block.frugality.charred_log" : "Charred Log",
+  "item.frugality.charred_shards" : "Charred Shards",
+  "block.frugality.mud_block" : "Mud Block",
+  "item.frugality.copper_ingot" : "Copper Ingot",
+  "item.frugality.copper_nugget" : "Copper Nugget",
+
+  "block.frugality.brick_furnace" : "Brick Furnace",
+  "block.frugality.brick_blast_furnace" : "Brick Blast Furnace",
+  "block.frugality.rose_gold_block" : "Rose Gold Block",
+
+  "item.frugality.rose_gold_helmet" : "Rose Gold Helmet",
+  "item.frugality.rose_gold_chestplate" : "Rose Gold Chestplate",
+  "item.frugality.rose_gold_leggings" : "Rose Gold Leggings",
+  "item.frugality.rose_gold_boots" : "Rose Gold Boots",
+
+  "item.frugality.rose_gold_pickaxe" : "Rose Gold Pickaxe",
+  "item.frugality.rose_gold_sword" : "Rose Gold Sword",
+  "item.frugality.rose_gold_hoe" : "Rose Gold Hoe",
+  "item.frugality.rose_gold_shovel" : "Rose Gold Shovel",
+  "item.frugality.rose_gold_axe" : "Rose Gold Axe",
+  "item.frugality.rose_gold_ingot" : "Rose Gold Ingot",
+
+  "item.frugality.raw_silica" : "Raw Silica",
+  "item.frugality.silica_glass" : "Silica Glass",
+  "item.frugality.clay_brick" : "Clay Brick",
+  "item.frugality.small_raw_iron" : "Poor Raw Iron",
+  "item.frugality.small_raw_copper" : "Poor Raw Copper",
+  "item.frugality.small_raw_gold" : "Poor Raw Gold",
+
+  "item.frugality.fiber" : "Fiber",
+
+  "container.brick_furnace" : "Brick Furnace",
+  "container.brick_blast_furnace" : "Brick Blast Furnace",
+  "item.frugality.fire_starter" : "Fire Starter",
+  "item.frugality.copper_starter" : "Copper Starter",
+
+  "recipe.frugality.washing" : "Cauldron Washing",
+  "recipe.frugality.chance" : " Chance",
+  "recipe.frugality.bucket_amount" : " Bottle",
+  "itemGroup.frugalitytab" : "Frugality Items"
+
+}

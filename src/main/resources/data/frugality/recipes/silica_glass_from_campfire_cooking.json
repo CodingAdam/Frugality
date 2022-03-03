@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:campfire_cooking",
+  "ingredient": {
+    "item": "frugality:raw_silica"
+  },
+  "result": "frugality:silica_glass",
+  "experience": 0.0,
+  "cookingtime": 1000
+}

@@ -1,0 +1,11 @@
+{
+    "parent": "minecraft:block/water_cauldron_level2",
+    "textures": {
+        "content": "minecraft:block/water_still",
+        "particle": "frugality:blocks/wood_cauldron_side",
+        "top": "frugality:blocks/wood_cauldron_top",
+        "bottom": "frugality:blocks/wood_cauldron_bottom",
+        "side": "frugality:blocks/wood_cauldron_side",
+        "inside": "frugality:blocks/wood_cauldron_inner"
+    }
+}

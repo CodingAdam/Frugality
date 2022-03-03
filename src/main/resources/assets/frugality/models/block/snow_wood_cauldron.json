@@ -1,0 +1,10 @@
+{
+    "parent": "minecraft:block/powder_snow_cauldron_full",
+    "textures": {
+        "particle": "frugality:blocks/wood_cauldron_side",
+        "top": "frugality:blocks/wood_cauldron_top",
+        "bottom": "frugality:blocks/wood_cauldron_bottom",
+        "side": "frugality:blocks/wood_cauldron_side",
+        "inside": "frugality:blocks/wood_cauldron_inner"
+    }
+}

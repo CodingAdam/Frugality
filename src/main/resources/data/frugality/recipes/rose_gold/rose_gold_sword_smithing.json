@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:smithing",
+  "base": {
+    "item": "minecraft:iron_sword"
+  },
+  "addition": {
+    "item": "frugality:rose_gold_ingot"
+  },
+  "result": {
+    "item": "frugality:rose_gold_sword"
+  }
+}
