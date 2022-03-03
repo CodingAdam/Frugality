@@ -1,19 +1,16 @@
 {
   "type": "minecraft:crafting_shaped",
   "pattern": [
-    "P P",
-    "PCP",
-    "PBP"
+    "B B",
+    "B B",
+    "PPP"
   ],
   "key": {
     "P": {
       "tag": "minecraft:planks"
     },
-    "C": {
-      "item": "minecraft:composter"
-    },
     "B": {
-      "item": "minecraft:barrel"
+      "tag": "minecraft:wooden_slabs"
     }
   },
   "result": {

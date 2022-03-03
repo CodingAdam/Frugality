@@ -2,13 +2,13 @@
   "type": "minecraft:crafting_shapeless",
   "ingredients": [
     {
-      "item": "minecraft:string"
+      "item": "frugality:fiber"
     },
     {
-      "item": "minecraft:string"
+      "item": "frugality:fiber"
     }
   ],
   "result": {
-    "item": "frugality:fiber"
+    "item": "minecraft:string"
   }
 }
