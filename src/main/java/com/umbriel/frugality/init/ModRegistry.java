@@ -9,8 +9,11 @@ import com.umbriel.frugality.item.Armors;
 import com.umbriel.frugality.item.FireStarter;
 import com.umbriel.frugality.item.FuelItem;
 import com.umbriel.frugality.item.ModTiers;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
@@ -52,6 +55,10 @@ public class ModRegistry {
     public static final RegistryObject<Block> CHARRED_LOG = register("charred_log", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.NETHER_WART)));
 
     public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)));
+
+    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModRegistry::never).isRedstoneConductor(ModRegistry::never).isSuffocating(ModRegistry::never).isViewBlocking(ModRegistry::never)));
+
+    public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
     public static final RegistryObject<Block> BRICK_FURNACE = register("brick_furnace", () -> new BrickFurnace(BlockBehaviour.Properties.of(Material.STONE).
             requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))));
@@ -106,7 +113,12 @@ public class ModRegistry {
         return block;
     }
 
+    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
+        return false;
+    }
 
-
+    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos, EntityType<?> entityType) {
+        return false;
+    }
 
 }

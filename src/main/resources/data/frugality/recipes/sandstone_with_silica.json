@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "B# ",
+    "#B ",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "frugality:raw_silica"
+    },
+    "B": {
+      "item": "minecraft:sand"
+    }
+  },
+  "result": {
+    "item": "minecraft:sandstone",
+    "count": 4
+  }
+}

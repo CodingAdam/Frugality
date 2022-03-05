@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "## ",
+    "## ",
+    "   "
+  ],
+  "key": {
+    "#": {
+      "item": "frugality:silica_glass"
+    }
+  },
+  "result": {
+    "item": "frugality:silica_glass_block"
+  }
+}
