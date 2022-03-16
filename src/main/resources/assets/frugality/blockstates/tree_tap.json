@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=west": {
+      "model": "frugality:block/tree_tap"
+    },
+    "facing=east": {
+      "model": "frugality:block/tree_tap",
+      "y" : 180
+    },
+    "facing=south": {
+      "model": "frugality:block/tree_tap",
+      "y" : 270
+    },
+    "facing=north": {
+      "model": "frugality:block/tree_tap",
+      "y" : 90
+    }
+  }
+}

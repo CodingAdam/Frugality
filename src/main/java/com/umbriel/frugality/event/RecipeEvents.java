@@ -100,12 +100,6 @@ public class RecipeEvents {
 
                     if (!MinecraftForge.EVENT_BUS.post(craftEvent)) {
 
-//                        long lastAction = world.getLevelData().getGameTime();
-//
-//                        for(long i = lastAction; i > 0; i--){
-//                            if(player.swinging &&
-//
-//                        }
                         if (!player.isCreative()) {
                             stack.shrink(1);
                         }

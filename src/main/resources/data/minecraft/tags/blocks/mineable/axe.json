@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "frugality:charred_log"
+    "frugality:charred_log",
+    "frugality:tree_tap"
   ]
 }

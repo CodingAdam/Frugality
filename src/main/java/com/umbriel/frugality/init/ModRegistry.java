@@ -73,6 +73,7 @@ public class ModRegistry {
 
     public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new FireStarter((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
+    public static final RegistryObject<Block> TREE_TAP = register("tree_tap", () -> new TreeTap(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)));
 
 
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(Frugality.TAB)));

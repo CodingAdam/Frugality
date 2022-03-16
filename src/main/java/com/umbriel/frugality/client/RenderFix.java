@@ -13,6 +13,7 @@ public class RenderFix {
     public static void doClientStuff(final FMLClientSetupEvent event) {
         ItemBlockRenderTypes.setRenderLayer(ModRegistry.STONE_CAULDRON.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModRegistry.WOODEN_CAULDRON.get(), RenderType.cutout());
+        ItemBlockRenderTypes.setRenderLayer(ModRegistry.TREE_TAP.get(), RenderType.cutout());
     }
     @SubscribeEvent
     public static void registerBlockColors(ColorHandlerEvent.Block event) {
