@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "frugality:block/crushing_stone"
+    },
+    "facing=south": {
+      "model": "frugality:block/crushing_stone",
+      "y" : 180
+    },
+    "facing=east": {
+      "model": "frugality:block/crushing_stone",
+      "y" : 270
+    },
+    "facing=west": {
+      "model": "frugality:block/crushing_stone",
+      "y" : 90
+    }
+  }
+}

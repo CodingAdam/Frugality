@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "frugality:block/crushing_terracotta"
+    },
+    "facing=south": {
+      "model": "frugality:block/crushing_terracotta",
+      "y" : 180
+    },
+    "facing=east": {
+      "model": "frugality:block/crushing_terracotta",
+      "y" : 270
+    },
+    "facing=west": {
+      "model": "frugality:block/crushing_terracotta",
+      "y" : 90
+    }
+  }
+}

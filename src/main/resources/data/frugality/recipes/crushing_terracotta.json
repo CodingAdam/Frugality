@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "###",
+    "SBS"
+  ],
+  "key": {
+    "S": {
+      "item": "minecraft:brick_slab"
+    },
+    "B": {
+      "item": "minecraft:bricks"
+    },
+    "#": {
+      "item": "minecraft:terracotta"
+    }
+  },
+  "result": {
+    "item": "frugality:crushing_terracotta"
+  }
+}

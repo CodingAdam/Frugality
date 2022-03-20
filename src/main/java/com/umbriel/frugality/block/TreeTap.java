@@ -33,7 +33,7 @@ import java.util.Random;
 
 import static com.umbriel.frugality.util.CustomCauldronHandler.getWaterCauldron;
 
-public class TreeTap extends Block {
+public class TreeTap extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(

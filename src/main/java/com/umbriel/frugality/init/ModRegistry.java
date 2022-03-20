@@ -42,15 +42,23 @@ public class ModRegistry {
 
 
 
-    public static final RegistryObject<Block> WOODEN_CAULDRON = register("wood_cauldron", () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
-    public static final RegistryObject<Block> WATER_WOODEN_CAULDRON = BLOCKS.register("water_wood_cauldron", () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
-    public static final RegistryObject<Block> LAVA_WOODEN_CAULDRON = BLOCKS.register("lava_wood_cauldron", () ->new CustomLavaCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()).lightLevel((p_152690_) -> 15)));
-    public static final RegistryObject<Block> SNOW_WOODEN_CAULDRON = BLOCKS.register("snow_wood_cauldron", () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
+    public static final RegistryObject<Block> WOODEN_CAULDRON = register("wood_cauldron",
+            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> WATER_WOODEN_CAULDRON = BLOCKS.register("water_wood_cauldron",
+            () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
+    public static final RegistryObject<Block> LAVA_WOODEN_CAULDRON = BLOCKS.register("lava_wood_cauldron",
+            () ->new CustomLavaCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()).lightLevel((p_152690_) -> 15)));
+    public static final RegistryObject<Block> SNOW_WOODEN_CAULDRON = BLOCKS.register("snow_wood_cauldron",
+            () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
 
-    public static final RegistryObject<Block> STONE_CAULDRON = register("stone_cauldron", () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
-    public static final RegistryObject<Block> WATER_STONE_CAULDRON = BLOCKS.register("water_stone_cauldron", () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
-    public static final RegistryObject<Block> LAVA_STONE_CAULDRON = BLOCKS.register("lava_stone_cauldron", () ->new CustomLavaCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()).lightLevel((p_152690_) -> 15)));
-    public static final RegistryObject<Block> SNOW_STONE_CAULDRON = BLOCKS.register("snow_stone_cauldron", () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
+    public static final RegistryObject<Block> STONE_CAULDRON = register("stone_cauldron",
+            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> WATER_STONE_CAULDRON = BLOCKS.register("water_stone_cauldron",
+            () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
+    public static final RegistryObject<Block> LAVA_STONE_CAULDRON = BLOCKS.register("lava_stone_cauldron",
+            () ->new CustomLavaCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()).lightLevel((p_152690_) -> 15)));
+    public static final RegistryObject<Block> SNOW_STONE_CAULDRON = BLOCKS.register("snow_stone_cauldron",
+            () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
 
     public static final RegistryObject<Block> CHARRED_LOG = register("charred_log", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.NETHER_WART)));
 
@@ -75,6 +83,11 @@ public class ModRegistry {
 
     public static final RegistryObject<Block> TREE_TAP = register("tree_tap", () -> new TreeTap(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)));
 
+    public static final RegistryObject<Block> CRUSHING_STONE = register("crushing_stone",
+            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+
+    public static final RegistryObject<Block> CRUSHING_TERRACOTTA = register("crushing_terracotta",
+            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().strength(1.25F, 4.2F)));
 
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> SILICA = ITEMS.register("raw_silica", () -> new Item(new Item.Properties().tab(Frugality.TAB)));

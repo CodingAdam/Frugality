@@ -4,6 +4,9 @@
     "frugality:brick_furnace",
     "frugality:brick_blast_furnace",
     "frugality:raw_silica_block",
-    "frugality:silica_glass_block"
+    "frugality:silica_glass_block",
+    "frugality:stone_cauldron",
+    "frugality:crushing_stone",
+    "frugality:crushing_terracotta"
   ]
 }
