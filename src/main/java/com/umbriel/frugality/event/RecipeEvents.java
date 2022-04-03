@@ -3,12 +3,12 @@ package com.umbriel.frugality.event;
 
 import com.umbriel.frugality.block.Cauldrons.CustomLayeredCauldron;
 import com.umbriel.frugality.item.ChanceItem;
+import com.umbriel.frugality.util.ParticleHelper;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CauldronRecipeEvent;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,18 +16,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.UseAnim;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.RecipeManager;
-import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -41,7 +37,7 @@ import java.util.List;
 
 import static com.umbriel.frugality.init.ModRecipes.cauldronRecipeType;
 import static com.umbriel.frugality.init.ModRegistry.MUD_BLOCK;
-import static com.umbriel.frugality.util.CustomCauldronHandler.getCauldron;
+import static com.umbriel.frugality.util.CustomCauldronHelper.getCauldron;
 
 public class RecipeEvents {
 
@@ -111,7 +107,7 @@ public class RecipeEvents {
                         }
 
                         player.swing(player.getUsedItemHand());
-                        world.addParticle(ParticleTypes.FALLING_DRIPSTONE_WATER, pos.getX() + 0.3 * initialFluidLevel, pos.getY() + 1, pos.getZ() + 0.3 * initialFluidLevel, 5.0D, 5.0D, 5.0D);
+                        ParticleHelper.spawnCraftingParticles(world, 0.3F, pos, Items.LAPIS_LAZULI.getDefaultInstance(), 4);
 
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.CONSUME);

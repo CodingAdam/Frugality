@@ -31,7 +31,7 @@ import javax.annotation.Nullable;
 import java.util.Map;
 import java.util.Random;
 
-import static com.umbriel.frugality.util.CustomCauldronHandler.getWaterCauldron;
+import static com.umbriel.frugality.util.CustomCauldronHelper.getWaterCauldron;
 
 public class TreeTap extends Block implements SimpleWaterloggedBlock {
 

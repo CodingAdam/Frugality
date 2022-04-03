@@ -25,7 +25,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static com.umbriel.frugality.util.CustomCauldronHandler.*;
+import static com.umbriel.frugality.util.CustomCauldronHelper.*;
 
 public interface CustomCauldronInteraction {
     Map<Item, CustomCauldronInteraction> EMPTY = newInteractionMap();

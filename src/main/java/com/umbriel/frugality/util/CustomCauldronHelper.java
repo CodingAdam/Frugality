@@ -7,7 +7,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 import static com.umbriel.frugality.init.ModRegistry.*;
 
-public class CustomCauldronHandler {
+public class CustomCauldronHelper {
     public static BlockState getWaterCauldron(BlockState state){
         if(compareNormalBlocks(SNOW_WOODEN_CAULDRON, state)
                 || compareNormalBlocks(WOODEN_CAULDRON, state)

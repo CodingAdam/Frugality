@@ -23,7 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class BrickFurnaceBlockEntity extends AbstractCustomFurnaceEntity {
 
     public BrickFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BRICK_FURNACE, pos, state, 1.3, RecipeType.SMELTING);
+        super(ModBlockEntities.BRICK_FURNACE.get(), pos, state, 1.3, RecipeType.SMELTING);
     }
 
     @Override

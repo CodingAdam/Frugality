@@ -9,7 +9,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 import java.util.Map;
 import java.util.function.Predicate;
-import static com.umbriel.frugality.util.CustomCauldronHandler.getWaterCauldron;
+import static com.umbriel.frugality.util.CustomCauldronHelper.getWaterCauldron;
 
 public class CustomSnowCauldron extends CustomLayeredCauldron {
     public CustomSnowCauldron(BlockBehaviour.Properties p_154290_, Predicate<Biome.Precipitation> p_154291_, Map<Item, CustomCauldronInteraction> p_154292_) {

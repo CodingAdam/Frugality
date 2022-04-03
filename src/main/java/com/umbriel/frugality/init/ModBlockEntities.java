@@ -3,30 +3,34 @@ package com.umbriel.frugality.init;
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.blockentities.BrickBlastFurnaceBlockEntity;
 import com.umbriel.frugality.blockentities.BrickFurnaceBlockEntity;
+import com.umbriel.frugality.blockentities.CrushingBlockEntity;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
-@Mod.EventBusSubscriber(modid= Frugality.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class ModBlockEntities {
 
-    public static BlockEntityType<?> BRICK_FURNACE;
-    public static BlockEntityType<?> BRICK_BLAST_FURNACE;
+    public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Frugality.MODID);
 
-    @SubscribeEvent
-    public static void init(RegistryEvent.Register<BlockEntityType<?>> event) {
-        BRICK_FURNACE = register(BrickFurnaceBlockEntity::new, "brick_furnace", ModRegistry.BRICK_FURNACE.get(), event);
-        BRICK_BLAST_FURNACE = register(BrickBlastFurnaceBlockEntity::new, "brick_blast_furnace", ModRegistry.BRICK_BLAST_FURNACE.get(), event);
+    public static void init() {
+        TILES.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
 
-    private static <T extends BlockEntity> BlockEntityType<T> register(BlockEntityType.BlockEntitySupplier<T> supplier, String registryName, Block block, RegistryEvent.Register<BlockEntityType<?>> registryEvent) {
-        BlockEntityType<T> blockEntityType = BlockEntityType.Builder.of(supplier, block).build(null);
-        blockEntityType.setRegistryName(registryName);
-        registryEvent.getRegistry().register(blockEntityType);
-        return blockEntityType;
-    }
+
+    public static final RegistryObject<BlockEntityType<CrushingBlockEntity>> CRUSHING_BLOCK = TILES.register("crushing_block",
+            () -> BlockEntityType.Builder.of(CrushingBlockEntity::new, ModRegistry.CRUSHING_STONE.get(), ModRegistry.CRUSHING_TERRACOTTA.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BrickBlastFurnaceBlockEntity>> BRICK_BLAST_FURNACE = TILES.register("brick_blast_furnace",
+            () -> BlockEntityType.Builder.of(BrickBlastFurnaceBlockEntity::new, ModRegistry.BRICK_BLAST_FURNACE.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<BrickFurnaceBlockEntity>> BRICK_FURNACE = TILES.register("brick_furnace",
+            () -> BlockEntityType.Builder.of(BrickFurnaceBlockEntity::new, ModRegistry.BRICK_FURNACE.get()).build(null));
 
 }

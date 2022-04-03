@@ -21,7 +21,7 @@ public class BrickBlastFurnaceBlockEntity extends AbstractCustomFurnaceEntity {
 
 
     public BrickBlastFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BRICK_BLAST_FURNACE, pos, state, 1.3, RecipeType.BLASTING);
+        super(ModBlockEntities.BRICK_BLAST_FURNACE.get(), pos, state, 1.3, RecipeType.BLASTING);
     }
 
     @Override

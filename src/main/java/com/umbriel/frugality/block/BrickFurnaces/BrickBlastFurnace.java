@@ -37,7 +37,7 @@ public class BrickBlastFurnace extends AbstractFurnaceBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_152382_, BlockState p_152383_, BlockEntityType<T> p_152384_) {
-        return createTickerHelper(p_152384_, (BlockEntityType<AbstractCustomFurnaceEntity>) ModBlockEntities.BRICK_BLAST_FURNACE, AbstractCustomFurnaceEntity::tick);
+        return createTickerHelper(p_152384_, ModBlockEntities.BRICK_BLAST_FURNACE.get(), AbstractCustomFurnaceEntity::tick);
     }
 
     @Override

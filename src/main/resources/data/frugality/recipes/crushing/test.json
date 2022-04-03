@@ -1,0 +1,19 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:dirt"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/pickaxes"
+  },
+  "hits": 3,
+  "results": [
+    {
+      "item": "minecraft:dead_bush",
+      "count": 1,
+      "chance": 1
+    }
+  ]
+}

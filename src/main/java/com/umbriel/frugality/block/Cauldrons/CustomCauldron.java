@@ -9,7 +9,7 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 
-import static com.umbriel.frugality.util.CustomCauldronHandler.*;
+import static com.umbriel.frugality.util.CustomCauldronHelper.*;
 
 public class CustomCauldron extends AbstractCustomCauldron {
     private static final float RAIN_FILL_CHANCE = 0.05F;
