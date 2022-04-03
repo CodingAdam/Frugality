@@ -5,7 +5,9 @@ import com.umbriel.frugality.event.RecipeEvents;
 import com.umbriel.frugality.init.ModRecipes;
 import com.umbriel.frugality.init.ModRegistry;
 import com.umbriel.frugality.jei.categorys.CauldronCategory;
+import com.umbriel.frugality.jei.categorys.CrushingCategory;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
+import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
@@ -13,6 +15,7 @@ import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -21,6 +24,7 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
 import java.util.Collection;
+import java.util.List;
 
 @JeiPlugin
 public class FrugalityPlugin implements IModPlugin {
@@ -37,7 +41,8 @@ public class FrugalityPlugin implements IModPlugin {
         registration.addRecipeCategories(
                 new BrickBlastingCategory(guiHelper),
                 new BrickSmeltingCategory(guiHelper),
-                new CauldronCategory(guiHelper, Blocks.CAULDRON)
+                new CauldronCategory(guiHelper, Blocks.CAULDRON),
+                new CrushingCategory(guiHelper, ModRegistry.CRUSHING_STONE.get())
         );
     }
 
@@ -51,10 +56,17 @@ public class FrugalityPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(Items.CAULDRON), CauldronCategory.ID);
         registration.addRecipeCatalyst(new ItemStack(ModRegistry.WOODEN_CAULDRON.get()), CauldronCategory.ID);
         registration.addRecipeCatalyst(new ItemStack(ModRegistry.STONE_CAULDRON.get()), CauldronCategory.ID);
+
+        registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_STONE.get()), CrushingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration){
-        final Collection<CauldronRecipe> recipes = RecipeEvents.getRecipes();
-        registration.addRecipes(recipes, CauldronCategory.ID);
+        final Collection<CauldronRecipe> cauldronRecipes = RecipeEvents.getRecipes();
+        registration.addRecipes(cauldronRecipes, CauldronCategory.ID);
+
+        List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.crushingBlockRecipeType);
+        registration.addRecipes(crushingBlockRecipes, CrushingCategory.ID);
     }
 }

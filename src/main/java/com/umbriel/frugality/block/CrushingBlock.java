@@ -89,7 +89,7 @@ public class CrushingBlock extends BaseEntityBlock implements SimpleWaterloggedB
             } else if(!heldItem.isEmpty()){
                 ItemStack crushingItem = crushingBlockEntity.getStoredItem().copy();
                 if(crushingBlockEntity.processItem(heldItem, player)){
-                    ParticleHelper.spawnCraftingParticles(level, 0.1F, pos, crushingItem, 4);
+                    ParticleHelper.spawnCraftingParticles(level, 1.0D, 0.1F, pos, crushingItem, 2);
                     return InteractionResult.SUCCESS;
                 }
                 return InteractionResult.CONSUME;

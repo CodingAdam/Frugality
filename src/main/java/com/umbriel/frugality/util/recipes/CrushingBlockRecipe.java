@@ -56,11 +56,9 @@ public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
         return this.identifier;
     }
 
-    @Override
-    public NonNullList<Ingredient> getIngredients() {
-        NonNullList<Ingredient> list = NonNullList.create();
-        list.add(this.input);
-        return list;
+    public Ingredient getInput() {
+
+        return this.input;
     }
 
     public Ingredient getTool() {

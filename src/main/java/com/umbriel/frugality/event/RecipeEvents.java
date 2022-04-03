@@ -107,7 +107,8 @@ public class RecipeEvents {
                         }
 
                         player.swing(player.getUsedItemHand());
-                        ParticleHelper.spawnCraftingParticles(world, 0.3F, pos, Items.LAPIS_LAZULI.getDefaultInstance(), 4);
+                        ParticleHelper.spawnWaterParticles(world, 0.3F, pos, 30);
+                        ParticleHelper.spawnCraftingParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
 
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.CONSUME);
