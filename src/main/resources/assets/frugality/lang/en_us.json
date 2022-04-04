@@ -30,7 +30,15 @@
   "item.frugality.rose_gold_hoe" : "Rose Gold Hoe",
   "item.frugality.rose_gold_shovel" : "Rose Gold Shovel",
   "item.frugality.rose_gold_axe" : "Rose Gold Axe",
+  "item.frugality.rose_gold_hammer" : "Rose Gold Hammer",
   "item.frugality.rose_gold_ingot" : "Rose Gold Ingot",
+
+  "item.frugality.wooden_hammer" : "Wooden Hammer",
+  "item.frugality.stone_hammer" : "Stone Hammer",
+  "item.frugality.iron_hammer" : "Iron Hammer",
+  "item.frugality.golden_hammer" : "Golden Hammer",
+  "item.frugality.diamond_hammer" : "Diamond Hammer",
+  "item.frugality.netherite_hammer" : "Netherite Hammer",
 
   "item.frugality.raw_silica" : "Raw Silica",
   "item.frugality.silica_glass" : "Silica Glass",
@@ -53,6 +61,8 @@
   "recipe.frugality.hits" : "Hits: ",
 
   "recipe.frugality.chance" : " Chance",
+
+  "frugality.jei.info.smallore" : "With a heavier mining implement, it may be possible to conserve more of the ore while mining. This process should grant smaller chunks in addition to the original ones.",
 
   "itemGroup.frugalitytab" : "Frugality Items"
 

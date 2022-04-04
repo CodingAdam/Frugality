@@ -11,15 +11,19 @@ import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
+import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.registration.IRecipeCatalystRegistration;
 import mezz.jei.api.registration.IRecipeCategoryRegistration;
 import mezz.jei.api.registration.IRecipeRegistration;
 import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -59,6 +63,7 @@ public class FrugalityPlugin implements IModPlugin {
 
         registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_STONE.get()), CrushingCategory.ID);
         registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
+
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration){
@@ -68,5 +73,9 @@ public class FrugalityPlugin implements IModPlugin {
         List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
                 .getAllRecipesFor(ModRecipes.crushingBlockRecipeType);
         registration.addRecipes(crushingBlockRecipes, CrushingCategory.ID);
+        TranslatableComponent smallOreText = new TranslatableComponent(Frugality.MODID + ".jei.info.smallore" );
+        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
     }
 }

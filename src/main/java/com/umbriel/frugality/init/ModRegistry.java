@@ -5,10 +5,7 @@ import com.umbriel.frugality.block.*;
 import com.umbriel.frugality.block.BrickFurnaces.BrickBlastFurnace;
 import com.umbriel.frugality.block.BrickFurnaces.BrickFurnace;
 import com.umbriel.frugality.block.Cauldrons.*;
-import com.umbriel.frugality.item.Armors;
-import com.umbriel.frugality.item.FireStarter;
-import com.umbriel.frugality.item.FuelItem;
-import com.umbriel.frugality.item.ModTiers;
+import com.umbriel.frugality.item.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
@@ -102,17 +99,24 @@ public class ModRegistry {
     public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = ITEMS.register("rose_gold_ingot", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> COPPER_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> COPPER_SWORD = ITEMS.register("rose_gold_sword", ()-> new SwordItem(ModTiers.ROSE_GOLD, 3, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_SHOVEL = ITEMS.register("rose_gold_shovel", ()-> new ShovelItem(ModTiers.ROSE_GOLD, 1.5F, -3.0F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_PICKAXE = ITEMS.register("rose_gold_pickaxe", ()->new PickaxeItem(ModTiers.ROSE_GOLD, 1, -2.8F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_AXE = ITEMS.register("rose_gold_axe", ()-> new AxeItem(ModTiers.ROSE_GOLD, 6.5F, -3.1F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> COPPER_HOE = ITEMS.register("rose_gold_hoe", ()-> new HoeItem(ModTiers.ROSE_GOLD, -2, -1.5F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_SWORD = ITEMS.register("rose_gold_sword", ()-> new SwordItem(ModTiers.ROSE_GOLD, 3, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_SHOVEL = ITEMS.register("rose_gold_shovel", ()-> new ShovelItem(ModTiers.ROSE_GOLD, 1.5F, -3.0F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_PICKAXE = ITEMS.register("rose_gold_pickaxe", ()->new PickaxeItem(ModTiers.ROSE_GOLD, 1, -2.8F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_AXE = ITEMS.register("rose_gold_axe", ()-> new AxeItem(ModTiers.ROSE_GOLD, 6.5F, -3.1F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HOE = ITEMS.register("rose_gold_hoe", ()-> new HoeItem(ModTiers.ROSE_GOLD, -2, -1.5F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HAMMER = ITEMS.register("rose_gold_hammer", ()-> new HammerItem(ModTiers.ROSE_GOLD, -1, -2.5F, (new Item.Properties()).tab(Frugality.TAB)));
 
+    public static final RegistryObject<Item> WOODEN_HAMMER = ITEMS.register("wooden_hammer", ()-> new HammerItem(Tiers.WOOD, 1, -2.6F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", ()-> new HammerItem(Tiers.STONE, 0, -2.6F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> GOLDEN_HAMMER = ITEMS.register("golden_hammer", ()-> new HammerItem(Tiers.GOLD, 1, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", ()-> new HammerItem(Tiers.IRON, -1, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> DIAMOND_HAMMER = ITEMS.register("diamond_hammer", ()-> new HammerItem(Tiers.DIAMOND, -2, -2.3F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", ()-> new HammerItem(Tiers.NETHERITE, -3, -2.4F, (new Item.Properties()).tab(Frugality.TAB).fireResistant()));
 
     private static ToIntFunction<BlockState> litBlockEmission(int value) {
         return (light) -> {

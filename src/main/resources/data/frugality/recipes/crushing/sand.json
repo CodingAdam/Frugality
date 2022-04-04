@@ -1,0 +1,19 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:gravel"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 2,
+  "results": [
+    {
+      "item": "minecraft:sand",
+      "count": 1,
+      "chance": 0.50
+    }
+  ]
+}

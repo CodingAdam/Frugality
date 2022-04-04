@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "entries": [
+    "frugality:copper_ore",
+    "frugality:iron_ore",
+    "frugality:gold_ore"
+  ]
+}

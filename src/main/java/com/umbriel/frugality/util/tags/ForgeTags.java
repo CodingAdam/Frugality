@@ -12,6 +12,7 @@ public class ForgeTags {
     public static final Tag.Named<Item> TOOLS_KNIVES = forgeItemTag("tools/knives");
     public static final Tag.Named<Item> TOOLS_PICKAXES = forgeItemTag("tools/pickaxes");
     public static final Tag.Named<Item> TOOLS_SHOVELS = forgeItemTag("tools/shovels");
+    public static final Tag.Named<Item> TOOLS_HAMMERS = forgeItemTag("tools/hammers");
 
     private static Tag.Named<Item> forgeItemTag(String path) {
         return ItemTags.bind(new ResourceLocation("forge", path).toString());

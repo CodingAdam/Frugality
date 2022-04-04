@@ -2,18 +2,18 @@
   "type": "frugality:crushing",
   "input": [
     {
-      "item": "minecraft:dirt"
+      "item": "minecraft:stone"
     }
   ],
   "tool": {
-    "tag": "forge:tools/pickaxes"
+    "tag": "forge:tools/hammers"
   },
   "hits": 3,
   "results": [
     {
-      "item": "minecraft:dead_bush",
+      "item": "minecraft:gravel",
       "count": 1,
-      "chance": 1
+      "chance": 0.65
     }
   ]
 }

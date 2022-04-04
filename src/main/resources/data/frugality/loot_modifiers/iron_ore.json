@@ -1,0 +1,20 @@
+{
+  "type": "frugality:add_item",
+  "conditions": [
+    {
+      "condition": "minecraft:random_chance",
+      "chance": 0.66
+    },
+    {
+      "condition": "minecraft:match_tool",
+      "predicate": {
+        "tag": "frugality:tools/hammers"
+      }
+    },
+    {
+      "condition": "block_state_property",
+      "block": "minecraft:iron_ore"
+    }
+  ],
+  "item": "frugality:small_raw_iron"
+}

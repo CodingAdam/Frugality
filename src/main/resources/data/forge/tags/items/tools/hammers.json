@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "frugality:wooden_hammer",
+    "frugality:stone_hammer",
+    "frugality:iron_hammer",
+    "frugality:diamond_hammer",
+    "frugality:golden_hammer",
+    "frugality:netherite_hammer",
+    "frugality:rose_gold_hammer"
+  ]
+}
