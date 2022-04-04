@@ -5,19 +5,12 @@ import com.umbriel.frugality.client.RenderFix;
 import com.umbriel.frugality.event.RecipeEvents;
 import com.umbriel.frugality.init.ModBlockEntities;
 import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.init.ModRegistry;
+import com.umbriel.frugality.init.ModItems;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.monster.Skeleton;
-import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -25,9 +18,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Random;
-
-import static com.umbriel.frugality.init.ModRegistry.*;
+import static com.umbriel.frugality.init.ModItems.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("frugality")
@@ -39,7 +30,7 @@ public class Frugality
 
     public Frugality() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModRegistry.init();
+        ModItems.init();
         ModRecipes.init();
         ModBlockEntities.init();
         bus.addListener(RenderFix::init);

@@ -33,7 +33,7 @@ import java.util.Random;
 
 import static com.umbriel.frugality.util.CustomCauldronHelper.getWaterCauldron;
 
-public class TreeTap extends Block implements SimpleWaterloggedBlock {
+public class TreeTapBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(
@@ -44,7 +44,7 @@ public class TreeTap extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape FAUCET = Block.box(6.0D, 4.0D, 6.0D, 10.0D, 6.0D, 10.0D);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public TreeTap(Properties properties) {
+    public TreeTapBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }

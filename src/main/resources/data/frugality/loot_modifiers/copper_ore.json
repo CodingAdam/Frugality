@@ -2,8 +2,9 @@
   "type": "frugality:add_item",
   "conditions": [
     {
-      "condition": "minecraft:random_chance",
-      "chance": 0.66
+      "condition": "minecraft:random_chance_with_looting",
+      "chance": 0.66,
+      "looting_multiplier": 6.66
     },
     {
       "condition": "minecraft:match_tool",

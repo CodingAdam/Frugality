@@ -1,7 +1,7 @@
-package com.umbriel.frugality.util.recipes;
+package com.umbriel.frugality.event;
 
 import com.umbriel.frugality.item.ChanceItem;
-import net.minecraft.client.gui.screens.social.PlayerEntry;
+import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.entity.player.Player;
@@ -12,10 +12,8 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.Cancelable;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class CauldronRecipeEvent extends PlayerEvent {
 

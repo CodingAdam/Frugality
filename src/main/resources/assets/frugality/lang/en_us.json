@@ -62,7 +62,8 @@
 
   "recipe.frugality.chance" : " Chance",
 
-  "frugality.jei.info.smallore" : "With a heavier mining implement, it may be possible to conserve more of the ore while mining. This process should grant smaller chunks in addition to the original ones.",
+  "frugality.jei.info.small_ores" : "With a heavier mining implement, it may be possible to conserve more of an ore while mining. This process should grant smaller chunks in addition to the original ones.",
+  "frugality.jei.info.charred_shards" : "A slower burning flame may allow the logs to retain some of their carbon strength. Which may be a possible way to get shards of carbon from the burnt logs.",
 
   "itemGroup.frugalitytab" : "Frugality Items"
 

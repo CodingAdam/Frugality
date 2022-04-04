@@ -31,11 +31,11 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static com.umbriel.frugality.init.ModRegistry.*;
+import static com.umbriel.frugality.init.ModItems.*;
 
 
 @SuppressWarnings({"NullableProblems", "deprecation"})
-public class SlowFire extends AbstractSlowFireBlock {
+public class SlowFireBlock extends AbstractSlowFireBlock {
     public static final IntegerProperty AGE = BlockStateProperties.AGE_15;
     public static final BooleanProperty NORTH = PipeBlock.NORTH;
     public static final BooleanProperty EAST = PipeBlock.EAST;
@@ -52,13 +52,13 @@ public class SlowFire extends AbstractSlowFireBlock {
     private final Object2IntMap<Block> flameOdds = new Object2IntOpenHashMap<>();
     private final Object2IntMap<Block> burnOdds = new Object2IntOpenHashMap<>();
 
-    public SlowFire(BlockBehaviour.Properties behaviour) {
+    public SlowFireBlock(BlockBehaviour.Properties behaviour) {
         super(behaviour, 1.0F);
         this.registerDefaultState(this.stateDefinition.any().setValue(AGE, 0).setValue(NORTH, Boolean.FALSE).setValue(EAST,
                 Boolean.FALSE).setValue(SOUTH, Boolean.FALSE).setValue(WEST, Boolean.FALSE).setValue(UP, Boolean.FALSE));
         this.shapesCache = ImmutableMap.copyOf(this.stateDefinition.getPossibleStates().stream().filter((p_242674_0_) -> {
             return p_242674_0_.getValue(AGE) == 0;
-        }).collect(Collectors.toMap(Function.identity(), SlowFire::calculateShape)));
+        }).collect(Collectors.toMap(Function.identity(), SlowFireBlock::calculateShape)));
     }
 
 
@@ -323,7 +323,7 @@ public class SlowFire extends AbstractSlowFireBlock {
     }
 
     public static void bootStrap() {
-        SlowFire fireblock = (SlowFire)SLOW_FIRE.get();
+        SlowFireBlock fireblock = (SlowFireBlock)SLOW_FIRE.get();
         fireblock.setFlammable(Blocks.OAK_PLANKS, 5, 20);
         fireblock.setFlammable(Blocks.SPRUCE_PLANKS, 5, 20);
         fireblock.setFlammable(Blocks.BIRCH_PLANKS, 5, 20);

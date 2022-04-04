@@ -2,8 +2,8 @@ package com.umbriel.frugality.jei;
 
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.event.RecipeEvents;
+import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.init.ModRegistry;
 import com.umbriel.frugality.jei.categorys.CauldronCategory;
 import com.umbriel.frugality.jei.categorys.CrushingCategory;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
@@ -22,8 +22,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nonnull;
@@ -32,6 +30,9 @@ import java.util.List;
 
 @JeiPlugin
 public class FrugalityPlugin implements IModPlugin {
+
+    TranslatableComponent smallOreText = new TranslatableComponent(Frugality.MODID + ".jei.info.small_ores" );
+    TranslatableComponent charredShardsText = new TranslatableComponent(Frugality.MODID + ".jei.info.charred_shards" );
 
     @Override
     @NotNull
@@ -46,23 +47,23 @@ public class FrugalityPlugin implements IModPlugin {
                 new BrickBlastingCategory(guiHelper),
                 new BrickSmeltingCategory(guiHelper),
                 new CauldronCategory(guiHelper, Blocks.CAULDRON),
-                new CrushingCategory(guiHelper, ModRegistry.CRUSHING_STONE.get())
+                new CrushingCategory(guiHelper, ModItems.CRUSHING_STONE.get())
         );
     }
 
     @Override
     public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.BRICK_FURNACE.get()),
+        registration.addRecipeCatalyst(new ItemStack(ModItems.BRICK_FURNACE.get()),
                 VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.BRICK_BLAST_FURNACE.get()),
+        registration.addRecipeCatalyst(new ItemStack(ModItems.BRICK_BLAST_FURNACE.get()),
                 VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
 
         registration.addRecipeCatalyst(new ItemStack(Items.CAULDRON), CauldronCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.WOODEN_CAULDRON.get()), CauldronCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.STONE_CAULDRON.get()), CauldronCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.WOODEN_CAULDRON.get()), CauldronCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.STONE_CAULDRON.get()), CauldronCategory.ID);
 
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_STONE.get()), CrushingCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModRegistry.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_STONE.get()), CrushingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
 
     }
     @Override
@@ -72,10 +73,12 @@ public class FrugalityPlugin implements IModPlugin {
 
         List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
                 .getAllRecipesFor(ModRecipes.crushingBlockRecipeType);
+
         registration.addRecipes(crushingBlockRecipes, CrushingCategory.ID);
-        TranslatableComponent smallOreText = new TranslatableComponent(Frugality.MODID + ".jei.info.smallore" );
-        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
-        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM, smallOreText);
-        registration.addIngredientInfo(new ItemStack(ModRegistry.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_LOG.get()), VanillaTypes.ITEM, charredShardsText);
+        registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM, charredShardsText);
     }
 }

@@ -1,6 +1,6 @@
 package com.umbriel.frugality.item;
 
-import com.umbriel.frugality.block.SlowFire;
+import com.umbriel.frugality.block.SlowFireBlock;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 @SuppressWarnings("NullableProblems")
-public class FireStarter extends Item {
-    public FireStarter(Item.Properties p_i48493_1_) {
+public class FireStarterItem extends Item {
+    public FireStarterItem(Item.Properties p_i48493_1_) {
         super(p_i48493_1_);
     }
 
@@ -32,9 +32,9 @@ public class FireStarter extends Item {
         BlockState blockstate = level.getBlockState(blockpos);
         if (!CampfireBlock.canLight(blockstate) && !CandleBlock.canLight(blockstate) && !CandleCakeBlock.canLight(blockstate)) {
             BlockPos blockpos1 = blockpos.relative(context.getClickedFace());
-            if (SlowFire.canBePlacedAt(level, blockpos1, context.getHorizontalDirection())) {
+            if (SlowFireBlock.canBePlacedAt(level, blockpos1, context.getHorizontalDirection())) {
                 level.playSound(player, blockpos1, SoundEvents.FLINTANDSTEEL_USE, SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.4F + 0.8F);
-                BlockState blockstate1 = SlowFire.getState(level, blockpos1);
+                BlockState blockstate1 = SlowFireBlock.getState(level, blockpos1);
                 level.setBlock(blockpos1, blockstate1, 11);
                 level.gameEvent(player, GameEvent.BLOCK_PLACE, blockpos);
                 ItemStack itemstack = context.getItemInHand();

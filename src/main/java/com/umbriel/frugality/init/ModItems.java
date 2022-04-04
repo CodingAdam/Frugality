@@ -26,7 +26,7 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("deprecation")
-public class ModRegistry {
+public class ModItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Frugality.MODID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Frugality.MODID);
 
@@ -35,7 +35,7 @@ public class ModRegistry {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
-    public static final RegistryObject<Block> LARGE_COMPOSTER = register("large_composter", () -> new LargerComposter(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> LARGE_COMPOSTER = register("large_composter", () -> new LargerComposterBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
 
 
 
@@ -61,7 +61,7 @@ public class ModRegistry {
 
     public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)));
 
-    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModRegistry::never).isRedstoneConductor(ModRegistry::never).isSuffocating(ModRegistry::never).isViewBlocking(ModRegistry::never)));
+    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)));
 
     public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
@@ -75,15 +75,15 @@ public class ModRegistry {
     public static final RegistryObject<Block> CRUSHING_TERRACOTTA = register("crushing_terracotta",
             () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().strength(1.25F, 4.2F)));
 
-    public static final RegistryObject<Block> SLOW_FIRE = BLOCKS.register("slow_fire", () -> new SlowFire(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.COLOR_ORANGE).noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL)));
+    public static final RegistryObject<Block> SLOW_FIRE = BLOCKS.register("slow_fire", () -> new SlowFireBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.COLOR_ORANGE).noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL)));
 
     public static final RegistryObject<Item> CHARRED_SHARDS = ITEMS.register("charred_shards", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(400));
 
-    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new FireStarter((new Item.Properties()).durability(15).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new FireStarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new FireStarter((new Item.Properties()).durability(55).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new FireStarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Block> TREE_TAP = register("tree_tap", () -> new TreeTap(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)));
+    public static final RegistryObject<Block> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)));
 
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> SILICA = ITEMS.register("raw_silica", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
@@ -99,10 +99,10 @@ public class ModRegistry {
     public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)));
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = ITEMS.register("rose_gold_ingot", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(Armors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> ROSE_GOLD_SWORD = ITEMS.register("rose_gold_sword", ()-> new SwordItem(ModTiers.ROSE_GOLD, 3, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
     public static final RegistryObject<Item> ROSE_GOLD_SHOVEL = ITEMS.register("rose_gold_shovel", ()-> new ShovelItem(ModTiers.ROSE_GOLD, 1.5F, -3.0F, (new Item.Properties()).tab(Frugality.TAB)));

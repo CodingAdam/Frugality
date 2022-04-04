@@ -1,9 +1,8 @@
 package com.umbriel.frugality.item;
 
 
-import com.umbriel.frugality.init.ModRegistry;
+import com.umbriel.frugality.init.ModItems;
 import net.minecraft.util.LazyLoadedValue;
-import net.minecraft.world.item.Items;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
@@ -11,7 +10,7 @@ import java.util.function.Supplier;
 
 public enum ModTiers implements Tier {
     ROSE_GOLD(2, 300, 10.0F, 1.5F, 18, () -> {
-        return Ingredient.of(ModRegistry.ROSE_GOLD_INGOT.get());
+        return Ingredient.of(ModItems.ROSE_GOLD_INGOT.get());
     });
 
     private final int level;

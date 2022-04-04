@@ -2,7 +2,6 @@ package com.umbriel.frugality.util.recipes;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
-import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.item.ChanceItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.network.FriendlyByteBuf;

@@ -2,7 +2,7 @@
   "type": "frugality:crushing",
   "input": [
     {
-      "item": "minecraft:stone"
+      "tag": "frugality:crushable_stone"
     }
   ],
   "tool": {

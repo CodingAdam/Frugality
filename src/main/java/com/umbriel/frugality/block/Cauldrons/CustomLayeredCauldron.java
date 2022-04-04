@@ -17,7 +17,7 @@ import net.minecraft.world.level.material.Fluids;
 import java.util.Map;
 import java.util.function.Predicate;
 
-import static com.umbriel.frugality.init.ModRegistry.WOODEN_CAULDRON;
+import static com.umbriel.frugality.init.ModItems.WOODEN_CAULDRON;
 
 public class CustomLayeredCauldron extends AbstractCustomCauldron {
     public static final int MIN_FILL_LEVEL = 1;

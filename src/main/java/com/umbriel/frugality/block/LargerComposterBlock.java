@@ -20,9 +20,9 @@ import net.minecraft.world.phys.BlockHitResult;
 import javax.annotation.Nullable;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
-public class LargerComposter extends ComposterBlock implements WorldlyContainerHolder {
+public class LargerComposterBlock extends ComposterBlock implements WorldlyContainerHolder {
 
-    public LargerComposter(BlockBehaviour.Properties properties) {
+    public LargerComposterBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 0));
         COMPOSTABLES.put(Items.ROTTEN_FLESH, 0.3F);
@@ -96,9 +96,9 @@ public class LargerComposter extends ComposterBlock implements WorldlyContainerH
     public WorldlyContainer getContainer(BlockState state, LevelAccessor world, BlockPos pos) {
         int i = state.getValue(LEVEL);
         if (i == 8) {
-            return new LargerComposter.OutputContainer(state, world, pos, new ItemStack(Items.DIRT));
+            return new LargerComposterBlock.OutputContainer(state, world, pos, new ItemStack(Items.DIRT));
         } else {
-            return (WorldlyContainer)(i < 7 ? new LargerComposter.InputContainer(state, world, pos) : new LargerComposter.EmptyContainer());
+            return (WorldlyContainer)(i < 7 ? new LargerComposterBlock.InputContainer(state, world, pos) : new LargerComposterBlock.EmptyContainer());
         }
     }
 
@@ -153,7 +153,7 @@ public class LargerComposter extends ComposterBlock implements WorldlyContainerH
             ItemStack itemstack = this.getItem(0);
             if (!itemstack.isEmpty()) {
                 this.changed = true;
-                BlockState blockstate = LargerComposter.addItem(this.state, this.level, this.pos, itemstack);
+                BlockState blockstate = LargerComposterBlock.addItem(this.state, this.level, this.pos, itemstack);
                 this.level.levelEvent(1500, this.pos, blockstate != this.state ? 1 : 0);
                 this.removeItemNoUpdate(0);
             }
@@ -191,7 +191,7 @@ public class LargerComposter extends ComposterBlock implements WorldlyContainerH
         }
 
         public void setChanged() {
-            LargerComposter.empty(this.state, this.level, this.pos);
+            LargerComposterBlock.empty(this.state, this.level, this.pos);
             this.changed = true;
         }
     }

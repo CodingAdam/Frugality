@@ -21,7 +21,7 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static com.umbriel.frugality.init.ModRegistry.SLOW_FIRE;
+import static com.umbriel.frugality.init.ModItems.SLOW_FIRE;
 
 public abstract class AbstractSlowFireBlock extends Block {
     private static final int SECONDS_ON_FIRE = 8;
@@ -41,7 +41,7 @@ public abstract class AbstractSlowFireBlock extends Block {
     public static BlockState getState(BlockGetter p_49246_, BlockPos p_49247_) {
         BlockPos blockpos = p_49247_.below();
         BlockState blockstate = p_49246_.getBlockState(blockpos);
-        return ((SlowFire)SLOW_FIRE.get()).getStateForPlacement(p_49246_, p_49247_);
+        return ((SlowFireBlock)SLOW_FIRE.get()).getStateForPlacement(p_49246_, p_49247_);
     }
 
     public VoxelShape getShape(BlockState p_49274_, BlockGetter p_49275_, BlockPos p_49276_, CollisionContext p_49277_) {
