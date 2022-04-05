@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "bb ",
+    "bb ",
+    "   "
+  ],
+  "key": {
+    "b": {
+      "item": "frugality:raw_silica"
+    }
+  },
+  "result": {
+    "item": "frugality:silica_cobblestone"
+  }
+}

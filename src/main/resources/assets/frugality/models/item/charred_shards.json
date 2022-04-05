@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/generated",
     "textures": {
-        "layer0": "frugality:items/charred_shards"
+        "layer0": "frugality:item/charred_shards"
     }
 }

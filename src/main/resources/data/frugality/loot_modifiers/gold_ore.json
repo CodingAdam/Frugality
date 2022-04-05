@@ -1,5 +1,5 @@
 {
-  "type": "frugality:add_item",
+  "type": "frugality:add_fortunable_item",
   "conditions": [
     {
       "condition": "minecraft:random_chance_with_looting",
@@ -17,5 +17,6 @@
       "block": "minecraft:gold_ore"
     }
   ],
-  "item": "frugality:small_raw_gold"
+  "item": "frugality:small_raw_gold",
+  "count" : 1
 }

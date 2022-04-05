@@ -11,12 +11,12 @@
       "chance": 0.85
     },
     {
-      "item": "minecraft:small_raw_gold",
+      "item": "frugality:small_raw_gold",
       "count": 1,
       "chance": 0.05
     },
     {
-      "item": "minecraft:small_raw_gold",
+      "item": "frugality:small_raw_gold",
       "count": 2,
       "chance": 0.01
     }

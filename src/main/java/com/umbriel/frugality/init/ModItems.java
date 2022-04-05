@@ -61,9 +61,13 @@ public class ModItems {
 
     public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)));
 
+    public static final RegistryObject<Block> SILICA_STONE = register("silica_stone",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.3F, 5.5F).sound(SoundType.STONE)));
+    public static final RegistryObject<Block> SILICA_COBBLESTONE = register("silica_cobblestone",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)));
     public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)));
 
-    public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
+    //public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
     public static final RegistryObject<Block> BRICK_FURNACE = register("brick_furnace", () -> new BrickFurnace(BlockBehaviour.Properties.of(Material.STONE).
             requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))));

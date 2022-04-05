@@ -1,11 +1,11 @@
 {
     "parent": "block/block",
     "textures": {
-        "particle": "frugality:blocks/larger_composter_side",
-        "top": "frugality:blocks/larger_composter_top",
-        "bottom": "frugality:blocks/larger_composter_bottom",
-        "side": "frugality:blocks/larger_composter_side",
-        "inside": "frugality:blocks/larger_composter_bottom"
+        "particle": "frugality:block/larger_composter_side",
+        "top": "frugality:block/larger_composter_top",
+        "bottom": "frugality:block/larger_composter_bottom",
+        "side": "frugality:block/larger_composter_side",
+        "inside": "frugality:block/larger_composter_bottom"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

@@ -2,18 +2,18 @@
   "type": "frugality:crushing",
   "input": [
     {
-      "item": "minecraft:gravel"
+      "tag": "frugality:crushable_stone"
     }
   ],
   "tool": {
     "tag": "forge:tools/hammers"
   },
-  "hits": 2,
+  "hits": 3,
   "results": [
     {
-      "item": "minecraft:sand",
+      "item": "minecraft:gravel",
       "count": 1,
-      "chance": 0.50
+      "chance": 0.65
     }
   ]
 }

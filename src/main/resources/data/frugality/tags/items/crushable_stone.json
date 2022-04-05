@@ -3,6 +3,8 @@
   "values": [
     "minecraft:stone",
     "minecraft:cobblestone",
-    "minecraft:deepslate"
+    "minecraft:deepslate",
+    "frugality:silica_stone",
+    "frugality:silica_cobblestone"
   ]
 }

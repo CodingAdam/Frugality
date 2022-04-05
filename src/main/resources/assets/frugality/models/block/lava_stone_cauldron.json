@@ -1,10 +1,10 @@
 {
     "parent": "minecraft:block/lava_cauldron",
     "textures": {
-        "particle": "frugality:blocks/stone_cauldron_side",
-        "top": "frugality:blocks/stone_cauldron_top",
-        "bottom": "frugality:blocks/stone_cauldron_bottom",
-        "side": "frugality:blocks/stone_cauldron_side",
-        "inside": "frugality:blocks/stone_cauldron_inner"
+        "particle": "frugality:block/stone_cauldron_side",
+        "top": "frugality:block/stone_cauldron_top",
+        "bottom": "frugality:block/stone_cauldron_bottom",
+        "side": "frugality:block/stone_cauldron_side",
+        "inside": "frugality:block/stone_cauldron_inner"
     }
 }

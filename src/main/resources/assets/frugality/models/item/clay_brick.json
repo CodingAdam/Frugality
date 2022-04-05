@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/handheld",
     "textures": {
-        "layer0": "frugality:items/clay_brick"
+        "layer0": "frugality:item/clay_brick"
     }
 }

@@ -2,6 +2,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "frugality:items/copper_nugget"
+    "layer0": "frugality:item/copper_nugget"
   }
 }

@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/handheld",
     "textures": {
-        "layer0": "frugality:items/gold_hammer"
+        "layer0": "frugality:item/gold_hammer"
     }
 }

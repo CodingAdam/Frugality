@@ -1,10 +1,9 @@
 {
-  "type": "frugality:add_item",
+  "type": "frugality:add_fortunable_item",
   "conditions": [
     {
-      "condition": "minecraft:random_chance_with_looting",
-      "chance": 0.66,
-      "looting_multiplier": 6.66
+      "condition": "minecraft:random_chance",
+      "chance": 0.66
     },
     {
       "condition": "minecraft:match_tool",
@@ -17,5 +16,6 @@
       "block": "minecraft:copper_ore"
     }
   ],
-  "item": "frugality:small_raw_copper"
+  "item": "frugality:small_raw_copper",
+  "count" : 3
 }

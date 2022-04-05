@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/handheld",
     "textures": {
-        "layer0": "frugality:items/copper_starter"
+        "layer0": "frugality:item/copper_starter"
     }
 }

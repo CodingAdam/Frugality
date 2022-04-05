@@ -20,6 +20,9 @@
   "block.frugality.crushing_stone" : "Crushing Stone",
   "block.frugality.crushing_terracotta" : "Crushing Terracotta",
 
+  "block.frugality.silica_stone" : "Silica Stone",
+  "block.frugality.silica_cobblestone" : "Silica Cobblestone",
+
   "item.frugality.rose_gold_helmet" : "Rose Gold Helmet",
   "item.frugality.rose_gold_chestplate" : "Rose Gold Chestplate",
   "item.frugality.rose_gold_leggings" : "Rose Gold Leggings",

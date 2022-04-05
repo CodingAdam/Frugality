@@ -1,6 +1,6 @@
 {
     "parent": "minecraft:item/handheld",
     "textures": {
-        "layer0": "frugality:items/netherite_hammer"
+        "layer0": "frugality:item/netherite_hammer"
     }
 }

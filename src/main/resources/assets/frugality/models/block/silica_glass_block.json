@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:block/cube_all",
   "textures": {
-    "all": "frugality:blocks/silica_glass"
+    "all": "frugality:block/silica_glass"
   }
 }

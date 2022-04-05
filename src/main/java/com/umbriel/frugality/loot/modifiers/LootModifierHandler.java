@@ -12,5 +12,6 @@ public class LootModifierHandler {
     @SubscribeEvent
     public static void registerModifiers(RegistryEvent.Register<GlobalLootModifierSerializer<?>> event) {
         event.getRegistry().register(new AddItemModifier.Serializer().setRegistryName(Frugality.MODID, "add_item"));
+        event.getRegistry().register(new AddFortunableItemModifier.Serializer().setRegistryName(Frugality.MODID, "add_fortunable_item"));
     }
 }

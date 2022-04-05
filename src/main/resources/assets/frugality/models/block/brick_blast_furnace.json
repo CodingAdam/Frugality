@@ -1,8 +1,8 @@
 {
   "parent": "minecraft:block/orientable",
   "textures": {
-    "top": "frugality:blocks/brick_blast_furnace_top",
-    "front": "frugality:blocks/brick_blast_furnace_front",
-    "side": "frugality:blocks/brick_blast_furnace_side"
+    "top": "frugality:block/brick_blast_furnace_top",
+    "front": "frugality:block/brick_blast_furnace_front",
+    "side": "frugality:block/brick_blast_furnace_side"
   }
 }

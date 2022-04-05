@@ -2,6 +2,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "frugality:items/rose_gold"
+    "layer0": "frugality:item/rose_gold"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "frugality:items/rose_gold_chestplate"
+    "layer0": "frugality:item/rose_gold_chestplate"
   }
 }

@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "frugality:items/small_raw_copper"
+    "layer0": "frugality:item/small_raw_copper"
   }
 }
