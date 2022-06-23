@@ -13,35 +13,34 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ForgeRegistryEntry;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
-import static com.umbriel.frugality.init.ModRecipes.crushingBlockRecipeType;
+import static com.umbriel.frugality.init.ModRecipes.melterBlockItemRecipeType;
 
 
-public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
+public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
 
-    public static final CrushingBlockRecipe.Serializer SERIALIZER = new CrushingBlockRecipe.Serializer();
+    public static final MelterBlockItemRecipe.Serializer SERIALIZER = new MelterBlockItemRecipe.Serializer();
 
     private final ResourceLocation identifier;
-    private final Ingredient input;
     private final String group;
-    private final Ingredient tool;
-    private final int hits;
+    private final Ingredient input;
     private final NonNullList<ChanceItem> results;
+    private final int time;
 
-    public CrushingBlockRecipe(ResourceLocation identifier, String group, Ingredient input, Ingredient tool, int hits, NonNullList<ChanceItem> results) {
+    public MelterBlockItemRecipe(ResourceLocation identifier, String group, Ingredient input, NonNullList<ChanceItem> results, int time) {
         this.identifier = identifier;
         this.group = group;
         this.input = input;
-        this.tool = tool;
-        this.hits = hits;
         this.results = results;
+        this.time = time;
     }
 
     @Override
@@ -55,14 +54,8 @@ public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
     }
 
     public Ingredient getInput() {
-
         return this.input;
     }
-
-    public Ingredient getTool() {
-        return this.tool;
-    }
-
 
     @Override
     public boolean matches(RecipeWrapper inv, Level worldIn) {
@@ -71,36 +64,18 @@ public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
         return input.test(inv.getItem(0));
     }
 
-    public int getHits(){
-        return hits;
+    public int getTime(){
+        return time;
     }
 
     @Override
     public ItemStack assemble(RecipeWrapper inv) {
-        return this.results.get(0).getItem().copy();
+        return null;
     }
 
     @Override
     public boolean canCraftInDimensions(int width, int height) {
-        return width * height >= this.getMaxInputCount();
-    }
-
-    @Override
-    public ItemStack getResultItem() {
-        return this.results.get(0).getItem();
-    }
-
-    public String getGroup() {
-        return this.group;
-    }
-
-    public List<ItemStack> getResults() {
-        return getRolledResults().stream().map(ChanceItem::getItem)
-                .collect(Collectors.toList());
-    }
-
-    public NonNullList<ChanceItem> getRolledResults() {
-        return this.results;
+        return false;
     }
 
     public List<ItemStack> rollOutputs() {
@@ -113,22 +88,30 @@ public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
         }
         return results;
     }
+    @Override
+    public ItemStack getResultItem() {
+        return null;
+    }
 
-    protected int getMaxInputCount() {
-        return 1;
+    public String getGroup() {
+        return this.group;
+    }
+
+    public NonNullList<ChanceItem> getRolledResults() {
+        return this.results;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return CrushingBlockRecipe.SERIALIZER;
+        return MelterBlockItemRecipe.SERIALIZER;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return crushingBlockRecipeType;
+        return melterBlockItemRecipeType;
     }
 
-    private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<CrushingBlockRecipe> {
+    private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<MelterBlockItemRecipe> {
 
         public static NonNullList<ChanceItem> readItems (JsonElement element) {
             final NonNullList<ChanceItem> items = NonNullList.create();
@@ -160,33 +143,29 @@ public class CrushingBlockRecipe implements Recipe<RecipeWrapper> {
         }
 
         @Override
-        public CrushingBlockRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public MelterBlockItemRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             final String group = GsonHelper.getAsString(json, "group", "");
             final Ingredient input = Ingredient.fromJson(json.get("input"));
             final NonNullList<ChanceItem> results = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
-            final int hits = GsonHelper.getAsInt(json, "hits", 1);
-            final Ingredient tool = Ingredient.fromJson( GsonHelper.getAsJsonObject(json, "tool"));
-            return new CrushingBlockRecipe(recipeId, group, input, tool, hits, results);
+            final int time = GsonHelper.getAsInt(json, "time", 1);
+            return new MelterBlockItemRecipe(recipeId, group, input, results, time);
         }
 
         @Nullable
         @Override
-        public CrushingBlockRecipe fromNetwork(ResourceLocation recipe, FriendlyByteBuf buffer) {
+        public MelterBlockItemRecipe fromNetwork(ResourceLocation recipe, FriendlyByteBuf buffer) {
             String groupIn = buffer.readUtf(32767);
             Ingredient inputIn = Ingredient.fromNetwork(buffer);
-            Ingredient toolIn = Ingredient.fromNetwork(buffer);
-            final int hits = buffer.readInt();
             final NonNullList<ChanceItem> resultsIn = readItemStackArray(buffer);
-            return new CrushingBlockRecipe(recipe, groupIn, inputIn, toolIn, hits, resultsIn);
+            final int time = buffer.readInt();
+            return new MelterBlockItemRecipe(recipe, groupIn, inputIn, resultsIn, time);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, CrushingBlockRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, MelterBlockItemRecipe recipe) {
             buffer.writeUtf(recipe.group);
             recipe.input.toNetwork(buffer);
-            recipe.tool.toNetwork(buffer);
-            buffer.writeInt(recipe.hits);
-            //buffer.writeInt(recipe.duration);
+            buffer.writeInt(recipe.time);
             writeItemStackArray(buffer, recipe.results);
         }
     }

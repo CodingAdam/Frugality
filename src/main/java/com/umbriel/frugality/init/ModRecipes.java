@@ -3,6 +3,8 @@ package com.umbriel.frugality.init;
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.util.recipes.MelterBlockFluidRecipe;
+import com.umbriel.frugality.util.recipes.MelterBlockItemRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -21,5 +23,7 @@ public class ModRecipes {
 
     public static RecipeType<CauldronRecipe> cauldronRecipeType = RecipeType.register(Frugality.MODID + ":washing");
     public static RecipeType<CrushingBlockRecipe> crushingBlockRecipeType = RecipeType.register(Frugality.MODID + ":crushing");
+    public static RecipeType<MelterBlockItemRecipe> melterBlockItemRecipeType = RecipeType.register(Frugality.MODID + ":melting_item");
+    public static RecipeType<MelterBlockFluidRecipe> melterBlockFluidRecipeType = RecipeType.register(Frugality.MODID + ":melting_fluid");
 
 }

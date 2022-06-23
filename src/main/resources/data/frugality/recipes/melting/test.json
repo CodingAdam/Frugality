@@ -1,0 +1,10 @@
+{
+  "type": "frugality:melting_fluid",
+  "input": [
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "time": 1,
+  "result": "minecraft:lava"
+}

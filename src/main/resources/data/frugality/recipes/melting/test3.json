@@ -1,0 +1,16 @@
+{
+  "type": "frugality:melting_item",
+  "input": [
+    {
+      "item": "minecraft:sand"
+    }
+  ],
+  "time": 1,
+  "results":[
+    {
+      "item": "minecraft:iron_ingot",
+      "count": 2,
+      "chance": 1
+    }
+  ]
+}

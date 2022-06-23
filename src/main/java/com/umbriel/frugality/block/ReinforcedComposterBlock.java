@@ -1,6 +1,7 @@
 package com.umbriel.frugality.block;
 
 
+import com.umbriel.frugality.item.ChanceItem;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
@@ -19,12 +20,17 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings({"deprecation", "NullableProblems"})
-public class LargerComposterBlock extends ComposterBlock implements WorldlyContainerHolder {
+import static com.umbriel.frugality.init.ModItems.COMPOST;
 
-    public LargerComposterBlock(BlockBehaviour.Properties properties) {
+@SuppressWarnings({"deprecation", "NullableProblems"})
+public class ReinforcedComposterBlock extends ComposterBlock implements WorldlyContainerHolder {
+    static float buffer;
+    static ItemStack drop;
+
+    public ReinforcedComposterBlock(BlockBehaviour.Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(LEVEL, 0));
+        drop = new ItemStack(Items.AIR, 0);
         COMPOSTABLES.put(Items.ROTTEN_FLESH, 0.3F);
     }
 
@@ -49,19 +55,26 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
         }
     }
 
+    private static ItemStack compostDrop(){
+        ChanceItem compost = new ChanceItem(new ItemStack(COMPOST.get(), 3), 0.55F);
+        ItemStack stack = compost.rollOutput();
+        stack.setCount(stack.getCount() + 2); // At least two
+        return stack;
+    }
+
     public static BlockState extractProduce(BlockState state, Level world, BlockPos pos) {
         if (!world.isClientSide) {
             float f = 0.7F;
             double d0 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
             double d1 = (double)(world.random.nextFloat() * 0.7F) + (double)0.060000002F + 0.6D;
             double d2 = (double)(world.random.nextFloat() * 0.7F) + (double)0.15F;
-            ItemEntity itementity = new ItemEntity(world, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, new ItemStack(Items.DIRT));
+            ItemEntity itementity = new ItemEntity(world, (double)pos.getX() + d0, (double)pos.getY() + d1, (double)pos.getZ() + d2, compostDrop());
             itementity.setDefaultPickUpDelay();
             world.addFreshEntity(itementity);
         }
 
         BlockState blockstate = empty(state, world, pos);
-        world.playSound((Player)null, pos, SoundEvents.COMPOSTER_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
+        world.playSound(null, pos, SoundEvents.COMPOSTER_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
         return blockstate;
     }
 
@@ -71,11 +84,11 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
         return blockstate;
     }
 
-    static float buffer;
+
     private static BlockState addItem(BlockState state, LevelAccessor world, BlockPos pos, ItemStack itemStack) {
         int i = state.getValue(LEVEL);
         float f = COMPOSTABLES.getFloat(itemStack.getItem());
-        buffer += f;
+        buffer += f/3; // More stuff for your compost
         int j;
         if(buffer < 1){
             j = i;
@@ -93,12 +106,14 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
         return blockstate;
     }
 
+
     public WorldlyContainer getContainer(BlockState state, LevelAccessor world, BlockPos pos) {
         int i = state.getValue(LEVEL);
         if (i == 8) {
-            return new LargerComposterBlock.OutputContainer(state, world, pos, new ItemStack(Items.DIRT));
+            if(drop.isEmpty()) drop = compostDrop();
+            return new ReinforcedComposterBlock.OutputContainer(state, world, pos, drop);
         } else {
-            return (WorldlyContainer)(i < 7 ? new LargerComposterBlock.InputContainer(state, world, pos) : new LargerComposterBlock.EmptyContainer());
+            return i < 7 ? new InputContainer(state, world, pos) : new EmptyContainer();
         }
     }
 
@@ -153,7 +168,7 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
             ItemStack itemstack = this.getItem(0);
             if (!itemstack.isEmpty()) {
                 this.changed = true;
-                BlockState blockstate = LargerComposterBlock.addItem(this.state, this.level, this.pos, itemstack);
+                BlockState blockstate = ReinforcedComposterBlock.addItem(this.state, this.level, this.pos, itemstack);
                 this.level.levelEvent(1500, this.pos, blockstate != this.state ? 1 : 0);
                 this.removeItemNoUpdate(0);
             }
@@ -175,7 +190,7 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
         }
 
         public int getMaxStackSize() {
-            return 1;
+            return 5;
         }
 
         public int[] getSlotsForFace(Direction p_52053_) {
@@ -187,12 +202,15 @@ public class LargerComposterBlock extends ComposterBlock implements WorldlyConta
         }
 
         public boolean canTakeItemThroughFace(int p_52055_, ItemStack p_52056_, Direction p_52057_) {
-            return !this.changed && p_52057_ == Direction.DOWN && p_52056_.is(Items.DIRT);
+            return !this.changed && p_52057_ == Direction.DOWN && p_52056_.is(COMPOST.get());
         }
 
         public void setChanged() {
-            LargerComposterBlock.empty(this.state, this.level, this.pos);
-            this.changed = true;
+            ItemStack itemstack = this.getItem(0);
+            if (itemstack.isEmpty()) {
+                ReinforcedComposterBlock.empty(this.state, this.level, this.pos);
+                this.changed = true;
+            }
         }
     }
 }

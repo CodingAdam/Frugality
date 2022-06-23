@@ -6,14 +6,14 @@
     "PPP"
   ],
   "key": {
-    "P": {
-      "tag": "minecraft:planks"
-    },
     "B": {
       "tag": "minecraft:wooden_slabs"
+    },
+    "P": {
+      "tag": "minecraft:planks"
     }
   },
   "result": {
-    "item": "frugality:large_composter"
+    "item": "frugality:reinforced_composter"
   }
 }

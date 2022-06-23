@@ -47,6 +47,7 @@ public class Frugality
     public static void setupRenderLayers() {
         ItemBlockRenderTypes.setRenderLayer(SLOW_FIRE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(SILICA_GLASS_BLOCK.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(MELTER.get(), RenderType.translucent());
     }
 
 
@@ -95,7 +96,7 @@ public class Frugality
     public static final CreativeModeTab TAB = new CreativeModeTab("frugalitytab") {
         @Override
         public ItemStack makeIcon() {
-            return new ItemStack(LARGE_COMPOSTER.get());
+            return new ItemStack(REINFORCED_COMPOSTER.get());
         }
     };
 }

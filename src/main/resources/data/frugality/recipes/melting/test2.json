@@ -1,0 +1,16 @@
+{
+  "type": "frugality:melting_item",
+  "input": [
+    {
+      "item": "minecraft:cobblestone"
+    }
+  ],
+  "time": 1,
+  "results": [
+    {
+      "item": "minecraft:sand",
+      "count": 1,
+      "chance": 0.50
+    }
+  ]
+}

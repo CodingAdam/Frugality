@@ -2,7 +2,7 @@
   "multipart": [
     {
       "apply": {
-        "model": "frugality:block/large_composter"
+        "model": "frugality:block/reinforced_composter"
       }
     },
     {

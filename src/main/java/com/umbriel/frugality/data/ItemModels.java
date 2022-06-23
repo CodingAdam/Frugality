@@ -14,13 +14,18 @@ public class ItemModels extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        withExistingParent("silica_stone", modLoc("block/silica_stone"));
-        withExistingParent("silica_cobblestone", modLoc("block/silica_cobblestone"));
-
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
+
+
+        withExistingParent("silica_stone",modLoc("block/silica_stone"));
+        withExistingParent("silica_cobblestone",modLoc("block/silica_cobblestone"));
+
+        simpleItem("bark", generated);
+        simpleItem("compost", generated);
+
     }
 
-    private ItemModelBuilder simpleItem(ModelFile item, String name){
-        return getBuilder(name).parent(item).texture("layer0", "items/" + name);
+    private ItemModelBuilder simpleItem(String name, ModelFile item){
+        return getBuilder(name).parent(item).texture("layer0", "item/" + name);
     }
 }

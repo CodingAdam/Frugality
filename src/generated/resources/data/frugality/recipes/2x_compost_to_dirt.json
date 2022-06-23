@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CS ",
+    "FC ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "frugality:compost"
+    },
+    "S": {
+      "tag": "minecraft:sand"
+    },
+    "F": {
+      "item": "minecraft:flint"
+    }
+  },
+  "result": {
+    "item": "minecraft:dirt"
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "frugality:block/melter"
+    },
+    "facing=south": {
+      "model": "frugality:block/melter",
+      "y" : 180
+    },
+    "facing=east": {
+      "model": "frugality:block/melter",
+      "y" : 90
+    },
+    "facing=west": {
+      "model": "frugality:block/melter",
+      "y" : 270
+    }
+  }
+}

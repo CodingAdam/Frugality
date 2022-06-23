@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:reinforced_composter"
+    ]
+  },
+  "criteria": {
+    "has_compost": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:compost"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:reinforced_composter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_compost",
+      "has_the_recipe"
+    ]
+  ]
+}

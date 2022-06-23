@@ -35,12 +35,12 @@ public class ModItems {
         BLOCKS.register(FMLJavaModLoadingContext.get().getModEventBus());
         ITEMS.register(FMLJavaModLoadingContext.get().getModEventBus());
     }
-    public static final RegistryObject<Block> LARGE_COMPOSTER = register("large_composter", () -> new LargerComposterBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> REINFORCED_COMPOSTER = register("reinforced_composter", () -> new ReinforcedComposterBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)), false);
 
 
 
     public static final RegistryObject<Block> WOODEN_CAULDRON = register("wood_cauldron",
-            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)));
+            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)), false);
     public static final RegistryObject<Block> WATER_WOODEN_CAULDRON = BLOCKS.register("water_wood_cauldron",
             () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
     public static final RegistryObject<Block> LAVA_WOODEN_CAULDRON = BLOCKS.register("lava_wood_cauldron",
@@ -49,7 +49,7 @@ public class ModItems {
             () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(WOODEN_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
 
     public static final RegistryObject<Block> STONE_CAULDRON = register("stone_cauldron",
-            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()));
+            () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.STONE).strength(2.5F).sound(SoundType.STONE).requiresCorrectToolForDrops()), false);
     public static final RegistryObject<Block> WATER_STONE_CAULDRON = BLOCKS.register("water_stone_cauldron",
             () -> new CustomLayeredCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomLayeredCauldron.RAIN, CustomCauldronInteraction.WATER));
     public static final RegistryObject<Block> LAVA_STONE_CAULDRON = BLOCKS.register("lava_stone_cauldron",
@@ -57,37 +57,46 @@ public class ModItems {
     public static final RegistryObject<Block> SNOW_STONE_CAULDRON = BLOCKS.register("snow_stone_cauldron",
             () -> new CustomSnowCauldron(BlockBehaviour.Properties.copy(STONE_CAULDRON.get()), CustomSnowCauldron.SNOW, CustomCauldronInteraction.POWDER_SNOW));
 
-    public static final RegistryObject<Block> CHARRED_LOG = register("charred_log", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.NETHER_WART)));
+    public static final RegistryObject<Block> CHARRED_LOG = register("charred_log", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.NETHER_WART)), false);
 
-    public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)));
+    public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)), false);
 
     public static final RegistryObject<Block> SILICA_STONE = register("silica_stone",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.3F, 5.5F).sound(SoundType.STONE)));
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
     public static final RegistryObject<Block> SILICA_COBBLESTONE = register("silica_cobblestone",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)));
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    // Figure out if never is required
+    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)), false);
 
     //public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 
     public static final RegistryObject<Block> BRICK_FURNACE = register("brick_furnace", () -> new BrickFurnace(BlockBehaviour.Properties.of(Material.STONE).
-            requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))));
+            requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))), false);
     public static final RegistryObject<Block> BRICK_BLAST_FURNACE = register("brick_blast_furnace", () -> new BrickBlastFurnace(BlockBehaviour.Properties.of(Material.STONE).
-            requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))));
+            requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))), false);
 
     public static final RegistryObject<Block> CRUSHING_STONE = register("crushing_stone",
-            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)));
+            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), false);
     public static final RegistryObject<Block> CRUSHING_TERRACOTTA = register("crushing_terracotta",
-            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().strength(1.25F, 4.2F)));
+            () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.TERRACOTTA_RED).requiresCorrectToolForDrops().strength(1.25F, 4.2F)), false);
+
+
 
     public static final RegistryObject<Block> SLOW_FIRE = BLOCKS.register("slow_fire", () -> new SlowFireBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.COLOR_ORANGE).noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL)));
 
     public static final RegistryObject<Item> CHARRED_SHARDS = ITEMS.register("charred_shards", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(400));
 
+    public static final RegistryObject<Item> BARK = ITEMS.register("bark", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(50));
+
     public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new FireStarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new FireStarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Block> TREE_TAP = register("tree_tap", () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)));
+    public static final RegistryObject<Block> TREE_TAP = register("tree_tap",
+            () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), false);
+
+    public static final RegistryObject<Block> MELTER = register("melter",
+            () -> new MelterBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), true);
 
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> SILICA = ITEMS.register("raw_silica", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
@@ -100,7 +109,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> FIBER = ITEMS.register("fiber", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
-    public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)));
+    public static final RegistryObject<Item> COMPOST = ITEMS.register("compost", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+
+
+    public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)), false);
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = ITEMS.register("rose_gold_ingot", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
@@ -128,9 +140,15 @@ public class ModItems {
         };
     }
 
-    public static RegistryObject<Block> register(String id, Supplier<Block> supplier){
+    // Move these to future registration helper
+    public static RegistryObject<Block> register(String id, Supplier<Block> supplier, boolean hidden){
         RegistryObject<Block> block = BLOCKS.register(id, supplier);
-        ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties().tab(Frugality.TAB)));
+        if(!hidden){
+            ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties().tab(Frugality.TAB)));
+        }else{
+            ITEMS.register(id, () -> new BlockItem(block.get(), new Item.Properties()));
+        }
+
         return block;
     }
 
