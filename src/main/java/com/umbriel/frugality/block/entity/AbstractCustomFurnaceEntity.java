@@ -1,4 +1,4 @@
-package com.umbriel.frugality.blockentities;
+package com.umbriel.frugality.block.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;

@@ -2,9 +2,10 @@ package com.umbriel.frugality.init;
 
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.block.*;
-import com.umbriel.frugality.block.BrickFurnaces.BrickBlastFurnace;
-import com.umbriel.frugality.block.BrickFurnaces.BrickFurnace;
-import com.umbriel.frugality.block.Cauldrons.*;
+import com.umbriel.frugality.block.workstation.BrickBlastFurnace;
+import com.umbriel.frugality.block.workstation.BrickFurnace;
+import com.umbriel.frugality.block.cauldron.*;
+import com.umbriel.frugality.block.workstation.CrushingBlock;
 import com.umbriel.frugality.item.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
@@ -88,12 +89,12 @@ public class ModItems {
 
     public static final RegistryObject<Item> BARK = ITEMS.register("bark", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(50));
 
-    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new FireStarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new StarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new FireStarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new StarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
     public static final RegistryObject<Block> TREE_TAP = register("tree_tap",
-            () -> new TreeTapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), false);
+            () -> new TapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), false);
 
     public static final RegistryObject<Block> MELTER = register("melter",
             () -> new MelterBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), true);

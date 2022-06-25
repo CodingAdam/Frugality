@@ -3,8 +3,8 @@ package com.umbriel.frugality.block;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.umbriel.frugality.block.Cauldrons.CustomCauldron;
-import com.umbriel.frugality.block.Cauldrons.CustomLayeredCauldron;
+import com.umbriel.frugality.block.cauldron.CustomCauldron;
+import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -33,7 +33,7 @@ import java.util.Random;
 
 import static com.umbriel.frugality.util.CustomCauldronHelper.getWaterCauldron;
 
-public class TreeTapBlock extends Block implements SimpleWaterloggedBlock {
+public class TapBlock extends Block implements SimpleWaterloggedBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     private static final Map<Direction, VoxelShape> AABBS = Maps.newEnumMap(ImmutableMap.of(
@@ -44,7 +44,7 @@ public class TreeTapBlock extends Block implements SimpleWaterloggedBlock {
     private static final VoxelShape FAUCET = Block.box(6.0D, 4.0D, 6.0D, 10.0D, 6.0D, 10.0D);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public TreeTapBlock(Properties properties) {
+    public TapBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
     }

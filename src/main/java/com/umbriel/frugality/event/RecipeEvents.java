@@ -1,23 +1,28 @@
 package com.umbriel.frugality.event;
 
 
-import com.umbriel.frugality.block.Cauldrons.CustomLayeredCauldron;
+import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
+import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.ParticleHelper;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.AxeItem;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.LayeredCauldronBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -36,6 +41,7 @@ import java.util.List;
 import static com.umbriel.frugality.init.ModRecipes.cauldronRecipeType;
 import static com.umbriel.frugality.init.ModItems.MUD_BLOCK;
 import static com.umbriel.frugality.util.CustomCauldronHelper.getCauldron;
+import static net.minecraft.world.item.AxeItem.STRIPPABLES;
 
 public class RecipeEvents {
 
@@ -60,6 +66,28 @@ public class RecipeEvents {
             world.playSound(null, pos, SoundEvents.BOTTLE_EMPTY, SoundSource.BLOCKS, 1.0F, 1.0F);
         }
     }
+
+
+
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void stripBark(PlayerInteractEvent.RightClickBlock event){
+        Level world = event.getWorld();
+        BlockPos pos = event.getPos();
+        Player player = event.getPlayer();
+        ItemStack barkItem = new ItemStack(ModItems.BARK.get());
+
+        Item tool = event.getPlayer().getItemInHand(event.getHand()).getItem();
+        Block block = STRIPPABLES.get(world.getBlockState(pos).getBlock());
+        if(tool instanceof AxeItem){
+            if(block != null){
+                if(!player.getInventory().add(barkItem)){
+                    player.drop(barkItem, false);
+                }
+            }
+        }
+    }
+
+
 
 
 
@@ -105,8 +133,8 @@ public class RecipeEvents {
                         }
 
                         player.swing(player.getUsedItemHand());
-                        ParticleHelper.spawnWaterParticles(world, 0.3F, pos, 30);
-                        ParticleHelper.spawnCraftingParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
+                        ParticleHelper.spawnParticles(ParticleTypes.SPLASH,world, 0.3F, pos, 30);
+                        ParticleHelper.spawnItemParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
 
                         event.setCanceled(true);
                         event.setCancellationResult(InteractionResult.CONSUME);
@@ -138,7 +166,7 @@ public class RecipeEvents {
     @Nullable
     public static CauldronRecipe findRecipe (ItemStack item, int currentFluid) {
 
-        for (final CauldronRecipe recipe : getRecipes()) {
+        for (final CauldronRecipe recipe : getRecipes(null)) {
 
             if (recipe.doesMatch(item, currentFluid)) {
 
@@ -147,11 +175,6 @@ public class RecipeEvents {
         }
 
         return null;
-    }
-
-    public static List<CauldronRecipe> getRecipes () {
-
-        return getRecipes(null);
     }
 
     public static List<CauldronRecipe> getRecipes (@Nullable RecipeManager manager) {

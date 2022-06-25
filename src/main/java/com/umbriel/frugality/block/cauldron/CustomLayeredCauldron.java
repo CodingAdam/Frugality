@@ -1,4 +1,4 @@
-package com.umbriel.frugality.block.Cauldrons;
+package com.umbriel.frugality.block.cauldron;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;

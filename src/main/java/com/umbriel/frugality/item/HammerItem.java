@@ -11,8 +11,11 @@ import java.util.Set;
 
 public class HammerItem extends PickaxeItem {
 
+    private final Tier tier;
+
     public HammerItem(Tier tier, int attackDamage, float attackSpeed, Properties properties) {
         super(tier, attackDamage, attackSpeed, properties);
+        this.tier = tier;
     }
 
     @Override
@@ -26,6 +29,11 @@ public class HammerItem extends PickaxeItem {
             return false;
         }
         return enchantment.category.canEnchant(stack.getItem());
+    }
+
+    @Override
+    public int getMaxDamage(ItemStack stack) {
+        return (int)(this.tier.getUses() * 1.2);
     }
 
 }

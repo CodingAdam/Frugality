@@ -29,13 +29,15 @@ public class CauldronRecipe implements Recipe<Inventory> {
     private final Ingredient input;
     private final int level;
     //private final int duration;
+    private final String type;
     private final NonNullList<ChanceItem> outputs;
     private boolean hidden;
 
-    public CauldronRecipe(ResourceLocation identifier, Ingredient input, int level, NonNullList<ChanceItem> outputs, boolean hidden) {
+    public CauldronRecipe(ResourceLocation identifier, Ingredient input, int level, String type, NonNullList<ChanceItem> outputs, boolean hidden) {
         this.identifier = identifier;
         this.input = input;
         this.level = level;
+        this.type = type;
         //this.duration = duration;
         this.outputs = outputs; //Special Json Element required
         this.hidden = hidden;
@@ -54,11 +56,17 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
     }
 
+
+
     @Override
     public RecipeType<?> getType() {
 
         return ModRecipes.cauldronRecipeType;
 
+    }
+
+    public String getFill(){
+        return type;
     }
 
     public int getFluidLevel() {
@@ -185,10 +193,11 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             final Ingredient input = Ingredient.fromJson(json.get("input"));
             final int fluidLevel = GsonHelper.getAsInt(json, "fluidLevel", 1);
+            final String type = GsonHelper.getAsString(json, "type", "");
             //final int duration = GsonHelper.getAsInt(json, "duration", 1);
             final NonNullList<ChanceItem> results = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
             final boolean hidden = GsonHelper.getAsBoolean(json, "hidden", false);
-            return new CauldronRecipe(recipeId, input, fluidLevel, results, hidden);
+            return new CauldronRecipe(recipeId, input, fluidLevel, type, results, hidden);
         }
 
         @Override
@@ -196,10 +205,11 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             final Ingredient input = Ingredient.fromNetwork(buffer);
             final int fluidLevel = buffer.readInt();
+            String type = buffer.readUtf(32767);
             //final int duration = buffer.readInt();
             final NonNullList<ChanceItem> results = readItemStackArray(buffer);
             final boolean hidden = buffer.readBoolean();
-            return new CauldronRecipe(recipeId, input, fluidLevel, results, hidden);
+            return new CauldronRecipe(recipeId, input, fluidLevel, type, results, hidden);
         }
 
         @Override
@@ -207,6 +217,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             recipe.input.toNetwork(buffer);
             buffer.writeInt(recipe.level);
+            buffer.writeUtf(recipe.type);
             //buffer.writeInt(recipe.duration);
             writeItemStackArray(buffer, recipe.outputs);
             buffer.writeBoolean(recipe.hidden);

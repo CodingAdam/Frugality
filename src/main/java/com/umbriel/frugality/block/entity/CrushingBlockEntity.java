@@ -1,6 +1,6 @@
-package com.umbriel.frugality.blockentities;
+package com.umbriel.frugality.block.entity;
 
-import com.umbriel.frugality.block.CrushingBlock;
+import com.umbriel.frugality.block.workstation.CrushingBlock;
 import com.umbriel.frugality.init.ModBlockEntities;
 import com.umbriel.frugality.init.ModRecipes;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;

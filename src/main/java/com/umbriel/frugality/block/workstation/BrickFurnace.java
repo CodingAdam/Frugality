@@ -1,7 +1,7 @@
-package com.umbriel.frugality.block.BrickFurnaces;
+package com.umbriel.frugality.block.workstation;
 
-import com.umbriel.frugality.blockentities.AbstractCustomFurnaceEntity;
-import com.umbriel.frugality.blockentities.BrickFurnaceBlockEntity;
+import com.umbriel.frugality.block.entity.AbstractCustomFurnaceEntity;
+import com.umbriel.frugality.block.entity.BrickFurnaceBlockEntity;
 import com.umbriel.frugality.init.ModBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

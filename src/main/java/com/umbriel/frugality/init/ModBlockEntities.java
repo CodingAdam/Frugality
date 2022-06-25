@@ -1,9 +1,9 @@
 package com.umbriel.frugality.init;
 
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.blockentities.BrickBlastFurnaceBlockEntity;
-import com.umbriel.frugality.blockentities.BrickFurnaceBlockEntity;
-import com.umbriel.frugality.blockentities.CrushingBlockEntity;
+import com.umbriel.frugality.block.entity.BrickBlastFurnaceBlockEntity;
+import com.umbriel.frugality.block.entity.BrickFurnaceBlockEntity;
+import com.umbriel.frugality.block.entity.CrushingBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.DeferredRegister;

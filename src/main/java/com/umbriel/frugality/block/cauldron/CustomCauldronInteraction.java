@@ -1,4 +1,4 @@
-package com.umbriel.frugality.block.Cauldrons;
+package com.umbriel.frugality.block.cauldron;
 
 import it.unimi.dsi.fastutil.objects.Object2ObjectOpenHashMap;
 import net.minecraft.Util;

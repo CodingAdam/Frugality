@@ -2,8 +2,8 @@ package com.umbriel.frugality.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.math.Vector3f;
-import com.umbriel.frugality.block.CrushingBlock;
-import com.umbriel.frugality.blockentities.CrushingBlockEntity;
+import com.umbriel.frugality.block.workstation.CrushingBlock;
+import com.umbriel.frugality.block.entity.CrushingBlockEntity;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.block.model.ItemTransforms;

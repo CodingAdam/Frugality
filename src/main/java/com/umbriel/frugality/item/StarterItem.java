@@ -20,8 +20,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.gameevent.GameEvent;
 
 @SuppressWarnings("NullableProblems")
-public class FireStarterItem extends Item {
-    public FireStarterItem(Item.Properties p_i48493_1_) {
+public class StarterItem extends Item {
+    public StarterItem(Item.Properties p_i48493_1_) {
         super(p_i48493_1_);
     }
 

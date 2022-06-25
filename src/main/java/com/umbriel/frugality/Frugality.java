@@ -1,6 +1,6 @@
 package com.umbriel.frugality;
 
-import com.umbriel.frugality.block.Cauldrons.CustomCauldronInteraction;
+import com.umbriel.frugality.block.cauldron.CustomCauldronInteraction;
 import com.umbriel.frugality.client.RenderFix;
 import com.umbriel.frugality.event.RecipeEvents;
 import com.umbriel.frugality.init.ModBlockEntities;

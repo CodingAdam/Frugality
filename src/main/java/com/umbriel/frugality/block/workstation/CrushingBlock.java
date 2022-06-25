@@ -1,8 +1,8 @@
-package com.umbriel.frugality.block;
+package com.umbriel.frugality.block.workstation;
 
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.umbriel.frugality.blockentities.CrushingBlockEntity;
+import com.umbriel.frugality.block.entity.CrushingBlockEntity;
 import com.umbriel.frugality.init.ModBlockEntities;
 import com.umbriel.frugality.util.ParticleHelper;
 import net.minecraft.core.BlockPos;
@@ -89,7 +89,7 @@ public class CrushingBlock extends BaseEntityBlock implements SimpleWaterloggedB
             } else if(!heldItem.isEmpty()){
                 ItemStack crushingItem = crushingBlockEntity.getStoredItem().copy();
                 if(crushingBlockEntity.processItem(heldItem, player)){
-                    ParticleHelper.spawnCraftingParticles(level, 1.0D, 0.1F, pos, crushingItem, 2);
+                    ParticleHelper.spawnItemParticles(level, 1.0D, 0.1F, pos, crushingItem, 2);
                     return InteractionResult.SUCCESS;
                 }
                 return InteractionResult.CONSUME;

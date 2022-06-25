@@ -1,12 +1,11 @@
-package com.umbriel.frugality.jei;
+package com.umbriel.frugality.compact.jei;
 
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.block.MelterBlock;
 import com.umbriel.frugality.event.RecipeEvents;
 import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.jei.categorys.CauldronCategory;
-import com.umbriel.frugality.jei.categorys.CrushingCategory;
+import com.umbriel.frugality.compact.jei.categorys.CauldronCategory;
+import com.umbriel.frugality.compact.jei.categorys.CrushingCategory;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
 import mezz.jei.api.IModPlugin;
@@ -22,7 +21,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import org.jetbrains.annotations.NotNull;
 
