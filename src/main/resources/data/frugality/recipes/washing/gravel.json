@@ -4,6 +4,7 @@
     "item": "minecraft:gravel"
   },
   "fluidLevel": 1,
+  "fillType": 1,
   "results": [
     {
       "item": "minecraft:flint",

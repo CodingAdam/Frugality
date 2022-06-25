@@ -1,4 +1,4 @@
-package com.umbriel.frugality.compact.jei;
+package com.umbriel.frugality.compact.jei.category;
 
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.init.ModItems;

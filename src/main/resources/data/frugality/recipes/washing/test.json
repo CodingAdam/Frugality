@@ -1,0 +1,15 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:stone"
+  },
+  "fluidLevel": 3,
+  "fillType": 2,
+  "results": [
+    {
+      "item": "minecraft:ice",
+      "count": 1,
+      "chance": 1
+    }
+  ]
+}

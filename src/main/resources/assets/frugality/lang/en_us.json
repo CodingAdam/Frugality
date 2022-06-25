@@ -61,7 +61,9 @@
   "item.frugality.copper_starter" : "Copper Starter",
 
   "recipe.frugality.washing" : "Cauldron Washing",
-  "recipe.frugality.bucket_amount" : " Bottle",
+  "recipe.frugality.bottle_amount" : " Bottle",
+  "recipe.frugality.item_amount" : " Ball",
+  "recipe.frugality.bucket_amount" : " Bucket",
 
   "recipe.frugality.crushing" : "Crushing",
   "recipe.frugality.hits" : "Hits: ",

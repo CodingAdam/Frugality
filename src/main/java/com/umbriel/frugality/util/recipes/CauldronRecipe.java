@@ -29,11 +29,11 @@ public class CauldronRecipe implements Recipe<Inventory> {
     private final Ingredient input;
     private final int level;
     //private final int duration;
-    private final String type;
+    private final int type;
     private final NonNullList<ChanceItem> outputs;
     private boolean hidden;
 
-    public CauldronRecipe(ResourceLocation identifier, Ingredient input, int level, String type, NonNullList<ChanceItem> outputs, boolean hidden) {
+    public CauldronRecipe(ResourceLocation identifier, Ingredient input, int level, int type, NonNullList<ChanceItem> outputs, boolean hidden) {
         this.identifier = identifier;
         this.input = input;
         this.level = level;
@@ -65,7 +65,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
     }
 
-    public String getFill(){
+    public int getFill(){
         return type;
     }
 
@@ -114,9 +114,11 @@ public class CauldronRecipe implements Recipe<Inventory> {
         return false;
     }
 
-    public boolean doesMatch(ItemStack item, int level) {
-
-        return this.input.test(item) && this.level <= level;
+    public boolean doesMatch(ItemStack item, int level, int type) {
+        if(type == 3){
+            return this.input.test(item) && this.type == type;
+        }
+        return this.input.test(item) && this.level <= level && this.type == type;
     }
 
     public boolean isHidden() {
@@ -193,7 +195,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             final Ingredient input = Ingredient.fromJson(json.get("input"));
             final int fluidLevel = GsonHelper.getAsInt(json, "fluidLevel", 1);
-            final String type = GsonHelper.getAsString(json, "type", "");
+            final int type = GsonHelper.getAsInt(json, "fillType", 1);
             //final int duration = GsonHelper.getAsInt(json, "duration", 1);
             final NonNullList<ChanceItem> results = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
             final boolean hidden = GsonHelper.getAsBoolean(json, "hidden", false);
@@ -205,7 +207,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             final Ingredient input = Ingredient.fromNetwork(buffer);
             final int fluidLevel = buffer.readInt();
-            String type = buffer.readUtf(32767);
+            final int type = buffer.readInt();
             //final int duration = buffer.readInt();
             final NonNullList<ChanceItem> results = readItemStackArray(buffer);
             final boolean hidden = buffer.readBoolean();
@@ -217,7 +219,7 @@ public class CauldronRecipe implements Recipe<Inventory> {
 
             recipe.input.toNetwork(buffer);
             buffer.writeInt(recipe.level);
-            buffer.writeUtf(recipe.type);
+            buffer.writeInt(recipe.type);
             //buffer.writeInt(recipe.duration);
             writeItemStackArray(buffer, recipe.outputs);
             buffer.writeBoolean(recipe.hidden);

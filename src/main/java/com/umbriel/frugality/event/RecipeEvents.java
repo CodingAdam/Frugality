@@ -1,7 +1,9 @@
 package com.umbriel.frugality.event;
 
 
+import com.umbriel.frugality.block.cauldron.CustomLavaCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
+import com.umbriel.frugality.block.cauldron.CustomSnowCauldron;
 import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.ParticleHelper;
@@ -9,7 +11,9 @@ import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
@@ -22,9 +26,7 @@ import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.LayeredCauldronBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.MinecraftForge;
@@ -95,68 +97,92 @@ public class RecipeEvents {
     // Outside Vars for repeated event use
 
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void playerClickCauldron(PlayerInteractEvent.RightClickBlock event){
+    public static void playerClickCauldron(PlayerInteractEvent.RightClickBlock event) {
         final Level world = event.getWorld();
         final Player player = event.getPlayer();
         final BlockPos pos = event.getPos();
         final BlockState state = world.getBlockState(pos);
         final ItemStack stack = player.getItemInHand(event.getHand());
 
+        CauldronRecipe recipe = null;
+        IntegerProperty fluidLevel = null;
+        SimpleParticleType particles = null;
+        SoundEvent sound = null;
+        int initialFluidLevel = 0;
+
+
         if (state.getBlock() instanceof CustomLayeredCauldron || state.getBlock() instanceof LayeredCauldronBlock) {
 
-            IntegerProperty fluidLevel = LayeredCauldronBlock.LEVEL;
+            fluidLevel = LayeredCauldronBlock.LEVEL;
 
             if (state.getBlock() instanceof CustomLayeredCauldron) {
                 fluidLevel = CustomLayeredCauldron.LEVEL;
             }
 
-            final int initialFluidLevel = state.getValue(fluidLevel);
+            initialFluidLevel = state.getValue(fluidLevel);
 
             if (initialFluidLevel > 0) {
+                if(state.getBlock() instanceof CustomSnowCauldron || state.getBlock() instanceof PowderSnowCauldronBlock){
+                    recipe = findRecipe(stack, initialFluidLevel, 2);
+                    particles = ParticleTypes.SNOWFLAKE;
+                    sound = SoundEvents.SNOW_BREAK;
+                } else {
+                    recipe = findRecipe(stack, initialFluidLevel, 1);
+                    particles = ParticleTypes.SPLASH;
+                    sound = SoundEvents.AMBIENT_UNDERWATER_EXIT;
+                }
+            }
+        }
 
-                final CauldronRecipe recipe = findRecipe(stack, initialFluidLevel);
+        if(state.getBlock() instanceof CustomLavaCauldron || state.getBlock() instanceof LavaCauldronBlock){
+            recipe = findRecipe(stack, 3, 3);
+            particles = ParticleTypes.LAVA;
+            sound = SoundEvents.LAVA_POP;
+        }
 
-                if (recipe != null) {
+        if (recipe != null) {
 
-                    final CauldronRecipeEvent.Crafting craftEvent = new CauldronRecipeEvent.Crafting(player, recipe, world, state, pos, stack, recipe.getOutputs());
+            final CauldronRecipeEvent.Crafting craftEvent = new CauldronRecipeEvent.Crafting(player, recipe, world, state, pos, stack, recipe.getOutputs());
 
-                    if (!MinecraftForge.EVENT_BUS.post(craftEvent)) {
+            if (!MinecraftForge.EVENT_BUS.post(craftEvent)) {
 
-                        if (!player.isCreative()) {
-                            stack.shrink(1);
-                        }
-
-                        if (initialFluidLevel - recipe.getFluidLevel() > 0) {
-                            world.setBlockAndUpdate(pos, state.setValue(fluidLevel, initialFluidLevel - recipe.getFluidLevel()));
-                        } else {
-                            world.setBlockAndUpdate(pos, getCauldron(state.getBlock().defaultBlockState()));
-                        }
-
-                        player.swing(player.getUsedItemHand());
-                        ParticleHelper.spawnParticles(ParticleTypes.SPLASH,world, 0.3F, pos, 30);
-                        ParticleHelper.spawnItemParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
-
-                        event.setCanceled(true);
-                        event.setCancellationResult(InteractionResult.CONSUME);
-
-                        if (player instanceof ServerPlayer) {
-
-                            for (final ChanceItem outputEntry : craftEvent.getOutputs()) {
-
-                                final ItemStack resultDrop = outputEntry.rollOutput();
-
-                                if (!player.getInventory().add(resultDrop)) {
-                                    player.drop(resultDrop, false);
-                                }
-
-                            }
-
-                            world.playSound(null, pos, SoundEvents.AMBIENT_UNDERWATER_EXIT, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        }
-
-                        MinecraftForge.EVENT_BUS.post(new CauldronRecipeEvent.Crafted(player, recipe, world, state, pos, craftEvent.getOutputs()));
+                if (!player.isCreative()) {
+                    stack.shrink(1);
+                }
+                if(fluidLevel != null){
+                    if (initialFluidLevel - recipe.getFluidLevel() > 0) {
+                        world.setBlockAndUpdate(pos, state.setValue(fluidLevel, initialFluidLevel - recipe.getFluidLevel()));
+                    } else {
+                        world.setBlockAndUpdate(pos, getCauldron(state.getBlock().defaultBlockState()));
                     }
                 }
+                else{
+                    world.setBlockAndUpdate(pos, getCauldron(state.getBlock().defaultBlockState()));
+                }
+
+                player.swing(player.getUsedItemHand());
+                ParticleHelper.spawnParticles(particles, world, 0.3F, pos, 30);
+                ParticleHelper.spawnItemParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
+
+                event.setCanceled(true);
+                event.setCancellationResult(InteractionResult.CONSUME);
+
+                if (player instanceof ServerPlayer) {
+
+                    for (final ChanceItem outputEntry : craftEvent.getOutputs()) {
+
+                        final ItemStack resultDrop = outputEntry.rollOutput();
+
+                        if (!player.getInventory().add(resultDrop)) {
+                            player.drop(resultDrop, false);
+                        }
+
+                    }
+
+                    world.playSound(null, pos, sound, SoundSource.BLOCKS, 1.0F, 1.0F);
+                }
+
+                MinecraftForge.EVENT_BUS.post(new CauldronRecipeEvent.Crafted(player, recipe, world, state, pos, craftEvent.getOutputs()));
             }
         }
     }
@@ -164,16 +190,13 @@ public class RecipeEvents {
 
 
     @Nullable
-    public static CauldronRecipe findRecipe (ItemStack item, int currentFluid) {
+    public static CauldronRecipe findRecipe (ItemStack item, int currentFluid, int type) {
 
         for (final CauldronRecipe recipe : getRecipes(null)) {
-
-            if (recipe.doesMatch(item, currentFluid)) {
-
+            if (recipe.doesMatch(item, currentFluid, type)) {
                 return recipe;
             }
         }
-
         return null;
     }
 

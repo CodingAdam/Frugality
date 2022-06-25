@@ -1,14 +1,14 @@
-package com.umbriel.frugality.compact.jei.categorys;
+package com.umbriel.frugality.compact.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.item.ChanceItem;
-import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
+import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
 import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
 import mezz.jei.api.helpers.IGuiHelper;
 import mezz.jei.api.ingredients.IIngredients;
@@ -21,17 +21,22 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
+import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static com.umbriel.frugality.compact.jei.categorys.CauldronCategory.chanceText;
-
-public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
-    public static final ResourceLocation ID = new ResourceLocation(Frugality.MODID, "crushing");
-    public static final MutableComponent hitsAmountText = new TranslatableComponent("recipe." + Frugality.MODID + ".hits");
+public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
+    public static final ResourceLocation ID = new ResourceLocation(Frugality.MODID, "cauldron");
+    public static final MutableComponent chanceText = new TranslatableComponent("recipe." + Frugality.MODID + ".chance");
+    public static final MutableComponent bucketAmountText = new TranslatableComponent("recipe." + Frugality.MODID + ".bucket_amount");
+    public static final MutableComponent fluidAmountText = new TranslatableComponent("recipe." + Frugality.MODID + ".bottle_amount");
+    public static final MutableComponent itemAmountText = new TranslatableComponent("recipe." + Frugality.MODID + ".item_amount");
 
     protected String name;
     private final IDrawable background;
@@ -41,7 +46,7 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     private IDrawable plusSign;
 
 
-    public CrushingCategory(IGuiHelper guiHelper, Block icon) {
+    public CauldronCategory(IGuiHelper guiHelper, Block icon) {
        this.background = guiHelper.createBlankDrawable(150, 36);
        this.slotDrawable = guiHelper.getSlotDrawable();
        this.icon = guiHelper.createDrawableIngredient(new ItemStack(icon));
@@ -55,13 +60,13 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     }
 
     @Override
-    public Class<? extends CrushingBlockRecipe> getRecipeClass() {
-        return CrushingBlockRecipe.class;
+    public Class<? extends CauldronRecipe> getRecipeClass() {
+        return CauldronRecipe.class;
     }
 
     @Override
     public Component getTitle() {
-        return new TranslatableComponent("recipe." + Frugality.MODID + ".crushing");
+        return new TranslatableComponent("recipe." + Frugality.MODID + ".washing");
     }
 
     @Override
@@ -75,52 +80,56 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     }
 
     @Override
-    public void setIngredients(CrushingBlockRecipe recipe, IIngredients ingredients) {
+    public void setIngredients(CauldronRecipe recipe, IIngredients ingredients) {
         ingredients.setInputIngredients(Collections.singletonList(recipe.getInput()));
-        ingredients.setOutputs(VanillaTypes.ITEM, recipe.getResults());
+        ingredients.setOutputs(VanillaTypes.ITEM, recipe.getOutputsAsItems());
     }
 
     @Override
-    public void draw(CrushingBlockRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(CauldronRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
         this.slotDrawable.draw(poseStack, 0, 0);
         this.slotDrawable.draw(poseStack, 25, 0);
         this.slotDrawable.draw(poseStack, 25, 18);
         this.arrow.draw(poseStack, 48, 10);
         this.plusSign.draw(poseStack, 2, 20);
 
-        int results = recipe.getResults().size();
+        int results = recipe.getOutputs().size();
         for (int slotId = 0; slotId < 4 + (4 * (results/5)); slotId++) {
             this.slotDrawable.draw(poseStack, (78 + 18 * (slotId % 4)), 9 - (9 * (results/5)) + 18 * (slotId/4));
         }
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, CrushingBlockRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, CauldronRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-        List<ChanceItem> results = recipe.getRolledResults();
+        IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
+        List<ChanceItem> results = recipe.getOutputs();
 
         itemStacks.init(0, true, 0, 0);
-        itemStacks.set(0, Arrays.asList(recipe.getTool().getItems()));
+        itemStacks.set(0, Arrays.asList(recipe.getInput().getItems()));
 
-        itemStacks.init(1, true, 25, 0);
-        itemStacks.set(1, Arrays.asList(recipe.getInput().getItems()));
+        if(recipe.getFill() == 1){
+            fluidStacks.init(1, true, 26, 1);
+            fluidStacks.set(1, new FluidStack(Fluids.WATER.getSource(), recipe.getFluidLevel() * 334));
+        }
+        if(recipe.getFill() == 2){
+            itemStacks.init(1, true, 25, 0);
+            itemStacks.set(1, new ItemStack(Items.POWDER_SNOW_BUCKET)); // Snow texture (as a liquid) if possible
+        }
+        if(recipe.getFill() == 3){
+            fluidStacks.init(1, true, 26, 1);
+            fluidStacks.set(1, new FluidStack(Fluids.LAVA.getSource(), 1000));
+        }
 
-        ItemStack crushingItem = new ItemStack(ModItems.CRUSHING_STONE.get().asItem());
-        crushingItem.setCount(recipe.getHits());
 
         itemStacks.init(2, true, 25, 18);
-        itemStacks.set(2, crushingItem);
+        itemStacks.set(2, new ItemStack(Blocks.CAULDRON.asItem()));
 
         for(int slotId = 0; slotId < results.size(); slotId++){
 
             itemStacks.init(slotId + 3, false, (78 + 18 * (slotId % 4)), 9 - (9 * (results.size()/5)) + 18 * (slotId/4));
             itemStacks.set(slotId + 3, results.get(slotId).getItem());
         }
-
-        itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if(slotIndex == 2)
-                tooltip.add(1, new TextComponent("").append(hitsAmountText).append("" + recipe.getHits()).withStyle(ChatFormatting.DARK_RED));;
-        } );
 
         itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
             if(input)
@@ -140,5 +149,22 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
             }
         } );
 
+        fluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+            if(input)
+                if(slotIndex == 1)
+                    if(recipe.getFluidLevel() < 3 && recipe.getFill() != 3)
+                        tooltip.add(1, new TextComponent("" + recipe.getFluidLevel()).append(fluidAmountText).withStyle(ChatFormatting.DARK_GREEN));
+                    else
+                        tooltip.add(1, new TextComponent("1").append(bucketAmountText).withStyle(ChatFormatting.DARK_GREEN));
+        });
+
+        itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
+            if(input)
+                if(slotIndex == 1)
+                    if(recipe.getFluidLevel() < 3)
+                        tooltip.add(1, new TextComponent("" + recipe.getFluidLevel()).append(itemAmountText).withStyle(ChatFormatting.DARK_GREEN));
+                    else
+                        tooltip.add(1, new TextComponent("1").append(bucketAmountText).withStyle(ChatFormatting.DARK_GREEN));
+        });
 }
 }

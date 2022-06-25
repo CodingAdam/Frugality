@@ -4,6 +4,7 @@
     "item": "minecraft:dirt"
   },
   "fluidLevel": 1,
+  "fillType": 1,
   "results": [
     {
       "item": "frugality:raw_silica",

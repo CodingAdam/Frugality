@@ -4,6 +4,7 @@
     "item": "minecraft:soul_sand"
   },
   "fluidLevel": 1,
+  "fillType": 1,
   "results": [
     {
       "item": "minecraft:quartz",

@@ -1,11 +1,13 @@
 package com.umbriel.frugality.compact.jei;
 
 import com.umbriel.frugality.Frugality;
+import com.umbriel.frugality.compact.jei.category.BrickBlastingCategory;
+import com.umbriel.frugality.compact.jei.category.BrickSmeltingCategory;
 import com.umbriel.frugality.event.RecipeEvents;
 import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.compact.jei.categorys.CauldronCategory;
-import com.umbriel.frugality.compact.jei.categorys.CrushingCategory;
+import com.umbriel.frugality.compact.jei.category.CauldronCategory;
+import com.umbriel.frugality.compact.jei.category.CrushingCategory;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
 import mezz.jei.api.IModPlugin;
@@ -68,7 +70,7 @@ public class FrugalityPlugin implements IModPlugin {
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration){
-        final Collection<CauldronRecipe> cauldronRecipes = RecipeEvents.getRecipes();
+        final Collection<CauldronRecipe> cauldronRecipes = RecipeEvents.getRecipes(null);
         registration.addRecipes(cauldronRecipes, CauldronCategory.ID);
 
         List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
