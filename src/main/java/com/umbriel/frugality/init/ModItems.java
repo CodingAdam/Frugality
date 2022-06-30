@@ -38,8 +38,6 @@ public class ModItems {
     }
     public static final RegistryObject<Block> REINFORCED_COMPOSTER = register("reinforced_composter", () -> new ReinforcedComposterBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)), false);
 
-
-
     public static final RegistryObject<Block> WOODEN_CAULDRON = register("wood_cauldron",
             () -> new CustomCauldron(BlockBehaviour.Properties.of(Material.WOOD).strength(0.6F).sound(SoundType.WOOD)), false);
     public static final RegistryObject<Block> WATER_WOODEN_CAULDRON = BLOCKS.register("water_wood_cauldron",
@@ -93,6 +91,8 @@ public class ModItems {
 
     public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new StarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
+    public static final RegistryObject<Item> COPPER_CUP = ITEMS.register("copper_cup", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+
     public static final RegistryObject<Block> TREE_TAP = register("tree_tap",
             () -> new TapBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.WOOD).requiresCorrectToolForDrops().strength(1.0F, 1.0F)), false);
 
@@ -112,6 +112,10 @@ public class ModItems {
 
     public static final RegistryObject<Item> COMPOST = ITEMS.register("compost", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
+    public static final RegistryObject<Item> THERMAL_STONE = ITEMS.register("thermal_stone", () -> new ThermalItem(new Item.Properties().tab(Frugality.TAB).stacksTo(16)));
+    public static final RegistryObject<Item> HEATED_STONE = ITEMS.register("heated_stone", () -> new ThermalItem(new Item.Properties().tab(Frugality.TAB).stacksTo(16)));
+    public static final RegistryObject<Item> CHILLED_STONE = ITEMS.register("chilled_stone", () -> new ThermalItem(new Item.Properties().tab(Frugality.TAB).stacksTo(16)));
+    public static final RegistryObject<Item> WARPED_STONE = ITEMS.register("warped_stone", () -> new ThermalItem(new Item.Properties().tab(Frugality.TAB).stacksTo(16)));
 
     public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)), false);
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = ITEMS.register("rose_gold_ingot", () -> new Item(new Item.Properties().tab(Frugality.TAB)));

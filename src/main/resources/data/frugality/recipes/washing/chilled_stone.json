@@ -1,13 +1,13 @@
 {
   "type": "frugality:washing",
   "input": {
-    "item": "minecraft:stone"
+    "item": "frugality:thermal_stone"
   },
   "fluidLevel": 3,
   "fillType": 2,
   "results": [
     {
-      "item": "minecraft:ice",
+      "item": "frugality:chilled_stone",
       "count": 1,
       "chance": 1
     }

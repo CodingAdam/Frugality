@@ -2,7 +2,6 @@ package com.umbriel.frugality.data;
 
 import com.umbriel.frugality.Frugality;
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -22,10 +21,17 @@ public class ItemModels extends ItemModelProvider {
 
         simpleItem("bark", generated);
         simpleItem("compost", generated);
+        simpleItem("copper_cup", generated);
+
+        simpleItem("thermal_stone", generated);
+        simpleItem("heated_stone", generated);
+        simpleItem("chilled_stone", generated);
+        simpleItem("warped_stone", generated);
+
 
     }
 
-    private ItemModelBuilder simpleItem(String name, ModelFile item){
-        return getBuilder(name).parent(item).texture("layer0", "item/" + name);
+    private void simpleItem(String name, ModelFile item){
+        getBuilder(name).parent(item).texture("layer0", "item/" + name);
     }
 }

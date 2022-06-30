@@ -13,6 +13,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -22,25 +24,27 @@ import org.jetbrains.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.umbriel.frugality.init.ModRecipes.melterBlockItemRecipeType;
+import static com.umbriel.frugality.init.ModRecipes.thermalRecipeType;
 
 
-public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
+public class ThermalRecipe implements Recipe<RecipeWrapper> {
 
-    public static final MelterBlockItemRecipe.Serializer SERIALIZER = new MelterBlockItemRecipe.Serializer();
+    public static final ThermalRecipe.Serializer SERIALIZER = new ThermalRecipe.Serializer();
 
     private final ResourceLocation identifier;
     private final String group;
     private final Ingredient input;
-    private final NonNullList<ChanceItem> results;
-    private final int time;
+    private final FluidStack fluidOutput;
+    private final NonNullList<ChanceItem> itemOutputs;
+    private final int stoneType;
 
-    public MelterBlockItemRecipe(ResourceLocation identifier, String group, Ingredient input, NonNullList<ChanceItem> results, int time) {
+    public ThermalRecipe(ResourceLocation identifier, String group, Ingredient input, FluidStack fluidOutput, NonNullList<ChanceItem> itemOutputs, int stoneType) {
         this.identifier = identifier;
         this.group = group;
         this.input = input;
-        this.results = results;
-        this.time = time;
+        this.fluidOutput = fluidOutput;
+        this.itemOutputs = itemOutputs;
+        this.stoneType = stoneType;
     }
 
     @Override
@@ -64,8 +68,8 @@ public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
         return input.test(inv.getItem(0));
     }
 
-    public int getTime(){
-        return time;
+    public int getStoneType(){
+        return stoneType;
     }
 
     @Override
@@ -78,16 +82,6 @@ public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
         return false;
     }
 
-    public List<ItemStack> rollOutputs() {
-        List<ItemStack> results = new ArrayList<>();
-        NonNullList<ChanceItem> rollableResults = getRolledResults();
-        for (ChanceItem output : rollableResults) {
-            ItemStack stack = output.rollOutput();
-            if (!stack.isEmpty())
-                results.add(stack);
-        }
-        return results;
-    }
     @Override
     public ItemStack getResultItem() {
         return null;
@@ -97,21 +91,50 @@ public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
         return this.group;
     }
 
-    public NonNullList<ChanceItem> getRolledResults() {
-        return this.results;
+    public boolean doesMatch(ItemStack item) {
+        return this.input.test(item);
+    }
+
+    public List<ItemStack> getOutputsAsItems() {
+        List<ItemStack> items = new ArrayList<>();
+        for (ChanceItem output : itemOutputs){
+            ItemStack stack = output.getItem();
+            if (!stack.isEmpty())
+                items.add(stack);
+        }
+        return items;
+    }
+
+    public FluidStack getFluidResult() {
+        return this.fluidOutput;
+    }
+
+    public NonNullList<ChanceItem> getItemResult() {
+        return this.itemOutputs;
+    }
+
+    public List<ItemStack> rollOutputs() {
+        List<ItemStack> results = new ArrayList<>();
+        NonNullList<ChanceItem> rollableResults = getItemResult();
+        for (ChanceItem output : rollableResults) {
+            ItemStack stack = output.rollOutput();
+            if (!stack.isEmpty())
+                results.add(stack);
+        }
+        return results;
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return MelterBlockItemRecipe.SERIALIZER;
+        return ThermalRecipe.SERIALIZER;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return melterBlockItemRecipeType;
+        return thermalRecipeType;
     }
 
-    private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<MelterBlockItemRecipe> {
+    private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ThermalRecipe> {
 
         public static NonNullList<ChanceItem> readItems (JsonElement element) {
             final NonNullList<ChanceItem> items = NonNullList.create();
@@ -141,32 +164,43 @@ public class MelterBlockItemRecipe implements Recipe<RecipeWrapper> {
                 stack.write(buffer);
             }
         }
+        public static FluidStack deserializeFluid(JsonObject jsonObject){
+            String name = GsonHelper.getAsString(jsonObject, "name");
+            Fluid fluid = ForgeRegistries.FLUIDS.getValue(new ResourceLocation(name));
+            if(fluid == null){
+                return new FluidStack(Fluids.EMPTY, 1000);
+            }
+            return new FluidStack(fluid, 1000);
+        }
 
         @Override
-        public MelterBlockItemRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
+        public ThermalRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             final String group = GsonHelper.getAsString(json, "group", "");
             final Ingredient input = Ingredient.fromJson(json.get("input"));
-            final NonNullList<ChanceItem> results = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
-            final int time = GsonHelper.getAsInt(json, "time", 1);
-            return new MelterBlockItemRecipe(recipeId, group, input, results, time);
+            final FluidStack fluid = json.has("fluid") ? deserializeFluid(GsonHelper.getAsJsonObject(json, "fluid")) : null;
+            final NonNullList<ChanceItem> items = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
+            final int type = GsonHelper.getAsInt(json, "stoneType", 1);
+            return new ThermalRecipe(recipeId, group, input, fluid, items, type);
         }
 
         @Nullable
         @Override
-        public MelterBlockItemRecipe fromNetwork(ResourceLocation recipe, FriendlyByteBuf buffer) {
+        public ThermalRecipe fromNetwork(ResourceLocation recipe, FriendlyByteBuf buffer) {
             String groupIn = buffer.readUtf(32767);
             Ingredient inputIn = Ingredient.fromNetwork(buffer);
+            FluidStack fluidIn = FluidStack.readFromPacket(buffer);
             final NonNullList<ChanceItem> resultsIn = readItemStackArray(buffer);
-            final int time = buffer.readInt();
-            return new MelterBlockItemRecipe(recipe, groupIn, inputIn, resultsIn, time);
+            final int type = buffer.readInt();
+            return new ThermalRecipe(recipe, groupIn, inputIn, fluidIn, resultsIn, type);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buffer, MelterBlockItemRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buffer, ThermalRecipe recipe) {
             buffer.writeUtf(recipe.group);
             recipe.input.toNetwork(buffer);
-            buffer.writeInt(recipe.time);
-            writeItemStackArray(buffer, recipe.results);
+            recipe.fluidOutput.writeToPacket(buffer);
+            buffer.writeInt(recipe.stoneType);
+            writeItemStackArray(buffer, recipe.itemOutputs);
         }
     }
 

@@ -54,6 +54,12 @@
   "item.frugality.fiber" : "Fiber",
   "item.frugality.compost" : "Compost",
   "item.frugality.bark" : "Bark",
+  "item.frugality.copper_cup" : "Copper Cup",
+
+  "item.frugality.thermal_stone" : "Thermal Stone",
+  "item.frugality.chilled_stone" : "Chilled Stone",
+  "item.frugality.heated_stone" : "Heated Stone",
+  "item.frugality.warped_stone" : "Warped Stone",
 
   "container.brick_furnace" : "Brick Furnace",
   "container.brick_blast_furnace" : "Brick Blast Furnace",
@@ -69,6 +75,8 @@
   "recipe.frugality.hits" : "Hits: ",
 
   "recipe.frugality.chance" : " Chance",
+
+  "recipe.frugality.thermal" : "Thermal Stone",
 
   "frugality.jei.info.small_ores" : "With a heavier mining implement, it may be possible to conserve more of an ore while mining. This process should grant smaller chunks in addition to the original ones.",
   "frugality.jei.info.charred_shards" : "A slower burning flame may allow the logs to retain some of their carbon strength. Which may be a possible way to get shards of carbon from the burnt logs.",

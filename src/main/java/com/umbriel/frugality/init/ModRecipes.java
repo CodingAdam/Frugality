@@ -3,8 +3,7 @@ package com.umbriel.frugality.init;
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
-import com.umbriel.frugality.util.recipes.MelterBlockFluidRecipe;
-import com.umbriel.frugality.util.recipes.MelterBlockItemRecipe;
+import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -20,10 +19,10 @@ public class ModRecipes {
     }
     public static RegistryObject<RecipeSerializer<CauldronRecipe>> WASHING = RECIPE_SERIALIZERS.register("washing", ()-> CauldronRecipe.SERIALIZER);
     public static RegistryObject<RecipeSerializer<CrushingBlockRecipe>> CRUSHING = RECIPE_SERIALIZERS.register("crushing", ()-> CrushingBlockRecipe.SERIALIZER);
+    public static RegistryObject<RecipeSerializer<ThermalRecipe>> THERMAL_STONE = RECIPE_SERIALIZERS.register("thermal_stone", ()-> ThermalRecipe.SERIALIZER);
 
     public static RecipeType<CauldronRecipe> cauldronRecipeType = RecipeType.register(Frugality.MODID + ":washing");
     public static RecipeType<CrushingBlockRecipe> crushingBlockRecipeType = RecipeType.register(Frugality.MODID + ":crushing");
-    public static RecipeType<MelterBlockItemRecipe> melterBlockItemRecipeType = RecipeType.register(Frugality.MODID + ":melting_item");
-    public static RecipeType<MelterBlockFluidRecipe> melterBlockFluidRecipeType = RecipeType.register(Frugality.MODID + ":melting_fluid");
+    public static RecipeType<ThermalRecipe> thermalRecipeType = RecipeType.register(Frugality.MODID + ":thermal_stone");
 
 }

@@ -17,10 +17,10 @@ import java.util.function.Consumer;
 public class CraftingRecipe {
 
     public static void register(Consumer<FinishedRecipe> consumer){
-        blockRecipes(consumer);
+        recipes(consumer);
     }
 
-    private static void blockRecipes(Consumer<FinishedRecipe> consumer){
+    private static void recipes(Consumer<FinishedRecipe> consumer){
         ShapedRecipeBuilder.shaped(ModItems.SILICA_COBBLESTONE.get())
                 .pattern("bb ")
                 .pattern("bb ")

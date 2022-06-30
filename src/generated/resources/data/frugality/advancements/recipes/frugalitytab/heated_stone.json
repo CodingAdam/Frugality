@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:heated_stone"
+    ]
+  },
+  "criteria": {
+    "has_silica_cobblestone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:thermal_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:heated_stone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silica_cobblestone",
+      "has_the_recipe"
+    ]
+  ]
+}

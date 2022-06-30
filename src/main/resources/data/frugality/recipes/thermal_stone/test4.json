@@ -1,0 +1,16 @@
+{
+  "type": "frugality:thermal_stone",
+  "input": [
+    {
+      "tag": "minecraft:logs_that_burn"
+    }
+  ],
+  "stoneType": 1,
+  "results": [
+    {
+      "item": "frugality:charred_log",
+      "count": 1,
+      "chance": 1
+    }
+  ]
+}

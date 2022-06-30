@@ -1,15 +1,15 @@
 {
-  "type": "frugality:melting_item",
+  "type": "frugality:thermal_stone",
   "input": [
     {
       "item": "minecraft:sand"
     }
   ],
-  "time": 1,
+  "stoneType": 3,
   "results":[
     {
-      "item": "minecraft:iron_ingot",
-      "count": 2,
+      "item": "minecraft:soul_sand",
+      "count": 1,
       "chance": 1
     }
   ]

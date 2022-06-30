@@ -1,0 +1,12 @@
+{
+  "type": "frugality:thermal_stone",
+  "input": [
+    {
+      "item": "minecraft:stone"
+    }
+  ],
+  "stoneType": 1,
+  "fluid": {
+    "name" : "minecraft:lava"
+  }
+}

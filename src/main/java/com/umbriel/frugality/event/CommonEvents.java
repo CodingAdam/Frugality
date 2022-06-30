@@ -45,7 +45,7 @@ import static com.umbriel.frugality.init.ModItems.MUD_BLOCK;
 import static com.umbriel.frugality.util.CustomCauldronHelper.getCauldron;
 import static net.minecraft.world.item.AxeItem.STRIPPABLES;
 
-public class RecipeEvents {
+public class CommonEvents {
 
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void clickDirtwithBottle(PlayerInteractEvent.RightClickBlock event){

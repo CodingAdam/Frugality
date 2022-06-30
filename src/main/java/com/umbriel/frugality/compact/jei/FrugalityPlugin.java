@@ -1,15 +1,13 @@
 package com.umbriel.frugality.compact.jei;
 
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.compact.jei.category.BrickBlastingCategory;
-import com.umbriel.frugality.compact.jei.category.BrickSmeltingCategory;
-import com.umbriel.frugality.event.RecipeEvents;
+import com.umbriel.frugality.compact.jei.category.*;
+import com.umbriel.frugality.event.CommonEvents;
 import com.umbriel.frugality.init.ModItems;
 import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.compact.jei.category.CauldronCategory;
-import com.umbriel.frugality.compact.jei.category.CrushingCategory;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.constants.VanillaRecipeCategoryUid;
@@ -49,7 +47,8 @@ public class FrugalityPlugin implements IModPlugin {
                 new BrickBlastingCategory(guiHelper),
                 new BrickSmeltingCategory(guiHelper),
                 new CauldronCategory(guiHelper, Blocks.CAULDRON),
-                new CrushingCategory(guiHelper, ModItems.CRUSHING_STONE.get())
+                new CrushingCategory(guiHelper, ModItems.CRUSHING_STONE.get()),
+                new ThermalCategory(guiHelper, ModItems.THERMAL_STONE.get())
         );
     }
 
@@ -67,10 +66,15 @@ public class FrugalityPlugin implements IModPlugin {
         registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_STONE.get()), CrushingCategory.ID);
         registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
 
+        registration.addRecipeCatalyst(new ItemStack(ModItems.THERMAL_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.HEATED_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.CHILLED_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(ModItems.WARPED_STONE.get()), ThermalCategory.ID);
+
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration){
-        final Collection<CauldronRecipe> cauldronRecipes = RecipeEvents.getRecipes(null);
+        final Collection<CauldronRecipe> cauldronRecipes = CommonEvents.getRecipes(null);
         registration.addRecipes(cauldronRecipes, CauldronCategory.ID);
 
         List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
@@ -82,5 +86,10 @@ public class FrugalityPlugin implements IModPlugin {
         registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
         registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_LOG.get()), VanillaTypes.ITEM, charredShardsText);
         registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM, charredShardsText);
+
+        List<ThermalRecipe> thermalRecipes = Minecraft.getInstance().level.getRecipeManager()
+                .getAllRecipesFor(ModRecipes.thermalRecipeType);
+
+        registration.addRecipes(thermalRecipes, ThermalCategory.ID);
     }
 }

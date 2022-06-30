@@ -1,17 +1,8 @@
 package com.umbriel.frugality.block;
 
 
-import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.util.recipes.MelterBlockFluidRecipe;
-import com.umbriel.frugality.util.recipes.MelterBlockItemRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.NonNullList;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.entity.item.ItemEntity;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -23,17 +14,13 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.fluids.FluidStack;
-import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.List;
 import java.util.Random;
 
 public class MelterBlock extends Block implements SimpleWaterloggedBlock {
@@ -101,67 +88,66 @@ public class MelterBlock extends Block implements SimpleWaterloggedBlock {
         return false;
     }
 
-    @Override
-    @SuppressWarnings("NullableProblems")
-    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
-        List<MelterBlockFluidRecipe> recipeFluid = worldIn.getRecipeManager().getAllRecipesFor(ModRecipes.melterBlockFluidRecipeType);
-        List<MelterBlockItemRecipe> recipeItem = worldIn.getRecipeManager().getAllRecipesFor(ModRecipes.melterBlockItemRecipeType);
-
-        ItemStack itemStack = worldIn.getBlockState(pos.below()).getBlock().asItem().getDefaultInstance();
-        MelterBlockFluidRecipe realFluidRecipe = findFluidRecipe(recipeFluid, itemStack);
-        MelterBlockItemRecipe realItemRecipe = findItemRecipe(recipeItem, itemStack);
-
-        System.out.println("Random Tick");
-
-        float ran = random.nextFloat();
-        if(realFluidRecipe != null){
-            System.out.println("Real Fluid");
-            System.out.println(ran);
-            if(ran < 10F / (float)realFluidRecipe.getTime()){
-                Fluid fluid = realFluidRecipe.getResult().getFluid();
-                worldIn.setBlock(pos.below(), fluid.defaultFluidState().createLegacyBlock(), 11);
-            }
-        }
-        if(realItemRecipe != null){
-            System.out.println("Real Item");
-            System.out.println(ran);
-            if(ran < 10F / (float)realItemRecipe.getTime()) {
-                Block block = Block.byItem(realItemRecipe.getInput().getItems()[0].getItem());
-                if (block != Blocks.AIR) {
-                    worldIn.setBlock(pos.below(), block.defaultBlockState(), 1);
-                } else {
-                    List<ItemStack> items = realItemRecipe.rollOutputs();
-                    for (ItemStack item : items) {
-                        ItemEntity spawnedItem = new ItemEntity(worldIn, (double) pos.below().getX(), (double) pos.below().getX(), (double) pos.below().getX(), item);
-                        worldIn.addFreshEntity(spawnedItem);
-                    }
-                }
-            }
-        }
-    }
-
-    public static MelterBlockItemRecipe findItemRecipe(List<MelterBlockItemRecipe> recipes, ItemStack itemStack){
-        for (final MelterBlockItemRecipe recipe : recipes) {
-            for(int i = 0; i < recipe.getInput().getItems().length; i++){
-                if (recipe.getInput().getItems()[i] == itemStack) {
-                    return recipe;
-                }
-            }
-        }
-        return null;
-    }
-
-    @Nullable
-    public static MelterBlockFluidRecipe findFluidRecipe(List<MelterBlockFluidRecipe> recipes, ItemStack itemStack) {
-        for (final MelterBlockFluidRecipe recipe : recipes) {
-            for(int i = 0; i < recipe.getInput().getItems().length; i++){
-                if (recipe.getInput().getItems()[i] == itemStack) {
-                    return recipe;
-                }
-            }
-        }
-        return null;
-    }
+//    @Override
+//    @SuppressWarnings("NullableProblems")
+//    public void randomTick(BlockState state, ServerLevel worldIn, BlockPos pos, Random random) {
+//        List<ThermalFluidRecipe> recipeFluid = worldIn.getRecipeManager().getAllRecipesFor(ModRecipes.thermalRecipeType);
+//        List<ThermalItemRecipe> recipeItem = worldIn.getRecipeManager().getAllRecipesFor(ModRecipes.thermalItemRecipeType);
+//
+//        ItemStack itemStack = worldIn.getBlockState(pos.below()).getBlock().asItem().getDefaultInstance();
+//        ThermalFluidRecipe realFluidRecipe = findFluidRecipe(recipeFluid, itemStack);
+//        ThermalItemRecipe realItemRecipe = findItemRecipe(recipeItem, itemStack);
+//
+//        System.out.println("Random Tick");
+//
+//        float ran = random.nextFloat();
+//        if(realFluidRecipe != null){
+//            System.out.println("Real Fluid");
+//            System.out.println(ran);
+//            if(ran < 10F / (float)realFluidRecipe.getStoneType()){
+//                Fluid fluid = realFluidRecipe.getResult().getFluid();
+//                worldIn.setBlock(pos.below(), fluid.defaultFluidState().createLegacyBlock(), 11);
+//            }
+//        }
+//        if(realItemRecipe != null){
+//            System.out.println("Real Item");
+//            System.out.println(ran);
+//            if(ran < 10F / (float)realItemRecipe.getStoneType()) {
+//                Block block = Block.byItem(realItemRecipe.getInput().getItems()[0].getItem());
+//                if (block != Blocks.AIR) {
+//                    worldIn.setBlock(pos.below(), block.defaultBlockState(), 1);
+//                } else {
+//                    List<ItemStack> items = realItemRecipe.rollOutputs();
+//                    for (ItemStack item : items) {
+//                        ItemEntity spawnedItem = new ItemEntity(worldIn, (double) pos.below().getX(), (double) pos.below().getX(), (double) pos.below().getX(), item);
+//                        worldIn.addFreshEntity(spawnedItem);
+//                    }
+//                }
+//            }
+//        }
+//    }
+//
+//    public static ThermalItemRecipe findItemRecipe(List<ThermalItemRecipe> recipes, ItemStack itemStack){
+//        for (final ThermalItemRecipe recipe : recipes) {
+//            for(int i = 0; i < recipe.getInput().getItems().length; i++){
+//                if (recipe.getInput().getItems()[i] == itemStack) {
+//                    return recipe;
+//                }
+//            }
+//        }
+//        return null;
+//    }
+//
+//    public static ThermalFluidRecipe findFluidRecipe(List<ThermalFluidRecipe> recipes, ItemStack itemStack) {
+//        for (final ThermalFluidRecipe recipe : recipes) {
+//            for(int i = 0; i < recipe.getInput().getItems().length; i++){
+//                if (recipe.getInput().getItems()[i] == itemStack) {
+//                    return recipe;
+//                }
+//            }
+//        }
+//        return null;
+//    }
 
     public BlockState updateShape(BlockState state, Direction direction, BlockState stater, LevelAccessor accessor, BlockPos pos, BlockPos poser) {
         if (state.getValue(WATERLOGGED)) {

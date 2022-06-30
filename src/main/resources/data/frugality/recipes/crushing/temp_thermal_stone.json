@@ -1,0 +1,22 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "frugality:silica_cobblestone"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/pickaxes"
+  },
+  "hits": 7,
+  "results": [
+    {
+      "item": "frugality:thermal_stone",
+      "count": 1,
+      "chance": 0.85
+    }
+  ]
+}

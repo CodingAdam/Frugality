@@ -2,7 +2,7 @@ package com.umbriel.frugality;
 
 import com.umbriel.frugality.block.cauldron.CustomCauldronInteraction;
 import com.umbriel.frugality.client.RenderFix;
-import com.umbriel.frugality.event.RecipeEvents;
+import com.umbriel.frugality.event.CommonEvents;
 import com.umbriel.frugality.init.ModBlockEntities;
 import com.umbriel.frugality.init.ModRecipes;
 import com.umbriel.frugality.init.ModItems;
@@ -36,7 +36,7 @@ public class Frugality
         bus.addListener(RenderFix::init);
         CustomCauldronInteraction.bootStrap();
         //MinecraftForge.EVENT_BUS.addListener(this::onLivingSpecialSpawn);
-        MinecraftForge.EVENT_BUS.register(RecipeEvents.class);
+        MinecraftForge.EVENT_BUS.register(CommonEvents.class);
         bus.addListener(this::clientSetup);
         bus.addListener(RenderFix::registerBlockColors);
 
