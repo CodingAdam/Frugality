@@ -1,0 +1,16 @@
+{
+  "type": "frugality:thermal_stone",
+  "input": [
+    {
+      "tag": "minecraft:terracotta"
+    }
+  ],
+  "stoneType": 2,
+  "results": [
+    {
+      "item": "minecraft:dripstone_block",
+      "count": 1,
+      "chance": 1
+    }
+  ]
+}

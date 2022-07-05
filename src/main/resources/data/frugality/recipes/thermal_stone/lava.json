@@ -3,6 +3,15 @@
   "input": [
     {
       "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "frugality:silica_cobblestone"
+    },
+    {
+      "item": "frugality:silica_stone"
     }
   ],
   "stoneType": 1,

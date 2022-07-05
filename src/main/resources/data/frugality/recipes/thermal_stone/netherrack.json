@@ -1,0 +1,25 @@
+{
+  "type": "frugality:thermal_stone",
+  "input": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "frugality:silica_cobblestone"
+    },
+    {
+      "item": "frugality:silica_stone"
+    }
+  ],
+  "stoneType": 3,
+  "results":[
+    {
+      "item": "minecraft:netherrack",
+      "count": 1,
+      "chance": 1
+    }
+  ]
+}

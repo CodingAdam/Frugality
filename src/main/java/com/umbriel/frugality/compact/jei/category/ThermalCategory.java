@@ -159,7 +159,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
             } );
         }
         if(recipe.getFluidResult() != null) {
-            fluidStacks.init(2, false, 109, 6);
+            fluidStacks.init(2, false, 109, 10);
             fluidStacks.set(2, recipe.getFluidResult());
             fluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
                 if(!input)

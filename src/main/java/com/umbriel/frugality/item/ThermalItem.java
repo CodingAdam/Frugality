@@ -6,6 +6,8 @@ import com.umbriel.frugality.init.ModRecipes;
 import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import net.minecraft.core.BlockPos;
 
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.item.ItemEntity;
@@ -47,6 +49,7 @@ public class ThermalItem extends Item {
                     if (recipe.getFluidResult() != null) {
                         level.setBlock(pos, recipe.getFluidResult().getFluid().defaultFluidState().createLegacyBlock(), 11);
                         player.setItemInHand(hand, new ItemStack(ModItems.THERMAL_STONE.get()));
+                        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
                         return InteractionResult.sidedSuccess(level.isClientSide());
                     }
                     if(recipe.getItemResult() != null){
@@ -62,6 +65,7 @@ public class ThermalItem extends Item {
                             }
                         }
                         player.setItemInHand(hand, new ItemStack(ModItems.THERMAL_STONE.get()));
+                        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
                         return InteractionResult.sidedSuccess(level.isClientSide());
                     }
                 }

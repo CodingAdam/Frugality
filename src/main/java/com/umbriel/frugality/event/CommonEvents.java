@@ -9,14 +9,21 @@ import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.ParticleHelper;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import net.minecraft.client.Minecraft;
+import net.minecraft.commands.arguments.ItemEnchantmentArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.EntityEvent;
+import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
@@ -29,15 +36,23 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import net.minecraftforge.event.entity.EntityTeleportEvent;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
 import net.minecraftforge.server.ServerLifecycleHooks;
+import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nullable;
 
+import java.awt.event.ItemEvent;
 import java.util.List;
 
 import static com.umbriel.frugality.init.ModRecipes.cauldronRecipeType;
@@ -89,6 +104,24 @@ public class CommonEvents {
         }
     }
 
+
+    // Event for Warped Stone
+    @SubscribeEvent(priority = EventPriority.HIGH)
+    public static void portalTransformItem(EntityJoinWorldEvent event){
+        Entity entity = event.getEntity();
+        Level level = event.getWorld();
+
+        if(entity instanceof ItemEntity){
+            ItemEntity item = (ItemEntity)entity;
+            if(level.dimension() == Level.NETHER && item.isOnPortalCooldown()){
+                System.out.println(level.players().size() == 0);
+                System.out.println(item);
+                if(item.getItem().getItem() == ModItems.THERMAL_STONE.get()){
+                    item.setItem(new ItemStack(ModItems.WARPED_STONE.get(), item.getItem().getCount()));
+                }
+            }
+        }
+    }
 
 
 
