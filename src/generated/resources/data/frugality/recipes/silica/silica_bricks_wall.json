@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "frugality:silica_bricks"
+    }
+  },
+  "result": {
+    "item": "frugality:silica_bricks_wall",
+    "count": 6
+  }
+}

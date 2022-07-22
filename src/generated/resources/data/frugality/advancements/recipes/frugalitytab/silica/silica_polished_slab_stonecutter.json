@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:silica/silica_polished_slab_stonecutter"
+    ]
+  },
+  "criteria": {
+    "has_silica_polished": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:silica_polished"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:silica/silica_polished_slab_stonecutter"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silica_polished",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -62,8 +62,36 @@ public class ModItems {
 
     public static final RegistryObject<Block> SILICA_STONE = register("silica_stone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_STONE_SLAB = register("silica_stone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_STONE_STAIRS = register("silica_stone_stairs",
+            () -> new StairBlock(SILICA_STONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+
+    // Silica Cobble Blocks
     public static final RegistryObject<Block> SILICA_COBBLESTONE = register("silica_cobblestone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_COBBLESTONE_SLAB = register("silica_cobblestone_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_COBBLESTONE_STAIRS = register("silica_cobblestone_stairs",
+            () -> new StairBlock(SILICA_COBBLESTONE.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_COBBLESTONE_WALL = register("silica_cobblestone_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+
+    public static final RegistryObject<Block> SILICA_BRICKS = register("silica_bricks",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_BRICKS_SLAB = register("silica_bricks_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_BRICKS_STAIRS = register("silica_bricks_stairs",
+            () -> new StairBlock(SILICA_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_BRICKS_WALL = register("silica_bricks_wall",
+            () -> new WallBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+
+
+    public static final RegistryObject<Block> SILICA_POLISHED = register("silica_polished",
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+    public static final RegistryObject<Block> SILICA_POLISHED_SLAB = register("silica_polished_slab",
+            () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
+
     // Figure out if never is required
     public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)), false);
 

@@ -17,7 +17,20 @@ public class ItemModels extends ItemModelProvider {
 
 
         withExistingParent("silica_stone",modLoc("block/silica_stone"));
-        withExistingParent("silica_cobblestone",modLoc("block/silica_cobblestone"));
+        withExistingParent("silica_stone_slab", modLoc("block/silica_stone_slab"));
+        withExistingParent("silica_stone_stairs", modLoc("block/silica_stone_stairs"));
+        withExistingParent("silica_cobblestone", modLoc("block/silica_cobblestone"));
+        withExistingParent("silica_cobblestone_wall", modLoc("block/silica_cobblestone_wall"));
+        withExistingParent("silica_cobblestone_slab", modLoc("block/silica_cobblestone_slab"));
+        withExistingParent("silica_cobblestone_stairs", modLoc("block/silica_cobblestone_stairs"));
+
+        withExistingParent("silica_polished",modLoc("block/silica_polished"));
+        withExistingParent("silica_polished_slab", modLoc("block/silica_polished_slab"));
+        withExistingParent("silica_bricks",modLoc("block/silica_bricks"));
+        withExistingParent("silica_bricks_wall", modLoc("block/silica_bricks_wall"));
+        withExistingParent("silica_bricks_slab", modLoc("block/silica_bricks_slab"));
+        withExistingParent("silica_bricks_stairs", modLoc("block/silica_bricks_stairs"));
+
 
         simpleItem("bark", generated);
         simpleItem("compost", generated);

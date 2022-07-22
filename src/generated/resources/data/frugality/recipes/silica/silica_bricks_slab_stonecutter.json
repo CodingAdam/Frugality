@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "frugality:silica_bricks"
+  },
+  "result": "frugality:silica_bricks_slab",
+  "count": 2
+}

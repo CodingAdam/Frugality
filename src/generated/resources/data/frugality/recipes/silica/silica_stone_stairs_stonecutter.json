@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "frugality:silica_stone"
+  },
+  "result": "frugality:silica_stone_stairs",
+  "count": 1
+}

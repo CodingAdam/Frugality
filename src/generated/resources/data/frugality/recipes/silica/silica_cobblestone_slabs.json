@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "   ",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "frugality:silica_cobblestone"
+    }
+  },
+  "result": {
+    "item": "frugality:silica_cobblestone_slab",
+    "count": 6
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:silica/silica_bricks_wall"
+    ]
+  },
+  "criteria": {
+    "has_silica_bricks": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:silica_bricks"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:silica/silica_bricks_wall"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silica_bricks",
+      "has_the_recipe"
+    ]
+  ]
+}

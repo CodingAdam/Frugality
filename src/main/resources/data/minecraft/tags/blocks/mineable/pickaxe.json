@@ -8,6 +8,17 @@
     "frugality:crushing_stone",
     "frugality:crushing_terracotta",
     "frugality:silica_stone",
-    "frugality:silica_cobblestone"
+    "frugality:silica_stone_stairs",
+    "frugality:silica_stone_slab",
+    "frugality:silica_cobblestone",
+    "frugality:silica_cobblestone_stairs",
+    "frugality:silica_cobblestone_wall",
+    "frugality:silica_cobblestone_slab",
+    "frugality:silica_polished",
+    "frugality:silica_polished_slab",
+    "frugality:silica_bricks",
+    "frugality:silica_bricks_stairs",
+    "frugality:silica_bricks_wall",
+    "frugality:silica_bricks_slab"
   ]
 }

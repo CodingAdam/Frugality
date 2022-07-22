@@ -2,6 +2,7 @@ package com.umbriel.frugality.data;
 
 import com.umbriel.frugality.data.recipes.CraftingRecipe;
 import com.umbriel.frugality.data.recipes.SmeltingRecipe;
+import com.umbriel.frugality.data.recipes.StoneCuttingRecipe;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeProvider;
@@ -18,5 +19,6 @@ public class Recipes extends RecipeProvider {
     protected void buildCraftingRecipes(Consumer<FinishedRecipe> consumer) {
         CraftingRecipe.register(consumer);
         SmeltingRecipe.register(consumer);
+        StoneCuttingRecipe.register(consumer);
     }
 }

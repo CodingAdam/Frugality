@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "frugality:block/silica_polished_slab_top"
+    },
+    "type=bottom": {
+      "model": "frugality:block/silica_polished_slab"
+    },
+    "type=double": {
+      "model": "frugality:block/silica_polished"
+    }
+  }
+}
