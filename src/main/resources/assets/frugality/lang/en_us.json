@@ -15,6 +15,9 @@
 
   "block.frugality.raw_silica_block" : "Raw Silica Block",
   "block.frugality.silica_glass_block" : "Silica Glass Block",
+  "block.frugality.salt_block" : "Salt Block",
+  "block.frugality.salt_ore" : "Salt Ore",
+  "item.frugality.salt" : "Salt",
 
   "block.frugality.tree_tap" : "Tree Tap",
   "block.frugality.melter" : "melter",

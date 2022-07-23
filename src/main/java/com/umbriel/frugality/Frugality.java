@@ -6,11 +6,13 @@ import com.umbriel.frugality.event.CommonEvents;
 import com.umbriel.frugality.init.ModBlockEntities;
 import com.umbriel.frugality.init.ModRecipes;
 import com.umbriel.frugality.init.ModItems;
+import com.umbriel.frugality.world.gen.OreGeneration;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -37,6 +39,7 @@ public class Frugality
         CustomCauldronInteraction.bootStrap();
         //MinecraftForge.EVENT_BUS.addListener(this::onLivingSpecialSpawn);
         MinecraftForge.EVENT_BUS.register(CommonEvents.class);
+        MinecraftForge.EVENT_BUS.addListener(EventPriority.HIGH, OreGeneration::generateOres);
         bus.addListener(this::clientSetup);
         bus.addListener(RenderFix::registerBlockColors);
 

@@ -31,7 +31,10 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent("silica_bricks_slab", modLoc("block/silica_bricks_slab"));
         withExistingParent("silica_bricks_stairs", modLoc("block/silica_bricks_stairs"));
 
+        withExistingParent("salt_ore",modLoc("block/salt_ore"));
+        withExistingParent("salt_block",modLoc("block/salt_block"));
 
+        simpleItem("salt", generated);
         simpleItem("bark", generated);
         simpleItem("compost", generated);
         simpleItem("copper_cup", generated);

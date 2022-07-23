@@ -8,6 +8,7 @@ import com.umbriel.frugality.block.cauldron.*;
 import com.umbriel.frugality.block.workstation.CrushingBlock;
 import com.umbriel.frugality.item.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
@@ -59,6 +60,11 @@ public class ModItems {
     public static final RegistryObject<Block> CHARRED_LOG = register("charred_log", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(3.0F).sound(SoundType.NETHER_WART)), false);
 
     public static final RegistryObject<Block> MUD_BLOCK = register("mud_block", () -> new MudBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.NETHER_WART)), false);
+
+    public static final RegistryObject<Block> SALT_BLOCK = register("salt_block", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL)), false);
+    public static final RegistryObject<Block> SALT_ORE = register("salt_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL), UniformInt.of(1, 3)), false);
+    public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+
 
     public static final RegistryObject<Block> SILICA_STONE = register("silica_stone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.3F, 5.5F).sound(SoundType.STONE)), false);

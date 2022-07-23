@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:salt_block_to_salt"
+    ]
+  },
+  "criteria": {
+    "has_salt_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:salt_block"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:salt_block_to_salt"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_salt_block",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,7 +1,8 @@
 {
   "replace": false,
   "values": [
+    "frugality:salt_block",
+    "frugality:salt_ore",
     "frugality:mud_block"
-
   ]
 }

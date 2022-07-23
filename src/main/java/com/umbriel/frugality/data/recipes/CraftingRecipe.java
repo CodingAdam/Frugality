@@ -146,6 +146,31 @@ public class CraftingRecipe {
                 .unlockedBy("has_silica_stone", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SILICA_STONE.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "silica/silica_stone_slabs"));
 
+        ShapedRecipeBuilder.shaped(ModItems.SALT_BLOCK.get())
+                .pattern("CCC")
+                .pattern("CCC")
+                .pattern("CCC")
+                .define('C', ModItems.SALT.get())
+                .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SALT.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "salt_to_salt_block"));
+
+        ShapedRecipeBuilder.shaped(ModItems.SALT.get(), 9)
+                .pattern("C ")
+                .pattern("  ")
+                .pattern("  ")
+                .define('C', ModItems.SALT_BLOCK.get())
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SALT_BLOCK.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "salt_block_to_salt"));
+
+        ShapedRecipeBuilder.shaped(ModItems.SILICA.get(), 4)
+                .pattern("C ")
+                .pattern("  ")
+                .pattern("  ")
+                .define('C', ModItems.SILICA_COBBLESTONE.get())
+                .unlockedBy("has_silica_cobblestone", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.SILICA_COBBLESTONE.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "silica_unpacking"));
+
+
     }
 
 

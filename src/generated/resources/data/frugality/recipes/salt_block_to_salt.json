@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C ",
+    "  ",
+    "  "
+  ],
+  "key": {
+    "C": {
+      "item": "frugality:salt_block"
+    }
+  },
+  "result": {
+    "item": "frugality:salt",
+    "count": 9
+  }
+}

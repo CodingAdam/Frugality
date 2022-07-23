@@ -48,7 +48,11 @@ public class ThermalItem extends Item {
                     System.out.println(recipe.getFluidResult() != null);
                     if (recipe.getFluidResult() != null) {
                         level.setBlock(pos, recipe.getFluidResult().getFluid().defaultFluidState().createLegacyBlock(), 11);
-                        player.setItemInHand(hand, new ItemStack(ModItems.THERMAL_STONE.get()));
+                        if (!player.isCreative()) {
+                            player.getItemInHand(hand).shrink(1);
+                        }
+                        player.getInventory().add(new ItemStack(ModItems.THERMAL_STONE.get()));
+                        player.getCooldowns().addCooldown(this, 20);
                         level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
                         return InteractionResult.sidedSuccess(level.isClientSide());
                     }
@@ -64,7 +68,11 @@ public class ThermalItem extends Item {
                                 level.addFreshEntity(spawnedItem);
                             }
                         }
-                        player.setItemInHand(hand, new ItemStack(ModItems.THERMAL_STONE.get()));
+                        if (!player.isCreative()) {
+                            player.getItemInHand(hand).shrink(1);
+                        }
+                        player.getInventory().add(new ItemStack(ModItems.THERMAL_STONE.get()));
+                        player.getCooldowns().addCooldown(this, 20);
                         level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
                         return InteractionResult.sidedSuccess(level.isClientSide());
                     }
