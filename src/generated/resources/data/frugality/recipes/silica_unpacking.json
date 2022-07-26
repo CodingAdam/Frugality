@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "frugality:silica_cobblestone"
+    }
+  ],
+  "result": {
+    "item": "frugality:raw_silica",
+    "count": 4
+  }
+}

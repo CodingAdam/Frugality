@@ -31,7 +31,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static com.umbriel.frugality.init.ModItems.*;
+import static com.umbriel.frugality.init.FrugalItems.*;
 
 
 @SuppressWarnings({"NullableProblems", "deprecation"})

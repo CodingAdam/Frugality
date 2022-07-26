@@ -2,9 +2,8 @@ package com.umbriel.frugality.compact.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.init.ModItems;
+import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.item.ChanceItem;
-import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
@@ -24,11 +23,6 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.fluids.FluidStack;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -119,15 +113,15 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
 
         if(recipe.getStoneType() == 1){
             itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(ModItems.HEATED_STONE.get())));
+            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.HEATED_STONE.get())));
         }
         if(recipe.getStoneType() == 2){
             itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(ModItems.CHILLED_STONE.get())));
+            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.CHILLED_STONE.get())));
         }
         if(recipe.getStoneType() == 3){
             itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(ModItems.WARPED_STONE.get())));
+            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.WARPED_STONE.get())));
         }
 
         itemStacks.init(1, true, 48, 9);

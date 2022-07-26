@@ -10,7 +10,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
-public final class ModBlockEntities {
+public final class FrugalBlockEntities {
 
     public static final DeferredRegister<BlockEntityType<?>> TILES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, Frugality.MODID);
 
@@ -20,12 +20,12 @@ public final class ModBlockEntities {
 
 
     public static final RegistryObject<BlockEntityType<CrushingBlockEntity>> CRUSHING_BLOCK = TILES.register("crushing_block",
-            () -> BlockEntityType.Builder.of(CrushingBlockEntity::new, ModItems.CRUSHING_STONE.get(), ModItems.CRUSHING_TERRACOTTA.get()).build(null));
+            () -> BlockEntityType.Builder.of(CrushingBlockEntity::new, FrugalItems.CRUSHING_STONE.get(), FrugalItems.CRUSHING_TERRACOTTA.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<BrickBlastFurnaceBlockEntity>> BRICK_BLAST_FURNACE = TILES.register("brick_blast_furnace",
-            () -> BlockEntityType.Builder.of(BrickBlastFurnaceBlockEntity::new, ModItems.BRICK_BLAST_FURNACE.get()).build(null));
+            () -> BlockEntityType.Builder.of(BrickBlastFurnaceBlockEntity::new, FrugalItems.BRICK_BLAST_FURNACE.get()).build(null));
 
     public static final RegistryObject<BlockEntityType<BrickFurnaceBlockEntity>> BRICK_FURNACE = TILES.register("brick_furnace",
-            () -> BlockEntityType.Builder.of(BrickFurnaceBlockEntity::new, ModItems.BRICK_FURNACE.get()).build(null));
+            () -> BlockEntityType.Builder.of(BrickFurnaceBlockEntity::new, FrugalItems.BRICK_FURNACE.get()).build(null));
 
 }

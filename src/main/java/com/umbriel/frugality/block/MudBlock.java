@@ -13,7 +13,7 @@ import net.minecraft.world.level.material.Material;
 
 import java.util.Random;
 
-import static com.umbriel.frugality.init.ModItems.SLOW_FIRE;
+import static com.umbriel.frugality.init.FrugalItems.SLOW_FIRE;
 
 @SuppressWarnings("deprecation")
 public class MudBlock extends Block {

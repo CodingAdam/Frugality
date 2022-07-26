@@ -3,10 +3,10 @@ package com.umbriel.frugality.compact.jei;
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.compact.jei.category.*;
 import com.umbriel.frugality.event.CommonEvents;
-import com.umbriel.frugality.init.ModItems;
-import com.umbriel.frugality.init.ModRecipes;
+import com.umbriel.frugality.init.FrugalItems;
+import com.umbriel.frugality.init.FrugalRecipes;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
-import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import mezz.jei.api.IModPlugin;
 import mezz.jei.api.JeiPlugin;
@@ -47,49 +47,48 @@ public class FrugalityPlugin implements IModPlugin {
                 new BrickBlastingCategory(guiHelper),
                 new BrickSmeltingCategory(guiHelper),
                 new CauldronCategory(guiHelper, Blocks.CAULDRON),
-                new CrushingCategory(guiHelper, ModItems.CRUSHING_STONE.get()),
-                new ThermalCategory(guiHelper, ModItems.THERMAL_STONE.get())
+                new CrushingCategory(guiHelper, FrugalItems.CRUSHING_STONE.get()),
+                new ThermalCategory(guiHelper, FrugalItems.THERMAL_STONE.get())
         );
     }
 
     @Override
     public void registerRecipeCatalysts(@Nonnull IRecipeCatalystRegistration registration) {
-        registration.addRecipeCatalyst(new ItemStack(ModItems.BRICK_FURNACE.get()),
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.BRICK_FURNACE.get()),
                 VanillaRecipeCategoryUid.FURNACE, VanillaRecipeCategoryUid.FUEL);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.BRICK_BLAST_FURNACE.get()),
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.BRICK_BLAST_FURNACE.get()),
                 VanillaRecipeCategoryUid.BLASTING, VanillaRecipeCategoryUid.FUEL);
 
         registration.addRecipeCatalyst(new ItemStack(Items.CAULDRON), CauldronCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.WOODEN_CAULDRON.get()), CauldronCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.STONE_CAULDRON.get()), CauldronCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.WOODEN_CAULDRON.get()), CauldronCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.STONE_CAULDRON.get()), CauldronCategory.ID);
 
-        registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_STONE.get()), CrushingCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.CRUSHING_STONE.get()), CrushingCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.CRUSHING_TERRACOTTA.get()), CrushingCategory.ID);
 
-        registration.addRecipeCatalyst(new ItemStack(ModItems.THERMAL_STONE.get()), ThermalCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.HEATED_STONE.get()), ThermalCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.CHILLED_STONE.get()), ThermalCategory.ID);
-        registration.addRecipeCatalyst(new ItemStack(ModItems.WARPED_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.THERMAL_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.HEATED_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.CHILLED_STONE.get()), ThermalCategory.ID);
+        registration.addRecipeCatalyst(new ItemStack(FrugalItems.WARPED_STONE.get()), ThermalCategory.ID);
 
     }
     @Override
     public void registerRecipes(IRecipeRegistration registration){
-        final Collection<CauldronRecipe> cauldronRecipes = CommonEvents.getRecipes(null);
+        final Collection<CauldronRecipe> cauldronRecipes = Minecraft.getInstance().level.getRecipeManager()
+                .getAllRecipesFor(FrugalRecipes.cauldronRecipeType);
         registration.addRecipes(cauldronRecipes, CauldronCategory.ID);
-
-        List<CrushingBlockRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
-                .getAllRecipesFor(ModRecipes.crushingBlockRecipeType);
-
+        List<CrushingRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
+                .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType);
         registration.addRecipes(crushingBlockRecipes, CrushingCategory.ID);
-        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
-        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM, smallOreText);
-        registration.addIngredientInfo(new ItemStack(ModItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
-        registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_LOG.get()), VanillaTypes.ITEM, charredShardsText);
-        registration.addIngredientInfo(new ItemStack(ModItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM, charredShardsText);
+
+        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM, smallOreText);
+        registration.addIngredientInfo(new ItemStack(FrugalItems.CHARRED_LOG.get()), VanillaTypes.ITEM, charredShardsText);
+        registration.addIngredientInfo(new ItemStack(FrugalItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM, charredShardsText);
 
         List<ThermalRecipe> thermalRecipes = Minecraft.getInstance().level.getRecipeManager()
-                .getAllRecipesFor(ModRecipes.thermalRecipeType);
-
+                .getAllRecipesFor(FrugalRecipes.thermalRecipeType);
         registration.addRecipes(thermalRecipes, ThermalCategory.ID);
     }
 }

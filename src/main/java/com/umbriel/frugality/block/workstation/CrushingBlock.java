@@ -3,7 +3,7 @@ package com.umbriel.frugality.block.workstation;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.umbriel.frugality.block.entity.CrushingBlockEntity;
-import com.umbriel.frugality.init.ModBlockEntities;
+import com.umbriel.frugality.init.FrugalBlockEntities;
 import com.umbriel.frugality.util.ParticleHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -65,7 +65,7 @@ public class CrushingBlock extends BaseEntityBlock implements SimpleWaterloggedB
     }
 
     public BlockEntity newBlockEntity(BlockPos pos, BlockState state) {
-        return ModBlockEntities.CRUSHING_BLOCK.get().create(pos, state);
+        return FrugalBlockEntities.CRUSHING_BLOCK.get().create(pos, state);
     }
 
     @Override

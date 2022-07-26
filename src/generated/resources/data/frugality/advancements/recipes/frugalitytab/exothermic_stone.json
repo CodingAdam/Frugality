@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:exothermic_stone"
+    ]
+  },
+  "criteria": {
+    "has_blue_salt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:blue_salt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_thermal_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:thermal_stone"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:exothermic_stone"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_blue_salt",
+      "has_thermal_stone",
+      "has_the_recipe"
+    ]
+  ]
+}

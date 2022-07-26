@@ -21,7 +21,7 @@ import net.minecraft.world.level.portal.PortalShape;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import static com.umbriel.frugality.init.ModItems.SLOW_FIRE;
+import static com.umbriel.frugality.init.FrugalItems.SLOW_FIRE;
 
 public abstract class AbstractSlowFireBlock extends Block {
     private static final int SECONDS_ON_FIRE = 8;

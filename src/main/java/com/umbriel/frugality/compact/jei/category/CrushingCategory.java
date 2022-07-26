@@ -2,9 +2,9 @@ package com.umbriel.frugality.compact.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.umbriel.frugality.Frugality;
-import com.umbriel.frugality.init.ModItems;
+import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.item.ChanceItem;
-import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.IRecipeLayout;
 import mezz.jei.api.gui.drawable.IDrawable;
@@ -29,7 +29,7 @@ import java.util.List;
 
 import static com.umbriel.frugality.compact.jei.category.CauldronCategory.chanceText;
 
-public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
+public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     public static final ResourceLocation ID = new ResourceLocation(Frugality.MODID, "crushing");
     public static final MutableComponent hitsAmountText = new TranslatableComponent("recipe." + Frugality.MODID + ".hits");
 
@@ -55,8 +55,8 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     }
 
     @Override
-    public Class<? extends CrushingBlockRecipe> getRecipeClass() {
-        return CrushingBlockRecipe.class;
+    public Class<? extends CrushingRecipe> getRecipeClass() {
+        return CrushingRecipe.class;
     }
 
     @Override
@@ -75,13 +75,13 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     }
 
     @Override
-    public void setIngredients(CrushingBlockRecipe recipe, IIngredients ingredients) {
+    public void setIngredients(CrushingRecipe recipe, IIngredients ingredients) {
         ingredients.setInputIngredients(Collections.singletonList(recipe.getInput()));
         ingredients.setOutputs(VanillaTypes.ITEM, recipe.getResults());
     }
 
     @Override
-    public void draw(CrushingBlockRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(CrushingRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
         this.slotDrawable.draw(poseStack, 0, 0);
         this.slotDrawable.draw(poseStack, 25, 0);
         this.slotDrawable.draw(poseStack, 25, 18);
@@ -95,9 +95,9 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, CrushingBlockRecipe recipe, IIngredients ingredients) {
+    public void setRecipe(IRecipeLayout recipeLayout, CrushingRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-        List<ChanceItem> results = recipe.getRolledResults();
+        List<ChanceItem> results = recipe.getItemResult();
 
         itemStacks.init(0, true, 0, 0);
         itemStacks.set(0, Arrays.asList(recipe.getTool().getItems()));
@@ -105,7 +105,7 @@ public class CrushingCategory implements IRecipeCategory<CrushingBlockRecipe> {
         itemStacks.init(1, true, 25, 0);
         itemStacks.set(1, Arrays.asList(recipe.getInput().getItems()));
 
-        ItemStack crushingItem = new ItemStack(ModItems.CRUSHING_STONE.get().asItem());
+        ItemStack crushingItem = new ItemStack(FrugalItems.CRUSHING_STONE.get().asItem());
         crushingItem.setCount(recipe.getHits());
 
         itemStacks.init(2, true, 25, 18);

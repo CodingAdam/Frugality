@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.registries.RegistryObject;
 
-import static com.umbriel.frugality.init.ModItems.*;
+import static com.umbriel.frugality.init.FrugalItems.*;
 
 public class CustomCauldronHelper {
     public static BlockState getWaterCauldron(BlockState state){

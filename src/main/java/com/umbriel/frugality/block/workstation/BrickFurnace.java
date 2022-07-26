@@ -2,7 +2,7 @@ package com.umbriel.frugality.block.workstation;
 
 import com.umbriel.frugality.block.entity.AbstractCustomFurnaceEntity;
 import com.umbriel.frugality.block.entity.BrickFurnaceBlockEntity;
-import com.umbriel.frugality.init.ModBlockEntities;
+import com.umbriel.frugality.init.FrugalBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
@@ -36,7 +36,7 @@ public class BrickFurnace extends AbstractFurnaceBlock {
     @Override
     @Nullable
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level p_153273_, BlockState p_153274_, BlockEntityType<T> p_153275_) {
-        return createTickerHelper(p_153275_, ModBlockEntities.BRICK_FURNACE.get(), AbstractCustomFurnaceEntity::tick);
+        return createTickerHelper(p_153275_, FrugalBlockEntities.BRICK_FURNACE.get(), AbstractCustomFurnaceEntity::tick);
     }
 
     @Override

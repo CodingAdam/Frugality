@@ -1,6 +1,6 @@
 package com.umbriel.frugality.block.entity;
 
-import com.umbriel.frugality.init.ModBlockEntities;
+import com.umbriel.frugality.init.FrugalBlockEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.TranslatableComponent;
@@ -14,7 +14,7 @@ import net.minecraft.world.level.block.state.BlockState;
 public class BrickFurnaceBlockEntity extends AbstractCustomFurnaceEntity {
 
     public BrickFurnaceBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.BRICK_FURNACE.get(), pos, state, 1.3, RecipeType.SMELTING);
+        super(FrugalBlockEntities.BRICK_FURNACE.get(), pos, state, 1.3, RecipeType.SMELTING);
     }
 
     @Override

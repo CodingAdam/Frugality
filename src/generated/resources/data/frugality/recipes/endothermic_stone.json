@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "frugality:thermal_stone"
+    },
+    {
+      "item": "frugality:red_salt"
+    }
+  ],
+  "result": {
+    "item": "frugality:chilled_stone"
+  }
+}

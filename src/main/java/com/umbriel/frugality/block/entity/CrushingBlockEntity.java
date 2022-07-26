@@ -1,9 +1,9 @@
 package com.umbriel.frugality.block.entity;
 
 import com.umbriel.frugality.block.workstation.CrushingBlock;
-import com.umbriel.frugality.init.ModBlockEntities;
-import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.util.recipes.CrushingBlockRecipe;
+import com.umbriel.frugality.init.FrugalBlockEntities;
+import com.umbriel.frugality.init.FrugalRecipes;
+import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -31,6 +31,8 @@ import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 
+import static com.umbriel.frugality.util.recipes.RecipeHelper.findRecipeById;
+
 public class CrushingBlockEntity extends BlockEntity {
 
     private final ItemStackHandler inventory;
@@ -41,7 +43,7 @@ public class CrushingBlockEntity extends BlockEntity {
     private boolean isItemOnBlock;
 
     public CrushingBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntities.CRUSHING_BLOCK.get(), pos, state);
+        super(FrugalBlockEntities.CRUSHING_BLOCK.get(), pos, state);
         inventory = createHandler();
         input = LazyOptional.of(() -> inventory);
         isItemOnBlock = false;
@@ -65,7 +67,7 @@ public class CrushingBlockEntity extends BlockEntity {
     public boolean processItem(ItemStack tool, Player player){
         if(level == null)
             return false;
-        Optional<CrushingBlockRecipe> crushRecipe = getRecipe(new RecipeWrapper(inventory), tool, player);
+        Optional<CrushingRecipe> crushRecipe = getRecipe(new RecipeWrapper(inventory), tool, player);
 
         crushRecipe.ifPresent(recipe -> {
             if(currentHits == 0){
@@ -98,38 +100,28 @@ public class CrushingBlockEntity extends BlockEntity {
 
     }
 
-    public Optional<CrushingBlockRecipe> getRecipe(RecipeWrapper wrapper, ItemStack tool, Player player){
+    public Optional<CrushingRecipe> getRecipe(RecipeWrapper wrapper, ItemStack tool, Player player){
         if(level == null)
             return Optional.empty();
         if (recipeID != null) {
-            List<CrushingBlockRecipe> recipes = level.getRecipeManager()
-                    .getAllRecipesFor(ModRecipes.crushingBlockRecipeType);
-            CrushingBlockRecipe recipe = findRecipe(recipes, recipeID);
-            if (recipe != null && recipe.matches(wrapper, level) && ((CrushingBlockRecipe) recipe).getTool().test(tool)) {
-                return Optional.of((CrushingBlockRecipe) recipe);
+            List<CrushingRecipe> recipes = level.getRecipeManager()
+                    .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType);
+            CrushingRecipe recipe = (CrushingRecipe)findRecipeById(recipes, recipeID);
+            if (recipe != null && recipe.matches(wrapper, level) && recipe.getTool().test(tool)) {
+                return Optional.of(recipe);
             }
         }
 
-        List<CrushingBlockRecipe> recipeList = level.getRecipeManager().getRecipesFor(ModRecipes.crushingBlockRecipeType, wrapper, level);
+        List<CrushingRecipe> recipeList = level.getRecipeManager().getRecipesFor(FrugalRecipes.crushingBlockRecipeType, wrapper, level);
         if (recipeList.isEmpty()) {
             return Optional.empty();
         }
-        Optional<CrushingBlockRecipe> recipe = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getTool().test(tool)).findFirst();
+        Optional<CrushingRecipe> recipe = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getTool().test(tool)).findFirst();
         if (!recipe.isPresent()) {
             return Optional.empty();
         }
         recipeID = recipe.get().getId();
         return recipe;
-    }
-
-    @Nullable
-    public static CrushingBlockRecipe findRecipe(List<CrushingBlockRecipe> recipes, ResourceLocation recipeID) {
-        for (final CrushingBlockRecipe recipe : recipes) {
-            if (recipe.getId() == recipeID) {
-                return recipe;
-            }
-        }
-        return null;
     }
 
     public boolean addItem(ItemStack itemStack) {

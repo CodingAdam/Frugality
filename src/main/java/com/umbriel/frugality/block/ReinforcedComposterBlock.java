@@ -20,7 +20,7 @@ import net.minecraft.world.phys.BlockHitResult;
 
 import javax.annotation.Nullable;
 
-import static com.umbriel.frugality.init.ModItems.COMPOST;
+import static com.umbriel.frugality.init.FrugalItems.COMPOST;
 
 @SuppressWarnings({"deprecation", "NullableProblems"})
 public class ReinforcedComposterBlock extends ComposterBlock implements WorldlyContainerHolder {

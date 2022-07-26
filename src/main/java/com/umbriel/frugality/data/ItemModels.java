@@ -35,6 +35,8 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent("salt_block",modLoc("block/salt_block"));
 
         simpleItem("salt", generated);
+        simpleItem("blue_salt", generated);
+        simpleItem("red_salt", generated);
         simpleItem("bark", generated);
         simpleItem("compost", generated);
         simpleItem("copper_cup", generated);

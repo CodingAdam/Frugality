@@ -93,7 +93,7 @@ public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
         this.arrow.draw(poseStack, 48, 10);
         this.plusSign.draw(poseStack, 2, 20);
 
-        int results = recipe.getOutputs().size();
+        int results = recipe.getItemResult().size();
         for (int slotId = 0; slotId < 4 + (4 * (results/5)); slotId++) {
             this.slotDrawable.draw(poseStack, (78 + 18 * (slotId % 4)), 9 - (9 * (results/5)) + 18 * (slotId/4));
         }
@@ -103,7 +103,7 @@ public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
     public void setRecipe(IRecipeLayout recipeLayout, CauldronRecipe recipe, IIngredients ingredients) {
         IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
         IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
-        List<ChanceItem> results = recipe.getOutputs();
+        List<ChanceItem> results = recipe.getItemResult();
 
         itemStacks.init(0, true, 0, 0);
         itemStacks.set(0, Arrays.asList(recipe.getInput().getItems()));

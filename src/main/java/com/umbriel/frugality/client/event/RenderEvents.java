@@ -2,7 +2,7 @@ package com.umbriel.frugality.client.event;
 
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.client.renderer.CrushingBlockEntityRenderer;
-import com.umbriel.frugality.init.ModBlockEntities;
+import com.umbriel.frugality.init.FrugalBlockEntities;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -13,7 +13,7 @@ public class RenderEvents {
 
     @SubscribeEvent
     public static void onRegisterRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerBlockEntityRenderer(ModBlockEntities.CRUSHING_BLOCK.get(), CrushingBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(FrugalBlockEntities.CRUSHING_BLOCK.get(), CrushingBlockEntityRenderer::new);
     }
 
 }

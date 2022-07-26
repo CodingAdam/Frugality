@@ -28,7 +28,7 @@ import java.util.function.Supplier;
 import java.util.function.ToIntFunction;
 
 @SuppressWarnings("deprecation")
-public class ModItems {
+public class FrugalItems {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Frugality.MODID);
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Frugality.MODID);
 
@@ -64,6 +64,9 @@ public class ModItems {
     public static final RegistryObject<Block> SALT_BLOCK = register("salt_block", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL)), false);
     public static final RegistryObject<Block> SALT_ORE = register("salt_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL), UniformInt.of(1, 3)), false);
     public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    public static final RegistryObject<Item> BLUE_SALT = ITEMS.register("blue_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    public static final RegistryObject<Item> RED_SALT = ITEMS.register("red_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+
 
 
     public static final RegistryObject<Block> SILICA_STONE = register("silica_stone",
@@ -99,7 +102,7 @@ public class ModItems {
             () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
 
     // Figure out if never is required
-    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(ModItems::never).isRedstoneConductor(ModItems::never).isSuffocating(ModItems::never).isViewBlocking(ModItems::never)), false);
+    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(FrugalItems::never).isRedstoneConductor(FrugalItems::never).isSuffocating(FrugalItems::never).isViewBlocking(FrugalItems::never)), false);
 
     //public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
 

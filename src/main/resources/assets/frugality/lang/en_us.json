@@ -18,6 +18,9 @@
   "block.frugality.salt_block" : "Salt Block",
   "block.frugality.salt_ore" : "Salt Ore",
   "item.frugality.salt" : "Salt",
+  "item.frugality.blue_salt" : "Blue Salt",
+  "item.frugality.red_salt" : "Red Salt",
+
 
   "block.frugality.tree_tap" : "Tree Tap",
   "block.frugality.melter" : "melter",

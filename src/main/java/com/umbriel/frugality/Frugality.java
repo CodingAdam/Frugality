@@ -3,9 +3,9 @@ package com.umbriel.frugality;
 import com.umbriel.frugality.block.cauldron.CustomCauldronInteraction;
 import com.umbriel.frugality.client.RenderFix;
 import com.umbriel.frugality.event.CommonEvents;
-import com.umbriel.frugality.init.ModBlockEntities;
-import com.umbriel.frugality.init.ModRecipes;
-import com.umbriel.frugality.init.ModItems;
+import com.umbriel.frugality.init.FrugalBlockEntities;
+import com.umbriel.frugality.init.FrugalItems;
+import com.umbriel.frugality.init.FrugalRecipes;
 import com.umbriel.frugality.world.gen.OreGeneration;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static com.umbriel.frugality.init.ModItems.*;
+import static com.umbriel.frugality.init.FrugalItems.*;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod("frugality")
@@ -32,9 +32,9 @@ public class Frugality
 
     public Frugality() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModItems.init();
-        ModRecipes.init();
-        ModBlockEntities.init();
+        FrugalItems.init();
+        FrugalRecipes.init();
+        FrugalBlockEntities.init();
         bus.addListener(RenderFix::init);
         CustomCauldronInteraction.bootStrap();
         //MinecraftForge.EVENT_BUS.addListener(this::onLivingSpecialSpawn);

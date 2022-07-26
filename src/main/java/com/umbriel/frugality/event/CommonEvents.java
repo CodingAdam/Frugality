@@ -4,25 +4,22 @@ package com.umbriel.frugality.event;
 import com.umbriel.frugality.block.cauldron.CustomLavaCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
 import com.umbriel.frugality.block.cauldron.CustomSnowCauldron;
-import com.umbriel.frugality.init.ModItems;
+import com.umbriel.frugality.init.FrugalItems;
+import com.umbriel.frugality.init.FrugalRecipes;
 import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.ParticleHelper;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
+import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import net.minecraft.client.Minecraft;
-import net.minecraft.commands.arguments.ItemEnchantmentArgument;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
-import net.minecraft.resources.ResourceKey;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityEvent;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.AxeItem;
@@ -36,28 +33,25 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
-import net.minecraft.world.level.dimension.DimensionType;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
-import net.minecraftforge.event.entity.EntityTeleportEvent;
-import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
-import net.minecraftforge.event.entity.item.ItemTossEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.util.thread.EffectiveSide;
+import net.minecraftforge.items.wrapper.RecipeWrapper;
 import net.minecraftforge.server.ServerLifecycleHooks;
-import org.lwjgl.system.CallbackI;
 
 import javax.annotation.Nullable;
 
-import java.awt.event.ItemEvent;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
-import static com.umbriel.frugality.init.ModRecipes.cauldronRecipeType;
-import static com.umbriel.frugality.init.ModItems.MUD_BLOCK;
+import static com.umbriel.frugality.init.FrugalRecipes.cauldronRecipeType;
+import static com.umbriel.frugality.init.FrugalItems.MUD_BLOCK;
 import static com.umbriel.frugality.util.CustomCauldronHelper.getCauldron;
+import static com.umbriel.frugality.util.recipes.RecipeHelper.findRecipe;
 import static net.minecraft.world.item.AxeItem.STRIPPABLES;
 
 public class CommonEvents {
@@ -91,7 +85,7 @@ public class CommonEvents {
         Level world = event.getWorld();
         BlockPos pos = event.getPos();
         Player player = event.getPlayer();
-        ItemStack barkItem = new ItemStack(ModItems.BARK.get());
+        ItemStack barkItem = new ItemStack(FrugalItems.BARK.get());
 
         Item tool = event.getPlayer().getItemInHand(event.getHand()).getItem();
         Block block = STRIPPABLES.get(world.getBlockState(pos).getBlock());
@@ -116,8 +110,8 @@ public class CommonEvents {
             if(level.dimension() == Level.NETHER && item.isOnPortalCooldown()){
                 System.out.println(level.players().size() == 0);
                 System.out.println(item);
-                if(item.getItem().getItem() == ModItems.THERMAL_STONE.get()){
-                    item.setItem(new ItemStack(ModItems.WARPED_STONE.get(), item.getItem().getCount()));
+                if(item.getItem().getItem() == FrugalItems.THERMAL_STONE.get()){
+                    item.setItem(new ItemStack(FrugalItems.WARPED_STONE.get(), item.getItem().getCount()));
                 }
             }
         }
@@ -143,6 +137,7 @@ public class CommonEvents {
         SoundEvent sound = null;
         int initialFluidLevel = 0;
 
+        List<CauldronRecipe> recipeList = world.getRecipeManager().getAllRecipesFor(cauldronRecipeType);
 
         if (state.getBlock() instanceof CustomLayeredCauldron || state.getBlock() instanceof LayeredCauldronBlock) {
 
@@ -153,14 +148,19 @@ public class CommonEvents {
             }
 
             initialFluidLevel = state.getValue(fluidLevel);
+            final int FluidLevel = initialFluidLevel;
+
+            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFluidLevel() <= FluidLevel).collect(Collectors.toList());
 
             if (initialFluidLevel > 0) {
                 if(state.getBlock() instanceof CustomSnowCauldron || state.getBlock() instanceof PowderSnowCauldronBlock){
-                    recipe = findRecipe(stack, initialFluidLevel, 2);
+                    recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 2).collect(Collectors.toList());
+                    recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
                     particles = ParticleTypes.SNOWFLAKE;
                     sound = SoundEvents.SNOW_BREAK;
                 } else {
-                    recipe = findRecipe(stack, initialFluidLevel, 1);
+                    recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 1).collect(Collectors.toList());
+                    recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
                     particles = ParticleTypes.SPLASH;
                     sound = SoundEvents.AMBIENT_UNDERWATER_EXIT;
                 }
@@ -168,14 +168,16 @@ public class CommonEvents {
         }
 
         if(state.getBlock() instanceof CustomLavaCauldron || state.getBlock() instanceof LavaCauldronBlock){
-            recipe = findRecipe(stack, 3, 3);
+            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFluidLevel() == 3).collect(Collectors.toList());
+            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 3).collect(Collectors.toList());
+            recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
             particles = ParticleTypes.LAVA;
             sound = SoundEvents.LAVA_POP;
         }
 
         if (recipe != null) {
 
-            final CauldronRecipeEvent.Crafting craftEvent = new CauldronRecipeEvent.Crafting(player, recipe, world, state, pos, stack, recipe.getOutputs());
+            final CauldronRecipeEvent.Crafting craftEvent = new CauldronRecipeEvent.Crafting(player, recipe, world, state, pos, stack, recipe.getItemResult());
 
             if (!MinecraftForge.EVENT_BUS.post(craftEvent)) {
 
@@ -219,43 +221,4 @@ public class CommonEvents {
             }
         }
     }
-
-
-
-    @Nullable
-    public static CauldronRecipe findRecipe (ItemStack item, int currentFluid, int type) {
-
-        for (final CauldronRecipe recipe : getRecipes(null)) {
-            if (recipe.doesMatch(item, currentFluid, type)) {
-                return recipe;
-            }
-        }
-        return null;
-    }
-
-    public static List<CauldronRecipe> getRecipes (@Nullable RecipeManager manager) {
-
-        return getManager(manager).getAllRecipesFor(cauldronRecipeType);
-    }
-
-    public static RecipeManager getManager (@Nullable RecipeManager manager) {
-        if(manager != null){
-            return manager;
-        }
-        else {
-            if (EffectiveSide.get().isClient()) {
-
-                if (Minecraft.getInstance().player != null) {
-                    return Minecraft.getInstance().player.connection.getRecipeManager();
-                }
-            }
-
-            else if (EffectiveSide.get().isServer()) {
-
-                return ServerLifecycleHooks.getCurrentServer().getRecipeManager();
-            }
-        }
-        return null;
-    }
-
 }
