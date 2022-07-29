@@ -41,45 +41,45 @@ public class ThermalItem extends Item {
         Player player = context.getPlayer();
         InteractionHand hand = context.getHand();
 
-        List<ThermalRecipe> recipeList = level.getRecipeManager().getAllRecipesFor(thermalRecipeType);
+        List<ThermalRecipe> recipeList = level.getRecipeManager().getAllRecipesFor(thermalRecipeType.get());
+        if (player != null) {
+            recipeList = recipeList.stream().filter(thermalRecipe -> thermalRecipe.getStoneType() == getType(player, hand)).collect(Collectors.toList());
+        }
 
         ItemStack itemStack = level.getBlockState(pos).getBlock().asItem().getDefaultInstance();
         ThermalRecipe recipe = (ThermalRecipe)findRecipe(level, itemStack, recipeList);
 
         if(player != null) {
             if (recipe != null) {
-                if (getType(player, hand) == recipe.getStoneType()) {
-                    System.out.println(recipe.getFluidResult() != null);
-                    if (recipe.getFluidResult() != null) {
-                        level.setBlock(pos, recipe.getFluidResult().getFluid().defaultFluidState().createLegacyBlock(), 11);
-                        if (!player.isCreative()) {
-                            player.getItemInHand(hand).shrink(1);
-                        }
-                        player.getInventory().add(new ItemStack(FrugalItems.THERMAL_STONE.get()));
-                        player.getCooldowns().addCooldown(this, 20);
-                        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        return InteractionResult.sidedSuccess(level.isClientSide());
+                if (recipe.getFluidResult() != null) {
+                    level.setBlock(pos, recipe.getFluidResult().getFluid().defaultFluidState().createLegacyBlock(), 11);
+                    if (!player.isCreative()) {
+                        player.getItemInHand(hand).shrink(1);
                     }
-                    if(recipe.getItemResult() != null){
-                        Block block = Block.byItem(recipe.rollOutputs().get(0).getItem());
-                        if (block != Blocks.AIR) {
-                            level.setBlock(pos, block.defaultBlockState(), 1);
+                    player.getInventory().add(new ItemStack(FrugalItems.THERMAL_STONE.get()));
+                    player.getCooldowns().addCooldown(this, 20);
+                    level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    return InteractionResult.sidedSuccess(level.isClientSide());
+                }
+                if(recipe.getItemResult() != null) {
+                    Block block = Block.byItem(recipe.rollOutputs().get(0).getItem());
+                    if (block != Blocks.AIR) {
+                        level.setBlock(pos, block.defaultBlockState(), 1);
+                    } else {
+                        List<ItemStack> items = recipe.rollOutputs();
+                        for (ItemStack item : items) {
+                            ItemEntity spawnedItem = new ItemEntity(level, pos.getX(), (double) pos.getX(), (double) pos.getX(), item);
+                            level.setBlock(pos, Blocks.AIR.defaultBlockState(), 1);
+                            level.addFreshEntity(spawnedItem);
                         }
-                        else {
-                            List<ItemStack> items = recipe.rollOutputs();
-                            for (ItemStack item : items) {
-                                ItemEntity spawnedItem = new ItemEntity(level, pos.getX(), (double) pos.getX(), (double) pos.getX(), item);
-                                level.addFreshEntity(spawnedItem);
-                            }
-                        }
-                        if (!player.isCreative()) {
-                            player.getItemInHand(hand).shrink(1);
-                        }
-                        player.getInventory().add(new ItemStack(FrugalItems.THERMAL_STONE.get()));
-                        player.getCooldowns().addCooldown(this, 20);
-                        level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
-                        return InteractionResult.sidedSuccess(level.isClientSide());
                     }
+                    if (!player.isCreative()) {
+                        player.getItemInHand(hand).shrink(1);
+                    }
+                    player.getInventory().add(new ItemStack(FrugalItems.THERMAL_STONE.get()));
+                    player.getCooldowns().addCooldown(this, 20);
+                    level.playSound(null, pos, SoundEvents.FIRE_EXTINGUISH, SoundSource.BLOCKS, 1.0F, 1.0F);
+                    return InteractionResult.sidedSuccess(level.isClientSide());
                 }
             }
         }

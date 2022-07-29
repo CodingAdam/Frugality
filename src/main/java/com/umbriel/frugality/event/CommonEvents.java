@@ -1,6 +1,7 @@
 package com.umbriel.frugality.event;
 
 
+import com.umbriel.frugality.block.cauldron.CustomCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLavaCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
 import com.umbriel.frugality.block.cauldron.CustomSnowCauldron;
@@ -56,8 +57,9 @@ import static net.minecraft.world.item.AxeItem.STRIPPABLES;
 
 public class CommonEvents {
 
+    // Removing for 1.19
     @SubscribeEvent(priority = EventPriority.HIGH)
-    public static void clickDirtwithBottle(PlayerInteractEvent.RightClickBlock event){
+    public static void clickDirtWithBottle(PlayerInteractEvent.RightClickBlock event){
         Level world = event.getWorld();
         BlockPos pos = event.getPos();
         ItemStack item = event.getItemStack();
@@ -99,7 +101,7 @@ public class CommonEvents {
     }
 
 
-    // Event for Warped Stone
+    // Event for Warped Stone and Possibly Future recipes
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void portalTransformItem(EntityJoinWorldEvent event){
         Entity entity = event.getEntity();
@@ -117,12 +119,6 @@ public class CommonEvents {
         }
     }
 
-
-
-
-
-    // Outside Vars for repeated event use
-
     @SubscribeEvent(priority = EventPriority.HIGH)
     public static void playerClickCauldron(PlayerInteractEvent.RightClickBlock event) {
         final Level world = event.getWorld();
@@ -137,7 +133,7 @@ public class CommonEvents {
         SoundEvent sound = null;
         int initialFluidLevel = 0;
 
-        List<CauldronRecipe> recipeList = world.getRecipeManager().getAllRecipesFor(cauldronRecipeType);
+        List<CauldronRecipe> recipeList = world.getRecipeManager().getAllRecipesFor(cauldronRecipeType.get());
 
         if (state.getBlock() instanceof CustomLayeredCauldron || state.getBlock() instanceof LayeredCauldronBlock) {
 
@@ -149,17 +145,17 @@ public class CommonEvents {
 
             initialFluidLevel = state.getValue(fluidLevel);
             final int FluidLevel = initialFluidLevel;
-
-            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFluidLevel() <= FluidLevel).collect(Collectors.toList());
+            
+            recipeList = recipeList.stream().filter(cauldronRecipe -> cauldronRecipe.getFluidLevel() <= FluidLevel).collect(Collectors.toList());
 
             if (initialFluidLevel > 0) {
                 if(state.getBlock() instanceof CustomSnowCauldron || state.getBlock() instanceof PowderSnowCauldronBlock){
-                    recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 2).collect(Collectors.toList());
+                    recipeList = recipeList.stream().filter(cauldronRecipe -> cauldronRecipe.getFill() == 2).collect(Collectors.toList());
                     recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
                     particles = ParticleTypes.SNOWFLAKE;
                     sound = SoundEvents.SNOW_BREAK;
                 } else {
-                    recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 1).collect(Collectors.toList());
+                    recipeList = recipeList.stream().filter(cauldronRecipe -> cauldronRecipe.getFill() == 1).collect(Collectors.toList());
                     recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
                     particles = ParticleTypes.SPLASH;
                     sound = SoundEvents.AMBIENT_UNDERWATER_EXIT;
@@ -168,8 +164,8 @@ public class CommonEvents {
         }
 
         if(state.getBlock() instanceof CustomLavaCauldron || state.getBlock() instanceof LavaCauldronBlock){
-            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFluidLevel() == 3).collect(Collectors.toList());
-            recipeList = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getFill() == 3).collect(Collectors.toList());
+            recipeList = recipeList.stream().filter(cauldronRecipe -> cauldronRecipe.getFluidLevel() == 3).collect(Collectors.toList());
+            recipeList = recipeList.stream().filter(cauldronRecipe -> cauldronRecipe.getFill() == 3).collect(Collectors.toList());
             recipe = (CauldronRecipe)findRecipe(world, stack, recipeList);
             particles = ParticleTypes.LAVA;
             sound = SoundEvents.LAVA_POP;

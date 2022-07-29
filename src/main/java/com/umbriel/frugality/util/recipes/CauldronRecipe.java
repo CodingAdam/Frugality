@@ -29,7 +29,7 @@ public class CauldronRecipe extends FrugalRecipe {
 
     @Override
     public RecipeType<?> getType() {
-        return FrugalRecipes.cauldronRecipeType;
+        return FrugalRecipes.cauldronRecipeType.get();
     }
 
     public boolean doesMatch(ItemStack item, int level, int type) {

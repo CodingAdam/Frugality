@@ -157,17 +157,17 @@ public class FrugalItems {
     public static final RegistryObject<Block>ROSE_GOLD_BLOCK = register("rose_gold_block", () -> new Block(BlockBehaviour.Properties.of(Material.METAL, MaterialColor.METAL).requiresCorrectToolForDrops().strength(4.5F, 6.0F).sound(SoundType.METAL)), false);
     public static final RegistryObject<Item> ROSE_GOLD_INGOT = ITEMS.register("rose_gold_ingot", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(ModArmors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HELMET = ITEMS.register("rose_gold_helmet",  ()-> new ArmorItem(FrugalArmors.COPPER, EquipmentSlot.HEAD, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_CHESTPLATE = ITEMS.register("rose_gold_chestplate", ()-> new ArmorItem(FrugalArmors.COPPER, EquipmentSlot.CHEST, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_LEGGINGS = ITEMS.register("rose_gold_leggings",  ()-> new ArmorItem(FrugalArmors.COPPER, EquipmentSlot.LEGS, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_BOOTS = ITEMS.register("rose_gold_boots",  ()-> new ArmorItem(FrugalArmors.COPPER, EquipmentSlot.FEET, (new Item.Properties()).tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> ROSE_GOLD_SWORD = ITEMS.register("rose_gold_sword", ()-> new SwordItem(ModTiers.ROSE_GOLD, 3, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_SHOVEL = ITEMS.register("rose_gold_shovel", ()-> new ShovelItem(ModTiers.ROSE_GOLD, 1.5F, -3.0F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_PICKAXE = ITEMS.register("rose_gold_pickaxe", ()->new PickaxeItem(ModTiers.ROSE_GOLD, 1, -2.8F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_AXE = ITEMS.register("rose_gold_axe", ()-> new AxeItem(ModTiers.ROSE_GOLD, 6.5F, -3.1F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_HOE = ITEMS.register("rose_gold_hoe", ()-> new HoeItem(ModTiers.ROSE_GOLD, -2, -1.5F, (new Item.Properties()).tab(Frugality.TAB)));
-    public static final RegistryObject<Item> ROSE_GOLD_HAMMER = ITEMS.register("rose_gold_hammer", ()-> new HammerItem(ModTiers.ROSE_GOLD, -1, -2.5F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_SWORD = ITEMS.register("rose_gold_sword", ()-> new SwordItem(FrugalTiers.ROSE_GOLD, 3, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_SHOVEL = ITEMS.register("rose_gold_shovel", ()-> new ShovelItem(FrugalTiers.ROSE_GOLD, 1.5F, -3.0F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_PICKAXE = ITEMS.register("rose_gold_pickaxe", ()->new PickaxeItem(FrugalTiers.ROSE_GOLD, 1, -2.8F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_AXE = ITEMS.register("rose_gold_axe", ()-> new AxeItem(FrugalTiers.ROSE_GOLD, 6.5F, -3.1F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HOE = ITEMS.register("rose_gold_hoe", ()-> new HoeItem(FrugalTiers.ROSE_GOLD, -2, -1.5F, (new Item.Properties()).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> ROSE_GOLD_HAMMER = ITEMS.register("rose_gold_hammer", ()-> new HammerItem(FrugalTiers.ROSE_GOLD, -1, -2.5F, (new Item.Properties()).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> WOODEN_HAMMER = ITEMS.register("wooden_hammer", ()-> new HammerItem(Tiers.WOOD, 1, -2.6F, (new Item.Properties()).tab(Frugality.TAB)));
     public static final RegistryObject<Item> STONE_HAMMER = ITEMS.register("stone_hammer", ()-> new HammerItem(Tiers.STONE, 0, -2.6F, (new Item.Properties()).tab(Frugality.TAB)));

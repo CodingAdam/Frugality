@@ -105,14 +105,14 @@ public class CrushingBlockEntity extends BlockEntity {
             return Optional.empty();
         if (recipeID != null) {
             List<CrushingRecipe> recipes = level.getRecipeManager()
-                    .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType);
+                    .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType.get());
             CrushingRecipe recipe = (CrushingRecipe)findRecipeById(recipes, recipeID);
             if (recipe != null && recipe.matches(wrapper, level) && recipe.getTool().test(tool)) {
                 return Optional.of(recipe);
             }
         }
 
-        List<CrushingRecipe> recipeList = level.getRecipeManager().getRecipesFor(FrugalRecipes.crushingBlockRecipeType, wrapper, level);
+        List<CrushingRecipe> recipeList = level.getRecipeManager().getRecipesFor(FrugalRecipes.crushingBlockRecipeType.get(), wrapper, level);
         if (recipeList.isEmpty()) {
             return Optional.empty();
         }

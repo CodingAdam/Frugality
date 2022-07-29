@@ -14,7 +14,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import java.util.function.Supplier;
 
 @SuppressWarnings("NullableProblems")
-public enum ModArmors implements ArmorMaterial {
+public enum FrugalArmors implements ArmorMaterial {
         COPPER("copper", 10, new int[]{2, 4, 6, 2}, 9, SoundEvents.ARMOR_EQUIP_IRON, 0.0F, 0.0F, () -> {
             return Ingredient.of(Items.COPPER_INGOT);
         });
@@ -30,7 +30,7 @@ public enum ModArmors implements ArmorMaterial {
     private final float knockbackResistance;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private ModArmors(String title, int multiplier, int[] slots, int value, SoundEvent sounds, float tough, float knock, Supplier<Ingredient> repair) {
+    private FrugalArmors(String title, int multiplier, int[] slots, int value, SoundEvent sounds, float tough, float knock, Supplier<Ingredient> repair) {
         this.name = title;
         this.durabilityMultiplier = multiplier;
         this.slotProtections = slots;

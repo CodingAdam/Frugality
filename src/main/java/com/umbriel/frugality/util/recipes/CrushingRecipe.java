@@ -62,7 +62,7 @@ public class CrushingRecipe extends FrugalRecipe {
 
     @Override
     public RecipeType<?> getType() {
-        return crushingBlockRecipeType;
+        return crushingBlockRecipeType.get();
     }
 
     private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<CrushingRecipe> {

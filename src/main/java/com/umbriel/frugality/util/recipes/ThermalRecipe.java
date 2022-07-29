@@ -35,7 +35,7 @@ public class ThermalRecipe extends FrugalRecipe {
 
     @Override
     public RecipeType<?> getType() {
-        return thermalRecipeType;
+        return thermalRecipeType.get();
     }
 
     private static class Serializer extends ForgeRegistryEntry<RecipeSerializer<?>> implements RecipeSerializer<ThermalRecipe> {

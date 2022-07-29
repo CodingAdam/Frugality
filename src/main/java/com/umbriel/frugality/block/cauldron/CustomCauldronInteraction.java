@@ -40,7 +40,7 @@ public interface CustomCauldronInteraction {
     };
     CustomCauldronInteraction FILL_POWDER_SNOW = (p_175669_, p_175670_, p_175671_, p_175672_, p_175673_, p_175674_) -> {
         return emptyBucket(p_175670_, p_175671_, p_175672_, p_175673_, p_175674_, getSnowCauldron(p_175669_).setValue(CustomLayeredCauldron.LEVEL, Integer.valueOf(3)), SoundEvents.BUCKET_EMPTY_POWDER_SNOW);
-    };
+    };C
     CustomCauldronInteraction SHULKER_BOX = (p_175662_, p_175663_, p_175664_, p_175665_, p_175666_, p_175667_) -> {
         Block block = Block.byItem(p_175667_.getItem());
         if (!(block instanceof ShulkerBoxBlock)) {

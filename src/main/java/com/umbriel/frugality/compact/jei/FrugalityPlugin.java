@@ -75,10 +75,10 @@ public class FrugalityPlugin implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration){
         final Collection<CauldronRecipe> cauldronRecipes = Minecraft.getInstance().level.getRecipeManager()
-                .getAllRecipesFor(FrugalRecipes.cauldronRecipeType);
+                .getAllRecipesFor(FrugalRecipes.cauldronRecipeType.get());
         registration.addRecipes(cauldronRecipes, CauldronCategory.ID);
         List<CrushingRecipe> crushingBlockRecipes = Minecraft.getInstance().level.getRecipeManager()
-                .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType);
+                .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType.get());
         registration.addRecipes(crushingBlockRecipes, CrushingCategory.ID);
 
         registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM, smallOreText);
@@ -88,7 +88,7 @@ public class FrugalityPlugin implements IModPlugin {
         registration.addIngredientInfo(new ItemStack(FrugalItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM, charredShardsText);
 
         List<ThermalRecipe> thermalRecipes = Minecraft.getInstance().level.getRecipeManager()
-                .getAllRecipesFor(FrugalRecipes.thermalRecipeType);
+                .getAllRecipesFor(FrugalRecipes.thermalRecipeType.get());
         registration.addRecipes(thermalRecipes, ThermalCategory.ID);
     }
 }

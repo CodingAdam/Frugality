@@ -8,7 +8,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 import java.util.function.Supplier;
 
-public enum ModTiers implements Tier {
+public enum FrugalTiers implements Tier {
     ROSE_GOLD(2, 300, 10.0F, 1.5F, 18, () -> {
         return Ingredient.of(FrugalItems.ROSE_GOLD_INGOT.get());
     });
@@ -20,7 +20,7 @@ public enum ModTiers implements Tier {
     private final int enchantmentValue;
     private final LazyLoadedValue<Ingredient> repairIngredient;
 
-    private ModTiers(int level, int uses, float speed, float damage, int enchantmentValue, Supplier<Ingredient> repairItem) {
+    private FrugalTiers(int level, int uses, float speed, float damage, int enchantmentValue, Supplier<Ingredient> repairItem) {
         this.level = level;
         this.uses = uses;
         this.speed = speed;
