@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CA ",
+    "AC ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "frugality:raw_silica"
+    },
+    "A": {
+      "item": "minecraft:sand"
+    }
+  },
+  "result": {
+    "item": "minecraft:sandstone"
+  }
+}

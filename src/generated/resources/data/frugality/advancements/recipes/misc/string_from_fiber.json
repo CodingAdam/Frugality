@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:string_from_fiber"
+    ]
+  },
+  "criteria": {
+    "has_fiber": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:fiber"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:string_from_fiber"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_fiber",
+      "has_the_recipe"
+    ]
+  ]
+}

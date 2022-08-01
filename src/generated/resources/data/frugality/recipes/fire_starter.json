@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "C  ",
+    " A ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:stick"
+    },
+    "A": {
+      "item": "minecraft:bow"
+    }
+  },
+  "result": {
+    "item": "frugality:fire_starter"
+  }
+}

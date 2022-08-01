@@ -20,6 +20,7 @@ public class ForgeTags {
 
     public static final TagKey<Item> GLASS = forgeItemTag("glass");
     public static final TagKey<Item> SAND = forgeItemTag("sand");
+    public static final TagKey<Item> ROSE_GOLD_INGOT = forgeItemTag("ingots/rose_gold");
 
 
     private static TagKey<Item> forgeItemTag(String path) {

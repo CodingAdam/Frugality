@@ -4,7 +4,7 @@
     "item": "frugality:iron_hammer"
   },
   "addition": {
-    "item": "frugality:rose_gold_ingot"
+    "tag": "forge:ingots/rose_gold"
   },
   "result": {
     "item": "frugality:rose_gold_hammer"

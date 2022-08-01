@@ -27,8 +27,28 @@ public class SmeltingRecipe {
 
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(FrugalItems.THERMAL_STONE.get()),
                 FrugalItems.HEATED_STONE.get(), 0.0F, 2400)
-                .unlockedBy("has_silica_cobblestone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.THERMAL_STONE.get()))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "heated_stone"));
+                .unlockedBy("has_thermal_stone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.THERMAL_STONE.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "heated_stone_from_campfire"));
+
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(FrugalItems.SILICA.get()),
+                FrugalItems.SILICA_GLASS.get(), 0.0F, 200)
+                .unlockedBy("has_silica_cobblestone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA_COBBLESTONE.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "silica/silica_glass"));
+
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(FrugalItems.SILICA.get()),
+                FrugalItems.SILICA_GLASS.get(), 0.0F, 1000)
+                .unlockedBy("has_silica_cobblestone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA_COBBLESTONE.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "silica/silica_glass_from_smelting"));
+
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(FrugalItems.CLAY_BRICK.get()),
+                Items.BRICK, 0.0F, 1000)
+                .unlockedBy("has_clay_brick", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICK.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "brick/brick_from_campfire"));
+
+        SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(FrugalItems.CLAY_BRICK.get()),
+                Items.BRICK, 0.0F, 200)
+                .unlockedBy("has_clay_brick", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICK.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "brick/brick_from_smelting"));
 
         smeltAndBlast(consumer, FrugalItems.SMALL_RAW_GOLD.get(), Items.GOLD_NUGGET, "gold", 0.7F);
         smeltAndBlast(consumer, FrugalItems.SMALL_RAW_COPPER.get(), FrugalItems.COPPER_NUGGET.get(), "copper", 0.7F);
