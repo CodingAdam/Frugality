@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:materials/iron/raw_iron"
+    ]
+  },
+  "criteria": {
+    "has_small_raw_iron": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:small_raw_iron"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:materials/iron/raw_iron"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_small_raw_iron",
+      "has_the_recipe"
+    ]
+  ]
+}

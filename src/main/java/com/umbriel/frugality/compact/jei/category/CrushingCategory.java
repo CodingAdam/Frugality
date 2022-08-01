@@ -2,16 +2,19 @@ package com.umbriel.frugality.compact.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.umbriel.frugality.Frugality;
+import com.umbriel.frugality.compact.jei.FrugalityPlugin;
 import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.item.ChanceItem;
+import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.config.Constants;
 import net.minecraft.ChatFormatting;
@@ -21,13 +24,14 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.Block;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 import static com.umbriel.frugality.compact.jei.category.CauldronCategory.chanceText;
+import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
+import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
 
 public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     public static final ResourceLocation ID = new ResourceLocation(Frugality.MODID, "crushing");
@@ -44,7 +48,7 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     public CrushingCategory(IGuiHelper guiHelper, Block icon) {
        this.background = guiHelper.createBlankDrawable(150, 36);
        this.slotDrawable = guiHelper.getSlotDrawable();
-       this.icon = guiHelper.createDrawableIngredient(new ItemStack(icon));
+       this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK, new ItemStack(icon));
        this.arrow = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 75, 169, 24, 16);
        this.plusSign = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 26, 170, 14, 14);
     }
@@ -57,6 +61,11 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     @Override
     public Class<? extends CrushingRecipe> getRecipeClass() {
         return CrushingRecipe.class;
+    }
+
+    @Override
+    public RecipeType<CrushingRecipe> getRecipeType() {
+        return FrugalityPlugin.CRUSHING;
     }
 
     @Override
@@ -75,13 +84,7 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     }
 
     @Override
-    public void setIngredients(CrushingRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(Collections.singletonList(recipe.getInput()));
-        ingredients.setOutputs(VanillaTypes.ITEM, recipe.getResults());
-    }
-
-    @Override
-    public void draw(CrushingRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(CrushingRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         this.slotDrawable.draw(poseStack, 0, 0);
         this.slotDrawable.draw(poseStack, 25, 0);
         this.slotDrawable.draw(poseStack, 25, 18);
@@ -95,50 +98,41 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, CrushingRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
+    public void setRecipe(IRecipeLayoutBuilder builder, CrushingRecipe recipe, IFocusGroup focuses) {
         List<ChanceItem> results = recipe.getItemResult();
 
-        itemStacks.init(0, true, 0, 0);
-        itemStacks.set(0, Arrays.asList(recipe.getTool().getItems()));
+        builder.addSlot(INPUT, 1, -1)
+                .addIngredients(Ingredient.of(recipe.getTool().getItems()));
 
-        itemStacks.init(1, true, 25, 0);
-        itemStacks.set(1, Arrays.asList(recipe.getInput().getItems()));
+        builder.addSlot(INPUT, 26, 1)
+                .addIngredients(Ingredient.of(recipe.getInput().getItems()));
 
         ItemStack crushingItem = new ItemStack(FrugalItems.CRUSHING_STONE.get().asItem());
         crushingItem.setCount(recipe.getHits());
 
-        itemStacks.init(2, true, 25, 18);
-        itemStacks.set(2, crushingItem);
+        builder.addSlot(INPUT, 26, 19)
+                .addItemStack(crushingItem)
+                .addTooltipCallback((recipeSlotView, tooltip) -> {
+                    tooltip.add(1, new TextComponent("").append(hitsAmountText).append("" + recipe.getHits()).withStyle(ChatFormatting.DARK_RED));
+                });
 
         for(int slotId = 0; slotId < results.size(); slotId++){
-
-            itemStacks.init(slotId + 3, false, (78 + 18 * (slotId % 4)), 9 - (9 * (results.size()/5)) + 18 * (slotId/4));
-            itemStacks.set(slotId + 3, results.get(slotId).getItem());
+            int slotNum = slotId;
+            builder.addSlot(OUTPUT, (79 + 18 * (slotId % 4)), 10 - (9 * (results.size()/5)) + 18 * (slotId/4))
+                    .addItemStack(results.get(slotId).getItem())
+                    .addTooltipCallback((recipeSlotView, tooltip) -> {
+                        ChanceItem output = results.get(slotNum);
+                        float chance = output.getChance();
+                        if(chance != 1){
+                            if(chance < 0.01)
+                                tooltip.add(1, new TextComponent("<1%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                            else
+                                tooltip.add(1, new TextComponent((int)(chance * 100) + "%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                        }
+                        else{
+                            tooltip.add(1, new TextComponent("100%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                        }
+                    });
         }
-
-        itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if(slotIndex == 2)
-                tooltip.add(1, new TextComponent("").append(hitsAmountText).append("" + recipe.getHits()).withStyle(ChatFormatting.DARK_RED));;
-        } );
-
-        itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-            if(input)
-                return;
-            if(slotIndex < 3)
-                return;
-            ChanceItem output = results.get(slotIndex - 3);
-            float chance = output.getChance();
-            if(chance != 1){
-                if(chance < 0.01)
-                    tooltip.add(1, new TextComponent("<1%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-                else
-                    tooltip.add(1, new TextComponent((int)(chance * 100) + "%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-            }
-            else{
-                tooltip.add(1, new TextComponent("100%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-            }
-        } );
-
-}
+    }
 }

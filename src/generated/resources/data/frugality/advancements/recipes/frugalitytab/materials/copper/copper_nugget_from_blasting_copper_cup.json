@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:materials/copper/copper_nugget_from_blasting_copper_cup"
+    ]
+  },
+  "criteria": {
+    "has_copper_cup": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:copper_cup"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:materials/copper/copper_nugget_from_blasting_copper_cup"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_cup",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    "AAA",
+    "AAA"
+  ],
+  "key": {
+    "A": {
+      "item": "frugality:rose_gold_ingot"
+    }
+  },
+  "result": {
+    "item": "frugality:rose_gold_block"
+  }
+}

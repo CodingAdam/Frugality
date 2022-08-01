@@ -32,13 +32,6 @@ public class CauldronRecipe extends FrugalRecipe {
         return FrugalRecipes.cauldronRecipeType.get();
     }
 
-    public boolean doesMatch(ItemStack item, int level, int type) {
-        if(type == 3){
-            return this.input.test(item) && this.type == type;
-        }
-        return this.input.test(item) && this.level <= level && this.type == type;
-    }
-
     public boolean isHidden() {
 
         return this.hidden;

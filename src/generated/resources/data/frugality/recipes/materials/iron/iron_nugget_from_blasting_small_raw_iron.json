@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "frugality:small_raw_iron"
+  },
+  "result": "minecraft:iron_nugget",
+  "experience": 0.7,
+  "cookingtime": 100
+}

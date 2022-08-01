@@ -35,6 +35,8 @@ import static com.umbriel.frugality.util.recipes.RecipeHelper.findRecipeById;
 
 public class CrushingBlockEntity extends BlockEntity {
 
+    /* The CODE BELOW is copied (and partially modified) from "vectorwing/FarmersDelight" as a template for the block entity */
+
     private final ItemStackHandler inventory;
     private final LazyOptional<IItemHandler> input;
     private ResourceLocation recipeID;

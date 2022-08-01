@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:materials/wooden/wooden_hammer"
+    ]
+  },
+  "criteria": {
+    "has_TagKey[minecraft:item / minecraft:planks]": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "minecraft:planks"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:materials/wooden/wooden_hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_TagKey[minecraft:item / minecraft:planks]",
+      "has_the_recipe"
+    ]
+  ]
+}

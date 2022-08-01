@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:materials/gold/gold_nugget_from_blasting_golden_hammer"
+    ]
+  },
+  "criteria": {
+    "has_golden_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:golden_hammer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:materials/gold/gold_nugget_from_blasting_golden_hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_golden_hammer",
+      "has_the_recipe"
+    ]
+  ]
+}

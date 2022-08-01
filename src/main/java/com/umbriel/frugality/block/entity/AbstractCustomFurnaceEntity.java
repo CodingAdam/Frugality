@@ -25,6 +25,8 @@ public abstract class AbstractCustomFurnaceEntity extends AbstractFurnaceBlockEn
         this.processingTime = processingTime;
     }
 
+    /* The CODE BELOW is copied (and partially modified) from "Shadows-of-Fire/FastFurnace" as a template for the block entity */
+
     public static final int burnTime = 0;
     public static final int cookingTime = 2;
     public static final int totalCookingTime = 3;

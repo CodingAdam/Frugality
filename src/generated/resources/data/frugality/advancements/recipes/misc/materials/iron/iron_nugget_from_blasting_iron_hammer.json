@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:materials/iron/iron_nugget_from_blasting_iron_hammer"
+    ]
+  },
+  "criteria": {
+    "has_iron_hammer": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:iron_hammer"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:materials/iron/iron_nugget_from_blasting_iron_hammer"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_iron_hammer",
+      "has_the_recipe"
+    ]
+  ]
+}

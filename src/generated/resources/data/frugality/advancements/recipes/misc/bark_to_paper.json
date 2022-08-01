@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:bark_to_paper"
+    ]
+  },
+  "criteria": {
+    "has_bark": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:bark"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:bark_to_paper"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bark",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -2,17 +2,19 @@ package com.umbriel.frugality.compact.jei.category;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.umbriel.frugality.Frugality;
+import com.umbriel.frugality.compact.jei.FrugalityPlugin;
 import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.recipes.ThermalRecipe;
 import mezz.jei.api.constants.VanillaTypes;
-import mezz.jei.api.gui.IRecipeLayout;
+import mezz.jei.api.forge.ForgeTypes;
+import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
 import mezz.jei.api.gui.drawable.IDrawable;
 import mezz.jei.api.gui.drawable.IDrawableStatic;
-import mezz.jei.api.gui.ingredient.IGuiFluidStackGroup;
-import mezz.jei.api.gui.ingredient.IGuiItemStackGroup;
+import mezz.jei.api.gui.ingredient.IRecipeSlotsView;
 import mezz.jei.api.helpers.IGuiHelper;
-import mezz.jei.api.ingredients.IIngredients;
+import mezz.jei.api.recipe.IFocusGroup;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.api.recipe.category.IRecipeCategory;
 import mezz.jei.config.Constants;
 import net.minecraft.ChatFormatting;
@@ -23,10 +25,12 @@ import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
+
+import static mezz.jei.api.recipe.RecipeIngredientRole.INPUT;
+import static mezz.jei.api.recipe.RecipeIngredientRole.OUTPUT;
 
 public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     public static final ResourceLocation ID = new ResourceLocation(Frugality.MODID, "thermal");
@@ -45,7 +49,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     public ThermalCategory(IGuiHelper guiHelper, Item icon) {
        this.background = guiHelper.createBlankDrawable(150, 36);
        this.slotDrawable = guiHelper.getSlotDrawable();
-       this.icon = guiHelper.createDrawableIngredient(new ItemStack(icon));
+       this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(icon));
        this.arrow = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 75, 169, 24, 16);
        this.plusSign = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 26, 170, 14, 14);
     }
@@ -59,6 +63,12 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     public Class<? extends ThermalRecipe> getRecipeClass() {
         return ThermalRecipe.class;
     }
+
+    @Override
+    public RecipeType<ThermalRecipe> getRecipeType() {
+        return FrugalityPlugin.THERMAL;
+    }
+
 
     @Override
     public Component getTitle() {
@@ -76,19 +86,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     }
 
     @Override
-    public void setIngredients(ThermalRecipe recipe, IIngredients ingredients) {
-        ingredients.setInputIngredients(Collections.singletonList(recipe.getInput()));
-        if(recipe.getItemResult() != null){
-            ingredients.setOutputs(VanillaTypes.ITEM, recipe.getOutputsAsItems());
-        }
-        if(recipe.getFluidResult() != null){
-            ingredients.setOutput(VanillaTypes.FLUID, recipe.getFluidResult());
-        }
-
-    }
-
-    @Override
-    public void draw(ThermalRecipe recipe, PoseStack poseStack, double mouseX, double mouseY) {
+    public void draw(ThermalRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
         this.slotDrawable.draw(poseStack, 0, 9);
         this.slotDrawable.draw(poseStack, 48, 9);
         this.arrow.draw(poseStack, 74, 9);
@@ -106,65 +104,56 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     }
 
     @Override
-    public void setRecipe(IRecipeLayout recipeLayout, ThermalRecipe recipe, IIngredients ingredients) {
-        IGuiItemStackGroup itemStacks = recipeLayout.getItemStacks();
-        IGuiFluidStackGroup fluidStacks = recipeLayout.getFluidStacks();
+    public void setRecipe(IRecipeLayoutBuilder builder, ThermalRecipe recipe, IFocusGroup focuses) {
         List<ChanceItem> results = recipe.getItemResult();
 
         if(recipe.getStoneType() == 1){
-            itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.HEATED_STONE.get())));
+            builder.addSlot(INPUT, 1, 9)
+                    .addItemStack(new ItemStack(FrugalItems.HEATED_STONE.get()));
         }
         if(recipe.getStoneType() == 2){
-            itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.CHILLED_STONE.get())));
+            builder.addSlot(INPUT, 1, 9)
+                    .addItemStack(new ItemStack(FrugalItems.CHILLED_STONE.get()));
         }
         if(recipe.getStoneType() == 3){
-            itemStacks.init(0, true, 0, 9);
-            itemStacks.set(0, Collections.singletonList(new ItemStack(FrugalItems.WARPED_STONE.get())));
+            builder.addSlot(INPUT, 1, 9)
+                    .addItemStack(new ItemStack(FrugalItems.WARPED_STONE.get()));
         }
 
-        itemStacks.init(1, true, 48, 9);
-        itemStacks.set(1, Arrays.asList(recipe.getInput().getItems()));
-
+        builder.addSlot(INPUT, 49, 10)
+                .addIngredients(Ingredient.of(recipe.getInput().getItems()));
 
 
         if(recipe.getItemResult() != null) {
-            for(int slotId = 0; slotId < results.size(); slotId++){
-                itemStacks.init(slotId + 2, false, (108 + 18 * (slotId % 4)), 9 - (9 * (results.size()/5)) + 18 * (slotId/4));
-                itemStacks.set(slotId + 2, results.get(slotId).getItem());
+            for(int slotId = 0; slotId < results.size(); slotId++) {
+                int slotNum = slotId;
+                builder.addSlot(OUTPUT, (109 + 18 * (slotId % 4)), 10 - (9 * (results.size() / 5)) + 18 * (slotId / 4))
+                        .addItemStack(results.get(slotId).getItem())
+                        .addTooltipCallback((recipeSlotView, tooltip) -> {
+                            ChanceItem output = results.get(slotNum);
+                            float chance = output.getChance();
+                            if (chance != 1) {
+                                if (chance < 0.01)
+                                    tooltip.add(1, new TextComponent("<1%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                                else
+                                    tooltip.add(1, new TextComponent((int) (chance * 100) + "%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                            } else {
+                                tooltip.add(1, new TextComponent("100%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
+                            }
+                        });
             }
-            itemStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-                if(input)
-                    return;
-                if(slotIndex < 2)
-                    return;
-                ChanceItem output = results.get(slotIndex - 2);
-                float chance = output.getChance();
-                if(chance != 1){
-                    if(chance < 0.01)
-                        tooltip.add(1, new TextComponent("<1%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-                    else
-                        tooltip.add(1, new TextComponent((int)(chance * 100) + "%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-                }
-                else{
-                    tooltip.add(1, new TextComponent("100%").append(chanceText).withStyle(ChatFormatting.DARK_GREEN));
-                }
-            } );
         }
         if(recipe.getFluidResult() != null) {
-            fluidStacks.init(2, false, 109, 10);
-            fluidStacks.set(2, recipe.getFluidResult());
-            fluidStacks.addTooltipCallback((slotIndex, input, ingredient, tooltip) -> {
-                if(!input)
-                    if(slotIndex == 2)
+            builder.addSlot(OUTPUT, 109, 10)
+                    .addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluidResult())
+                    .addTooltipCallback((recipeSlotView, tooltip) -> {
                         tooltip.add(1, new TextComponent("1").append(bucketAmountText).withStyle(ChatFormatting.DARK_GREEN));
-            });
+                    });
         }
 
 
+    }
 
 
 
-}
 }

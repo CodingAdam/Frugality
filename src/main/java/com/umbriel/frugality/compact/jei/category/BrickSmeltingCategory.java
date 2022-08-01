@@ -2,9 +2,12 @@ package com.umbriel.frugality.compact.jei.category;
 
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.init.FrugalItems;
+import mezz.jei.api.constants.RecipeTypes;
 import mezz.jei.api.helpers.IGuiHelper;
+import mezz.jei.api.recipe.RecipeType;
 import mezz.jei.plugins.vanilla.cooking.AbstractCookingCategory;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.BlastingRecipe;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
 
@@ -22,5 +25,10 @@ public class BrickSmeltingCategory extends AbstractCookingCategory<SmeltingRecip
     @Override
     public Class<? extends SmeltingRecipe> getRecipeClass() {
         return SmeltingRecipe.class;
+    }
+
+    @Override
+    public RecipeType<SmeltingRecipe> getRecipeType() {
+        return RecipeTypes.SMELTING;
     }
 }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AAA",
+    " A ",
+    " S "
+  ],
+  "key": {
+    "A": {
+      "item": "minecraft:gold_ingot"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    }
+  },
+  "result": {
+    "item": "frugality:golden_hammer"
+  }
+}
