@@ -21,7 +21,7 @@ public class ChanceItem {
         this.chance = chance;
     }
 
-    public ItemStack getItem() {
+    public ItemStack getStack() {
         return item;
     }
 
@@ -67,7 +67,7 @@ public class ChanceItem {
     }
 
     public void write(FriendlyByteBuf buf) {
-        buf.writeItem(getItem());
+        buf.writeItem(getStack());
         buf.writeFloat(getChance());
     }
 

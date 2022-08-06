@@ -1,0 +1,16 @@
+{
+  "type": "frugality:crushing",
+  "input": {
+    "tag": "minecraft:terracotta"
+  },
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 2,
+  "results": [
+    {
+      "item": "minecraft:red_sand",
+      "chance": 0.55
+    }
+  ]
+}

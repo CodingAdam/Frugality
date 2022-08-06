@@ -1,0 +1,23 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:gravel"
+  },
+  "fluidType": 1,
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "minecraft:flint",
+      "chance": 0.55
+    },
+    {
+      "item": "frugality:small_raw_iron",
+      "chance": 0.05
+    },
+    {
+      "item": "frugality:small_raw_iron",
+      "count": 2,
+      "chance": 0.01
+    }
+  ]
+}

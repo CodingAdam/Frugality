@@ -1,0 +1,23 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:soul_sand"
+  },
+  "fluidType": 1,
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "minecraft:quartz",
+      "chance": 0.55
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "chance": 0.05
+    },
+    {
+      "item": "minecraft:gold_nugget",
+      "count": 2,
+      "chance": 0.1
+    }
+  ]
+}

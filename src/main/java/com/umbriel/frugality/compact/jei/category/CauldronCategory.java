@@ -148,7 +148,7 @@ public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
 
             int slotNum = slotId;
             builder.addSlot(OUTPUT, (79 + 18 * (slotId % 4)), 10 - (9 * (results.size()/5)) + 18 * (slotId/4))
-                    .addItemStack(results.get(slotId).getItem())
+                    .addItemStack(results.get(slotId).getStack())
                     .addTooltipCallback((recipeSlotView, tooltip) -> {
                         ChanceItem output = results.get(slotNum);
                         float chance = output.getChance();

@@ -1,0 +1,14 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "frugality:chilled_stone"
+  },
+  "fluidType": 2,
+  "fluidLevel": 3,
+  "results": [
+    {
+      "item": "minecraft:snowball",
+      "count": 3
+    }
+  ]
+}

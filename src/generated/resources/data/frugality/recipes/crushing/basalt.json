@@ -1,0 +1,25 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:smooth_basalt"
+    },
+    {
+      "item": "minecraft:basalt"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 3,
+  "results": [
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.55
+    },
+    {
+      "item": "minecraft:amethyst_shard",
+      "chance": 0.05
+    }
+  ]
+}

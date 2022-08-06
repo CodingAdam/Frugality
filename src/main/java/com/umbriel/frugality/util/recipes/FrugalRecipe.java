@@ -3,7 +3,6 @@ package com.umbriel.frugality.util.recipes;
 import com.umbriel.frugality.item.ChanceItem;
 import net.minecraft.core.NonNullList;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.Recipe;
@@ -106,7 +105,7 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
     public List<ItemStack> getOutputsAsItems() {
         List<ItemStack> items = new ArrayList<>();
         for (ChanceItem output : itemOutputs){
-            ItemStack stack = output.getItem();
+            ItemStack stack = output.getStack();
             if (!stack.isEmpty())
                 items.add(stack);
         }

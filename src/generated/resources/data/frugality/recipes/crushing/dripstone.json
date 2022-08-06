@@ -1,0 +1,20 @@
+{
+  "type": "frugality:crushing",
+  "input": {
+    "item": "minecraft:dripstone_block"
+  },
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 4,
+  "results": [
+    {
+      "item": "minecraft:pointed_dripstone",
+      "chance": 0.55
+    },
+    {
+      "item": "minecraft:pointed_dripstone",
+      "chance": 0.35
+    }
+  ]
+}

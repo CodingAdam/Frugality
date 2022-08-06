@@ -1,0 +1,30 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:stone"
+    },
+    {
+      "item": "minecraft:cobblestone"
+    },
+    {
+      "item": "minecraft:deepslate"
+    },
+    {
+      "item": "frugality:silica_cobblestone"
+    },
+    {
+      "item": "frugality:silica_stone"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 3,
+  "results": [
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.85
+    }
+  ]
+}

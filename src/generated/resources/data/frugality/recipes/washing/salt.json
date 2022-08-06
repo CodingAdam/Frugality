@@ -1,0 +1,21 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "frugality:chilled_stone"
+  },
+  "fluidType": 1,
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "frugality:thermal_stone"
+    },
+    {
+      "item": "frugality:salt"
+    },
+    {
+      "item": "frugality:salt",
+      "count": 2,
+      "chance": 0.25
+    }
+  ]
+}

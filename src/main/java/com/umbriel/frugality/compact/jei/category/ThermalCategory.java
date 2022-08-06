@@ -128,7 +128,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
             for(int slotId = 0; slotId < results.size(); slotId++) {
                 int slotNum = slotId;
                 builder.addSlot(OUTPUT, (109 + 18 * (slotId % 4)), 10 - (9 * (results.size() / 5)) + 18 * (slotId / 4))
-                        .addItemStack(results.get(slotId).getItem())
+                        .addItemStack(results.get(slotId).getStack())
                         .addTooltipCallback((recipeSlotView, tooltip) -> {
                             ChanceItem output = results.get(slotNum);
                             float chance = output.getChance();

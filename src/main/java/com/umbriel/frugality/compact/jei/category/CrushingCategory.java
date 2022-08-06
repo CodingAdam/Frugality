@@ -5,7 +5,6 @@ import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.compact.jei.FrugalityPlugin;
 import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.item.ChanceItem;
-import com.umbriel.frugality.util.recipes.CauldronRecipe;
 import com.umbriel.frugality.util.recipes.CrushingRecipe;
 import mezz.jei.api.constants.VanillaTypes;
 import mezz.jei.api.gui.builder.IRecipeLayoutBuilder;
@@ -119,7 +118,7 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
         for(int slotId = 0; slotId < results.size(); slotId++){
             int slotNum = slotId;
             builder.addSlot(OUTPUT, (79 + 18 * (slotId % 4)), 10 - (9 * (results.size()/5)) + 18 * (slotId/4))
-                    .addItemStack(results.get(slotId).getItem())
+                    .addItemStack(results.get(slotId).getStack())
                     .addTooltipCallback((recipeSlotView, tooltip) -> {
                         ChanceItem output = results.get(slotNum);
                         float chance = output.getChance();

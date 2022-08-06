@@ -31,12 +31,12 @@ public class CrushingRecipe extends FrugalRecipe {
 
     @Override
     public ItemStack assemble(RecipeWrapper inv) {
-        return this.itemOutputs.get(0).getItem().copy();
+        return this.itemOutputs.get(0).getStack().copy();
     }
 
     @Override
     public ItemStack getResultItem() {
-        return this.itemOutputs.get(0).getItem();
+        return this.itemOutputs.get(0).getStack();
     }
 
     @Override
@@ -46,7 +46,7 @@ public class CrushingRecipe extends FrugalRecipe {
 
 
     public List<ItemStack> getResults() {
-        return getItemResult().stream().map(ChanceItem::getItem)
+        return getItemResult().stream().map(ChanceItem::getStack)
                 .collect(Collectors.toList());
     }
 

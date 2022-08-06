@@ -1,0 +1,12 @@
+{
+  "type": "frugality:thermal_stone",
+  "input": {
+    "item": "minecraft:magma_block"
+  },
+  "stoneType": 2,
+  "results": [
+    {
+      "item": "minecraft:obsidian"
+    }
+  ]
+}

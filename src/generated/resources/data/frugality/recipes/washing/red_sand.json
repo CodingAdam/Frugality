@@ -1,0 +1,23 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:red_sand"
+  },
+  "fluidType": 1,
+  "fluidLevel": 1,
+  "results": [
+    {
+      "item": "minecraft:dead_bush",
+      "chance": 0.85
+    },
+    {
+      "item": "frugality:small_raw_gold",
+      "chance": 0.05
+    },
+    {
+      "item": "frugality:small_raw_gold",
+      "count": 2,
+      "chance": 0.01
+    }
+  ]
+}
