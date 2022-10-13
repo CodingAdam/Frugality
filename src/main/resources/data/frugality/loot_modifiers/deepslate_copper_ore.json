@@ -14,7 +14,7 @@
     },
     {
       "condition": "block_state_property",
-      "block": "minecraft:copper_ore"
+      "block": "minecraft:deepslate_copper_ore"
     }
   ],
   "item": "frugality:copper_nugget",

@@ -50,9 +50,9 @@ public class SmeltingRecipe {
                 .unlockedBy("has_clay_brick", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICK.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "brick/brick_from_smelting"));
 
-        smeltAndBlast(consumer, FrugalItems.SMALL_RAW_GOLD.get(), Items.GOLD_NUGGET, "gold", 0.7F);
-        smeltAndBlast(consumer, FrugalItems.SMALL_RAW_COPPER.get(), FrugalItems.COPPER_NUGGET.get(), "copper", 0.7F);
-        smeltAndBlast(consumer, FrugalItems.SMALL_RAW_IRON.get(), Items.IRON_NUGGET, "iron", 0.7F);
+        //smeltAndBlast(consumer, FrugalItems.SMALL_RAW_GOLD.get(), Items.GOLD_NUGGET, "gold", 0.7F);
+        //smeltAndBlast(consumer, FrugalItems.SMALL_RAW_COPPER.get(), FrugalItems.COPPER_NUGGET.get(), "copper", 0.7F);
+        //smeltAndBlast(consumer, FrugalItems.SMALL_RAW_IRON.get(), Items.IRON_NUGGET, "iron", 0.7F);
         smeltAndBlast(consumer, FrugalItems.COPPER_CUP.get(), FrugalItems.COPPER_NUGGET.get(), "copper", 0.7F); // New recipe for multiple nuggets
 
         blastingMaterial(consumer, FrugalItems.GOLDEN_HAMMER.get(), Items.GOLD_NUGGET, "gold", 0.1F);

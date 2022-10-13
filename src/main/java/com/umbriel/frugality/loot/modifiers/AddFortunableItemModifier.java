@@ -55,7 +55,7 @@ public class AddFortunableItemModifier extends LootModifier {
         @Override
         public AddFortunableItemModifier read(ResourceLocation location, JsonObject object, LootItemCondition[] lootcondition) {
             Item addedItem = ForgeRegistries.ITEMS.getValue(new ResourceLocation((GsonHelper.getAsString(object, "item"))));
-            int count = GsonHelper.getAsInt(object, "count");
+            int count = GsonHelper.getAsInt(object, "count", 1);
             return new AddFortunableItemModifier(lootcondition, addedItem, count);
         }
 

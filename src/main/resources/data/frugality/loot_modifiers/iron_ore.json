@@ -17,6 +17,6 @@
       "block": "minecraft:iron_ore"
     }
   ],
-  "item": "frugality:small_raw_iron",
+  "item": "minecraft:iron_nugget",
   "count" : 1
 }

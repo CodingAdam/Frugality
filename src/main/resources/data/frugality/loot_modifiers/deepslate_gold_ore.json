@@ -14,9 +14,9 @@
     },
     {
       "condition": "block_state_property",
-      "block": "minecraft:copper_ore"
+      "block": "minecraft:deepslate_gold_ore"
     }
   ],
-  "item": "frugality:copper_nugget",
-  "count" : 3
+  "item": "minecraft:gold_nugget",
+  "count" : 1
 }

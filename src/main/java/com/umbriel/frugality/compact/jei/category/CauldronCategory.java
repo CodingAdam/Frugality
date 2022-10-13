@@ -106,7 +106,7 @@ public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
     public void setRecipe(IRecipeLayoutBuilder builder, CauldronRecipe recipe, IFocusGroup focuses) {
         List<ChanceItem> results = recipe.getItemResult();
 
-        builder.addSlot(INPUT, 1, 0)
+        builder.addSlot(INPUT, 1, 1)
                 .addIngredients(Ingredient.of(recipe.getInput().getItems()[0]));
 
         if(recipe.getFill() == 1){

@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frugality:materials/iron/raw_iron"
+      "frugality:fiber_from_tall_grass"
     ]
   },
   "criteria": {
-    "has_small_raw_iron": {
+    "has_tall_grass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "frugality:small_raw_iron"
+              "minecraft:tall_grass"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frugality:materials/iron/raw_iron"
+        "recipe": "frugality:fiber_from_tall_grass"
       }
     }
   },
   "requirements": [
     [
-      "has_small_raw_iron",
+      "has_tall_grass",
       "has_the_recipe"
     ]
   ]

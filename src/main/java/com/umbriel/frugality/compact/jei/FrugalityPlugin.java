@@ -90,9 +90,9 @@ public class FrugalityPlugin implements IModPlugin {
                 .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType.get());
         registration.addRecipes(CRUSHING, crushingRecipes);
 
-        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM_STACK, smallOreText);
-        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM_STACK, smallOreText);
-        registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM_STACK, smallOreText);
+        //registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_COPPER.get()), VanillaTypes.ITEM_STACK, smallOreText);
+        //registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_GOLD.get()), VanillaTypes.ITEM_STACK, smallOreText);
+        //registration.addIngredientInfo(new ItemStack(FrugalItems.SMALL_RAW_IRON.get()), VanillaTypes.ITEM_STACK, smallOreText);
         registration.addIngredientInfo(new ItemStack(FrugalItems.CHARRED_LOG.get()), VanillaTypes.ITEM_STACK, charredShardsText);
         registration.addIngredientInfo(new ItemStack(FrugalItems.CHARRED_SHARDS.get()), VanillaTypes.ITEM_STACK, charredShardsText);
 

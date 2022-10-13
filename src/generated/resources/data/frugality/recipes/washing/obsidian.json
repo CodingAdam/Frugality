@@ -1,0 +1,16 @@
+{
+  "type": "frugality:washing",
+  "input": {
+    "item": "minecraft:water_bucket"
+  },
+  "fluidType": 3,
+  "fluidLevel": 3,
+  "results": [
+    {
+      "item": "minecraft:bucket"
+    },
+    {
+      "item": "minecraft:obsidian"
+    }
+  ]
+}

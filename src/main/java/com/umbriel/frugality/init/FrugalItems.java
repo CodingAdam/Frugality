@@ -141,9 +141,9 @@ public class FrugalItems {
     public static final RegistryObject<Item> SILICA_GLASS = ITEMS.register("silica_glass", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> CLAY_BRICK = ITEMS.register("clay_brick", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
-    public static final RegistryObject<Item> SMALL_RAW_IRON = ITEMS.register("small_raw_iron", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
-    public static final RegistryObject<Item> SMALL_RAW_COPPER = ITEMS.register("small_raw_copper", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
-    public static final RegistryObject<Item> SMALL_RAW_GOLD = ITEMS.register("small_raw_gold", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    //public static final RegistryObject<Item> SMALL_RAW_IRON = ITEMS.register("small_raw_iron", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    //public static final RegistryObject<Item> SMALL_RAW_COPPER = ITEMS.register("small_raw_copper", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    //public static final RegistryObject<Item> SMALL_RAW_GOLD = ITEMS.register("small_raw_gold", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> FIBER = ITEMS.register("fiber", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 

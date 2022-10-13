@@ -2,17 +2,17 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frugality:materials/gold/gold_nugget_from_blasting_small_raw_gold"
+      "frugality:fiber_from_grass"
     ]
   },
   "criteria": {
-    "has_small_raw_gold": {
+    "has_grass": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "frugality:small_raw_gold"
+              "minecraft:grass"
             ]
           }
         ]
@@ -21,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frugality:materials/gold/gold_nugget_from_blasting_small_raw_gold"
+        "recipe": "frugality:fiber_from_grass"
       }
     }
   },
   "requirements": [
     [
-      "has_small_raw_gold",
+      "has_grass",
       "has_the_recipe"
     ]
   ]

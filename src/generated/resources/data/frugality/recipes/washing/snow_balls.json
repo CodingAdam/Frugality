@@ -7,6 +7,9 @@
   "fluidLevel": 3,
   "results": [
     {
+      "item": "frugality:thermal_stone"
+    },
+    {
       "item": "minecraft:snowball",
       "count": 3
     }

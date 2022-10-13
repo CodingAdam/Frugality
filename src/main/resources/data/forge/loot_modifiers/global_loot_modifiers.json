@@ -3,6 +3,9 @@
   "entries": [
     "frugality:copper_ore",
     "frugality:iron_ore",
-    "frugality:gold_ore"
+    "frugality:gold_ore",
+    "frugality:deepslate_copper_ore",
+    "frugality:deepslate_iron_ore",
+    "frugality:deepslate_gold_ore"
   ]
 }

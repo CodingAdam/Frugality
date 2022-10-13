@@ -36,16 +36,21 @@ public class WashingRecipe {
                 .addDrop(Items.WHEAT_SEEDS, 1, 0.15f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "dirt"));
 
+        WashingRecipeBuilder.washingRecipe(Ingredient.of(Items.WATER_BUCKET), 3, 3)
+                .addDrop(Items.BUCKET, 1)
+                .addDrop(Items.OBSIDIAN, 1)
+                .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "obsidian"));
+
         WashingRecipeBuilder.washingRecipe(Ingredient.of(Items.GRAVEL), 1, 1)
                 .addDrop(Items.FLINT, 1, 0.55f)
-                .addDrop(FrugalItems.SMALL_RAW_IRON.get(), 1, 0.05f)
-                .addDrop(FrugalItems.SMALL_RAW_IRON.get(), 2, 0.01f)
+                .addDrop(Items.IRON_NUGGET, 1, 0.05f)
+                .addDrop(Items.IRON_NUGGET, 2, 0.01f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "gravel"));
 
         WashingRecipeBuilder.washingRecipe(Ingredient.of(Items.RED_SAND), 1, 1)
                 .addDrop(Items.DEAD_BUSH, 1, 0.85f)
-                .addDrop(FrugalItems.SMALL_RAW_GOLD.get(), 1, 0.05f)
-                .addDrop(FrugalItems.SMALL_RAW_GOLD.get(), 2, 0.01f)
+                .addDrop(Items.GOLD_NUGGET, 1, 0.05f)
+                .addDrop(Items.GOLD_NUGGET, 2, 0.01f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "red_sand"));
 
         WashingRecipeBuilder.washingRecipe(Ingredient.of(FrugalItems.CHILLED_STONE.get()), 1, 1)

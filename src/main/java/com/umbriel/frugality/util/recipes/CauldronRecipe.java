@@ -88,7 +88,7 @@ public class CauldronRecipe extends FrugalRecipe {
         public CauldronRecipe fromJson(ResourceLocation recipeId, JsonObject json) {
             final Ingredient input = Ingredient.fromJson(json.get("input"));
             final int fluidLevel = GsonHelper.getAsInt(json, "fluidLevel", 1);
-            final int type = GsonHelper.getAsInt(json, "fillType", 1);
+            final int type = GsonHelper.getAsInt(json, "fluidType", 1);
             final NonNullList<ChanceItem> results = json.has("results") ? readItems(json.get("results")) : NonNullList.create();
             final boolean hidden = GsonHelper.getAsBoolean(json, "hidden", false);
             return new CauldronRecipe(recipeId, input, results, type, fluidLevel, hidden);
@@ -106,7 +106,6 @@ public class CauldronRecipe extends FrugalRecipe {
 
         @Override
         public void toNetwork(FriendlyByteBuf buffer, CauldronRecipe recipe) {
-
             recipe.input.toNetwork(buffer);
             buffer.writeInt(recipe.level);
             buffer.writeInt(recipe.type);

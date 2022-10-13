@@ -348,20 +348,22 @@ public class CraftingRecipe {
         upgradeRecipe(ForgeTags.ROSE_GOLD_INGOT, Items.IRON_LEGGINGS, FrugalItems.ROSE_GOLD_LEGGINGS.get(), "rose", "leggings", consumer);
         upgradeRecipe(ForgeTags.ROSE_GOLD_INGOT, Items.IRON_HELMET, FrugalItems.ROSE_GOLD_HELMET.get(), "rose", "helmet", consumer);
         threeByThreeRecipe(FrugalItems.ROSE_GOLD_INGOT.get(), FrugalItems.ROSE_GOLD_BLOCK.get().asItem(), "rose", consumer);
-        singleItem(FrugalItems.ROSE_GOLD_BLOCK.get().asItem(), FrugalItems.ROSE_GOLD_INGOT.get(), 9, "rose", consumer);
+        singleItem(FrugalItems.ROSE_GOLD_BLOCK.get().asItem(), FrugalItems.ROSE_GOLD_INGOT.get(), 9, "materials/rose/", consumer);
 
 
         threeByThreeRecipe(FrugalItems.COPPER_NUGGET.get(), Items.COPPER_INGOT, "copper", consumer);
-        singleItem(Items.COPPER_INGOT, FrugalItems.COPPER_NUGGET.get(), 9, "copper", consumer);
+        singleItem(Items.COPPER_INGOT, FrugalItems.COPPER_NUGGET.get(), 9, "materials/copper/", consumer);
+        singleItem(Items.GRASS, FrugalItems.FIBER.get(), 1, "", consumer);
+        singleItem(Items.TALL_GRASS, FrugalItems.FIBER.get(), 2, "", consumer);
         ShapelessRecipeBuilder.shapeless(FrugalItems.COPPER_STARTER.get(), 1)
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.FLINT)
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "copper_starter"));
 
-        threeByThreeRecipe(FrugalItems.SMALL_RAW_COPPER.get(), Items.RAW_COPPER, "copper", consumer);
-        threeByThreeRecipe(FrugalItems.SMALL_RAW_IRON.get(), Items.RAW_IRON, "iron", consumer);
-        threeByThreeRecipe(FrugalItems.SMALL_RAW_GOLD.get(), Items.RAW_GOLD, "gold", consumer);
+        //threeByThreeRecipe(FrugalItems.SMALL_RAW_COPPER.get(), Items.RAW_COPPER, "copper", consumer);
+        //threeByThreeRecipe(FrugalItems.SMALL_RAW_IRON.get(), Items.RAW_IRON, "iron", consumer);
+        //threeByThreeRecipe(FrugalItems.SMALL_RAW_GOLD.get(), Items.RAW_GOLD, "gold", consumer);
     }
 
     private static void hammerRecipe(Item headMaterial, ItemLike hammer, String material, Consumer<FinishedRecipe> consumer){
@@ -422,7 +424,7 @@ public class CraftingRecipe {
         ShapelessRecipeBuilder.shapeless(result, num)
                 .requires(input)
                 .unlockedBy("has_" + input.toString(), InventoryChangeTrigger.TriggerInstance.hasItems(input))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "materials/" + material + "/" + result.toString() + "_from_" + input.toString()));
+                .save(consumer, new ResourceLocation(Frugality.MODID, material + result.toString() + "_from_" + input.toString()));
     }
 
 }
