@@ -42,16 +42,18 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
     private final IDrawable background;
     private final IDrawable icon;
     private final IDrawableStatic slotDrawable;
+    private final IDrawable slotLargeDrawable;
     private IDrawable arrow;
-    private IDrawable plusSign;
+    private IDrawable sideArrow;
 
 
     public ThermalCategory(IGuiHelper guiHelper, Item icon) {
-       this.background = guiHelper.createBlankDrawable(150, 36);
+       this.background = guiHelper.createBlankDrawable(130, 43);
        this.slotDrawable = guiHelper.getSlotDrawable();
+       this.slotLargeDrawable = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 56, 128, 26, 26);
        this.icon = guiHelper.createDrawableIngredient(VanillaTypes.ITEM_STACK,new ItemStack(icon));
        this.arrow = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 75, 169, 24, 16);
-       this.plusSign = guiHelper.createDrawable(Constants.RECIPE_GUI_VANILLA, 26, 170, 14, 14);
+       this.sideArrow = guiHelper.drawableBuilder(new ResourceLocation(Frugality.MODID, "textures/gui/gui_top_arrow.png"), 0, 0, 37, 14).setTextureSize(38,14).build();
     }
 
     @Override
@@ -87,20 +89,11 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
 
     @Override
     public void draw(ThermalRecipe recipe, IRecipeSlotsView recipeSlotsView, PoseStack poseStack, double mouseX, double mouseY) {
-        this.slotDrawable.draw(poseStack, 0, 9);
-        this.slotDrawable.draw(poseStack, 48, 9);
-        this.arrow.draw(poseStack, 74, 9);
-        this.plusSign.draw(poseStack, 25, 9);
-
-        int results = recipe.getItemResult().size();
-        if(results > 1){
-            for (int slotId = 0; slotId < 2 + (2 * (results/3)); slotId++) {
-                this.slotDrawable.draw(poseStack, (108 + 18 * (slotId % 2)), 9 - (9 * (results/3)) + 18 * (slotId/2));
-            }
-        }
-        else {
-            this.slotDrawable.draw(poseStack, 108, 9);
-        }
+        this.slotDrawable.draw(poseStack, 5, 0);
+        this.slotDrawable.draw(poseStack, 48, 24);
+        this.slotLargeDrawable.draw(poseStack, 99, 6);
+        this.sideArrow.draw(poseStack, 25, 5);
+        this.arrow.draw(poseStack, 71, 11);
     }
 
     @Override
@@ -108,26 +101,26 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
         List<ChanceItem> results = recipe.getItemResult();
 
         if(recipe.getStoneType() == 1){
-            builder.addSlot(INPUT, 1, 9)
+            builder.addSlot(INPUT, 6, 1)
                     .addItemStack(new ItemStack(FrugalItems.HEATED_STONE.get()));
         }
         if(recipe.getStoneType() == 2){
-            builder.addSlot(INPUT, 1, 9)
+            builder.addSlot(INPUT, 6, 1)
                     .addItemStack(new ItemStack(FrugalItems.CHILLED_STONE.get()));
         }
         if(recipe.getStoneType() == 3){
-            builder.addSlot(INPUT, 1, 9)
+            builder.addSlot(INPUT, 6, 1)
                     .addItemStack(new ItemStack(FrugalItems.WARPED_STONE.get()));
         }
 
-        builder.addSlot(INPUT, 49, 10)
+        builder.addSlot(INPUT, 49, 25)
                 .addIngredients(Ingredient.of(recipe.getInput().getItems()));
 
 
         if(recipe.getItemResult() != null) {
             for(int slotId = 0; slotId < results.size(); slotId++) {
                 int slotNum = slotId;
-                builder.addSlot(OUTPUT, (109 + 18 * (slotId % 4)), 10 - (9 * (results.size() / 5)) + 18 * (slotId / 4))
+                builder.addSlot(OUTPUT, 104, 11)
                         .addItemStack(results.get(slotId).getStack())
                         .addTooltipCallback((recipeSlotView, tooltip) -> {
                             ChanceItem output = results.get(slotNum);
@@ -144,7 +137,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
             }
         }
         if(recipe.getFluidResult() != null) {
-            builder.addSlot(OUTPUT, 109, 10)
+            builder.addSlot(OUTPUT, 104, 11)
                     .addIngredient(ForgeTypes.FLUID_STACK, recipe.getFluidResult())
                     .addTooltipCallback((recipeSlotView, tooltip) -> {
                         tooltip.add(1, new TextComponent("1").append(bucketAmountText).withStyle(ChatFormatting.DARK_GREEN));

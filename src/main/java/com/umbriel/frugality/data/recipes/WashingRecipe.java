@@ -34,6 +34,7 @@ public class WashingRecipe {
                 .addDrop(FrugalItems.SILICA.get(), 1, 0.55f)
                 .addDrop(FrugalItems.FIBER.get(), 1, 0.25f)
                 .addDrop(Items.WHEAT_SEEDS, 1, 0.15f)
+                .addDrop(Items.FLINT, 1, 0.10f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "dirt"));
 
         WashingRecipeBuilder.washingRecipe(Ingredient.of(Items.WATER_BUCKET), 3, 3)

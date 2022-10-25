@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "frugality:tools/mortars"
+    },
+    [
+      {
+        "item": "minecraft:andesite"
+      },
+      {
+        "item": "minecraft:diorite"
+      },
+      {
+        "item": "frugality:silica_stone"
+      },
+      {
+        "item": "frugality:silica_cobblestone"
+      }
+    ]
+  ],
+  "result": {
+    "item": "frugality:silica_dust"
+  }
+}

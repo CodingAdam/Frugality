@@ -20,10 +20,10 @@
   "item.frugality.salt" : "Salt",
   "item.frugality.blue_salt" : "Blue Salt",
   "item.frugality.red_salt" : "Red Salt",
-
+  "item.frugality.silica_dust" : "Silica Dust",
 
   "block.frugality.tree_tap" : "Tree Tap",
-  "block.frugality.melter" : "melter",
+  "block.frugality.melter" : "Melter",
   "block.frugality.crushing_stone" : "Crushing Stone",
   "block.frugality.crushing_terracotta" : "Crushing Terracotta",
 
@@ -40,6 +40,7 @@
   "block.frugality.silica_bricks_slab" : "Silica Bricks Slab",
   "block.frugality.silica_bricks_stairs" : "Silica Bricks Stairs",
   "block.frugality.silica_bricks_wall" : "Silica Bricks Wall",
+  "block.frugality.silica_sand" : "Silica Sand",
 
   "item.frugality.rose_gold_helmet" : "Rose Gold Helmet",
   "item.frugality.rose_gold_chestplate" : "Rose Gold Chestplate",
@@ -77,6 +78,10 @@
   "item.frugality.chilled_stone" : "Chilled Stone",
   "item.frugality.heated_stone" : "Heated Stone",
   "item.frugality.warped_stone" : "Warped Stone",
+
+  "item.frugality.wooden_mortar" : "Wooden Mortar",
+  "item.frugality.stone_mortar" : "Stone Mortar",
+  "item.frugality.obsidian_mortar" : "Obsidian Mortar",
 
   "container.brick_furnace" : "Brick Furnace",
   "container.brick_blast_furnace" : "Brick Blast Furnace",

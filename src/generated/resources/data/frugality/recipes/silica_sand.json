@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "AA ",
+    "AA ",
+    "   "
+  ],
+  "key": {
+    "A": {
+      "item": "frugality:silica_dust"
+    }
+  },
+  "result": {
+    "item": "frugality:silica_sand"
+  }
+}

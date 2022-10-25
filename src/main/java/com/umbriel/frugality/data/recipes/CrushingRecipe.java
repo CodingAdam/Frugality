@@ -46,5 +46,15 @@ public class CrushingRecipe {
                 Items.DEEPSLATE, FrugalItems.SILICA_COBBLESTONE.get(), FrugalItems.SILICA_STONE.get()), Ingredient.of(ForgeTags.TOOLS_PICKAXES),7)
                 .addDrop(FrugalItems.THERMAL_STONE.get(), 1, 0.70f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":crushing/" + "thermal_stone"));
+
+        CrushingRecipeBuilder.crushingRecipe(Ingredient.of(Items.GRANITE), Ingredient.of(ForgeTags.TOOLS_HAMMERS), 2)
+                .addDrop(FrugalItems.SILICA_DUST.get(), 2)
+                .addDrop(Items.GRAVEL, 1, 0.60f)
+                .save(consumer, new ResourceLocation(Frugality.MODID + ":crushing/" + "granite"));
+
+        CrushingRecipeBuilder.crushingRecipe(Ingredient.of(Items.ANDESITE, Items.DIORITE, FrugalItems.SILICA_STONE.get(), FrugalItems.SILICA_COBBLESTONE.get()), Ingredient.of(ForgeTags.TOOLS_HAMMERS), 2)
+                .addDrop(FrugalItems.SILICA_DUST.get(), 1)
+                .addDrop(Items.GRAVEL, 1, 0.60f)
+                .save(consumer, new ResourceLocation(Frugality.MODID + ":crushing/" + "silica_dust_x1"));
     }
 }

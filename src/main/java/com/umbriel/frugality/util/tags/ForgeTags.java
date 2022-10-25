@@ -20,8 +20,13 @@ public class ForgeTags {
 
     public static final TagKey<Item> GLASS = forgeItemTag("glass");
     public static final TagKey<Item> SAND = forgeItemTag("sand");
+    public static final TagKey<Item> SALT = forgeItemTag("salt");
+    public static final TagKey<Item> BARK = forgeItemTag("bark");
     public static final TagKey<Item> ROSE_GOLD_INGOT = forgeItemTag("ingots/rose_gold");
 
+    public static final TagKey<Item> COPPER_NUGGET = forgeItemTag("nuggets/copper");
+
+    public static final TagKey<Block> ROSE_GOLD_BLOCK = forgeBlockTag("storage_blocks/rose_gold");
 
     private static TagKey<Item> forgeItemTag(String path) {
         return TagKey.create(Registry.ITEM_REGISTRY, new ResourceLocation("forge", path));

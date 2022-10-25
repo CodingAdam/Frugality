@@ -16,6 +16,10 @@ public class DataGenerators {
     public static void gatherData(GatherDataEvent event){
         DataGenerator generator = event.getGenerator();
         ExistingFileHelper helper = event.getExistingFileHelper();
+
+        BlockTags blocks = new BlockTags(generator, Frugality.MODID, helper);
+        generator.addProvider(new ItemTags(generator, blocks, Frugality.MODID, helper));
+
         generator.addProvider(new Recipes(generator));
         generator.addProvider(new BlockStates(generator, helper));
         generator.addProvider(new ItemModels(generator, helper));

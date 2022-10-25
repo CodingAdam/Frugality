@@ -1,0 +1,20 @@
+{
+  "type": "frugality:crushing",
+  "input": {
+    "item": "minecraft:granite"
+  },
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 2,
+  "results": [
+    {
+      "item": "frugality:silica_dust",
+      "count": 2
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.6
+    }
+  ]
+}

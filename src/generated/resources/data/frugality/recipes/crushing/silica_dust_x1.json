@@ -1,0 +1,30 @@
+{
+  "type": "frugality:crushing",
+  "input": [
+    {
+      "item": "minecraft:andesite"
+    },
+    {
+      "item": "minecraft:diorite"
+    },
+    {
+      "item": "frugality:silica_stone"
+    },
+    {
+      "item": "frugality:silica_cobblestone"
+    }
+  ],
+  "tool": {
+    "tag": "forge:tools/hammers"
+  },
+  "hits": 2,
+  "results": [
+    {
+      "item": "frugality:silica_dust"
+    },
+    {
+      "item": "minecraft:gravel",
+      "chance": 0.6
+    }
+  ]
+}

@@ -8,10 +8,12 @@ import com.umbriel.frugality.block.cauldron.*;
 import com.umbriel.frugality.block.workstation.CrushingBlock;
 import com.umbriel.frugality.item.*;
 import net.minecraft.core.BlockPos;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
@@ -102,9 +104,11 @@ public class FrugalItems {
             () -> new SlabBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.3F, 5.5F).sound(SoundType.STONE)), false);
 
     // Figure out if never is required
-    public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(FrugalItems::never).isRedstoneConductor(FrugalItems::never).isSuffocating(FrugalItems::never).isViewBlocking(FrugalItems::never)), false);
+    //public static final RegistryObject<Block> SILICA_GLASS_BLOCK = register("silica_glass_block", () -> new GlassBlock(BlockBehaviour.Properties.of(Material.GLASS).strength(0.2F).sound(SoundType.GLASS).noOcclusion().isValidSpawn(FrugalItems::never).isRedstoneConductor(FrugalItems::never).isSuffocating(FrugalItems::never).isViewBlocking(FrugalItems::never)), false);
 
     //public static final RegistryObject<Block> RAW_SILICA_BLOCK = register("raw_silica_block", () -> new Block(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.RAW_IRON).requiresCorrectToolForDrops().strength(5.0F, 6.0F)));
+
+    public static final RegistryObject<Block> SILICA_SAND = register("silica_sand", () -> new SandBlock(16116468, BlockBehaviour.Properties.of(Material.SAND, MaterialColor.COLOR_PURPLE).strength(0.5F).sound(SoundType.SAND)), false);
 
     public static final RegistryObject<Block> BRICK_FURNACE = register("brick_furnace", () -> new BrickFurnace(BlockBehaviour.Properties.of(Material.STONE).
             requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))), false);
@@ -138,7 +142,8 @@ public class FrugalItems {
 
     public static final RegistryObject<Item> COPPER_NUGGET = ITEMS.register("copper_nugget", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> SILICA = ITEMS.register("raw_silica", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
-    public static final RegistryObject<Item> SILICA_GLASS = ITEMS.register("silica_glass", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    public static final RegistryObject<Item> SILICA_DUST = ITEMS.register("silica_dust", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    //public static final RegistryObject<Item> SILICA_GLASS = ITEMS.register("silica_glass", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
     public static final RegistryObject<Item> CLAY_BRICK = ITEMS.register("clay_brick", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
     //public static final RegistryObject<Item> SMALL_RAW_IRON = ITEMS.register("small_raw_iron", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
@@ -175,6 +180,10 @@ public class FrugalItems {
     public static final RegistryObject<Item> IRON_HAMMER = ITEMS.register("iron_hammer", ()-> new HammerItem(Tiers.IRON, -1, -2.4F, (new Item.Properties()).tab(Frugality.TAB)));
     public static final RegistryObject<Item> DIAMOND_HAMMER = ITEMS.register("diamond_hammer", ()-> new HammerItem(Tiers.DIAMOND, -2, -2.3F, (new Item.Properties()).tab(Frugality.TAB)));
     public static final RegistryObject<Item> NETHERITE_HAMMER = ITEMS.register("netherite_hammer", ()-> new HammerItem(Tiers.NETHERITE, -3, -2.4F, (new Item.Properties()).tab(Frugality.TAB).fireResistant()));
+
+    public static final RegistryObject<Item> WOODEN_MORTAR = ITEMS.register("wooden_mortar", ()-> new MortarItem(Ingredient.of(ItemTags.PLANKS), new Item.Properties().tab(Frugality.TAB).durability(36)));
+    public static final RegistryObject<Item> STONE_MORTAR = ITEMS.register("stone_mortar", ()-> new MortarItem(Ingredient.of(ItemTags.STONE_CRAFTING_MATERIALS), new Item.Properties().tab(Frugality.TAB).durability(84)));
+    public static final RegistryObject<Item> OBSIDIAN_MORTAR = ITEMS.register("obsidian_mortar", ()-> new MortarItem(Ingredient.of(Items.OBSIDIAN), new Item.Properties().tab(Frugality.TAB).durability(198)));
 
     private static ToIntFunction<BlockState> litBlockEmission(int value) {
         return (light) -> {

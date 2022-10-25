@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:silica/silica_glass_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_silica_sand": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:silica_sand"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:silica/silica_glass_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silica_sand",
+      "has_the_recipe"
+    ]
+  ]
+}

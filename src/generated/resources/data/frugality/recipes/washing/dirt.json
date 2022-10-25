@@ -17,6 +17,10 @@
     {
       "item": "minecraft:wheat_seeds",
       "chance": 0.15
+    },
+    {
+      "item": "minecraft:flint",
+      "chance": 0.1
     }
   ]
 }

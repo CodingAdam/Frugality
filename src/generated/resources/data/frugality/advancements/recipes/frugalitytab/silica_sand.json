@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:silica_sand"
+    ]
+  },
+  "criteria": {
+    "has_silica_dust": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:silica_dust"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:silica_sand"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_silica_dust",
+      "has_the_recipe"
+    ]
+  ]
+}

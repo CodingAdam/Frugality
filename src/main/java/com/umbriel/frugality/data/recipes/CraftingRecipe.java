@@ -3,6 +3,7 @@ package com.umbriel.frugality.data.recipes;
 import com.umbriel.frugality.Frugality;
 import com.umbriel.frugality.init.FrugalItems;
 import com.umbriel.frugality.util.tags.ForgeTags;
+import com.umbriel.frugality.util.tags.ModTags;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -207,14 +208,6 @@ public class CraftingRecipe {
                 .unlockedBy("has_bark", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.BARK.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "bark_to_paper"));
 
-        ShapedRecipeBuilder.shaped(Items.GLASS_BOTTLE, 2)
-                .pattern("   ")
-                .pattern("C C")
-                .pattern(" C ")
-                .define('C', FrugalItems.SILICA_GLASS.get())
-                .unlockedBy("has_silica_glass", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA_GLASS.get()))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "silica/bottles_from_silica"));
-
         ShapedRecipeBuilder.shaped(Items.SANDSTONE, 1)
                 .pattern("CA ")
                 .pattern("AC ")
@@ -325,8 +318,8 @@ public class CraftingRecipe {
                 .unlockedBy("has_fiber", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.FIBER.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "string_from_fiber"));
 
-        twoByTwoRecipe(FrugalItems.SILICA_GLASS.get(), FrugalItems.SILICA_GLASS_BLOCK.get().asItem(), "silica/", consumer);
         twoByTwoRecipe(FrugalItems.CHARRED_SHARDS.get(), Items.CHARCOAL, "", consumer);
+        twoByTwoRecipe(FrugalItems.SILICA_DUST.get(), FrugalItems.SILICA_SAND.get().asItem(), "", consumer);
 
         hammerRecipe(Items.IRON_INGOT, FrugalItems.IRON_HAMMER.get(), "iron", consumer);
         hammerRecipe(Items.GOLD_INGOT, FrugalItems.GOLDEN_HAMMER.get(), "gold", consumer);
@@ -350,6 +343,31 @@ public class CraftingRecipe {
         threeByThreeRecipe(FrugalItems.ROSE_GOLD_INGOT.get(), FrugalItems.ROSE_GOLD_BLOCK.get().asItem(), "rose", consumer);
         singleItem(FrugalItems.ROSE_GOLD_BLOCK.get().asItem(), FrugalItems.ROSE_GOLD_INGOT.get(), 9, "materials/rose/", consumer);
 
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.QUARTZ, Items.ANDESITE, Items.DIORITE, FrugalItems.SILICA_STONE.get().asItem(), FrugalItems.SILICA_COBBLESTONE.get().asItem()), FrugalItems.SILICA_DUST.get(), 1, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.GRANITE), FrugalItems.SILICA_DUST.get(), 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.QUARTZ_BLOCK), FrugalItems.SILICA_DUST.get(), 4, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.GRAVEL), Items.FLINT, 1, "mortaring/", "mortar", consumer);
+
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.BONE), Items.BONE_MEAL, 3, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.GLOW_INK_SAC), Items.GLOWSTONE_DUST, 1, "mortaring/", "mortar", consumer);
+
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.INK_SAC, Items.WITHER_ROSE), Items.BLACK_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.COAL, Items.CHARCOAL), Items.BLACK_DYE, 1, "mortaring/", "mortar", consumer);
+
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.LAPIS_LAZULI, Items.CORNFLOWER), Items.BLUE_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.LILY_OF_THE_VALLEY), Items.WHITE_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.ORANGE_TULIP), Items.ORANGE_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.ALLIUM), Items.MAGENTA_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.LILAC), Items.MAGENTA_DYE, 4, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.BLUE_ORCHID), Items.LIGHT_BLUE_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.DANDELION), Items.YELLOW_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.SUNFLOWER), Items.YELLOW_DYE, 4, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.PINK_TULIP), Items.PINK_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.PEONY), Items.PINK_DYE, 4, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.OXEYE_DAISY, Items.AZURE_BLUET, Items.WHITE_TULIP), Items.LIGHT_GRAY_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.COCOA_BEANS), Items.BROWN_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.RED_TULIP, Items.BEETROOT, Items.POPPY), Items.RED_DYE, 2, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.ROSE_BUSH), Items.RED_DYE, 4, "mortaring/", "mortar", consumer);
 
         threeByThreeRecipe(FrugalItems.COPPER_NUGGET.get(), Items.COPPER_INGOT, "copper", consumer);
         singleItem(Items.COPPER_INGOT, FrugalItems.COPPER_NUGGET.get(), 9, "materials/copper/", consumer);
@@ -360,6 +378,36 @@ public class CraftingRecipe {
                 .requires(Items.FLINT)
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "copper_starter"));
+
+        ShapedRecipeBuilder.shaped(FrugalItems.WOODEN_MORTAR.get(), 1)
+                .pattern("  S")
+                .pattern("BFB")
+                .pattern(" B ")
+                .define('S', Items.STICK)
+                .define('F', Items.FLINT)
+                .define('B', ItemTags.PLANKS)
+                .unlockedBy("has_planks", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ItemTags.PLANKS).build()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "wooden_mortar"));
+
+        ShapedRecipeBuilder.shaped(FrugalItems.STONE_MORTAR.get(), 1)
+                .pattern("  S")
+                .pattern("BFB")
+                .pattern(" B ")
+                .define('S', Items.STICK)
+                .define('F', Items.FLINT)
+                .define('B', ItemTags.STONE_CRAFTING_MATERIALS)
+                .unlockedBy("has_stone", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ItemTags.STONE_CRAFTING_MATERIALS).build()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "stone_mortar"));
+
+        ShapedRecipeBuilder.shaped(FrugalItems.OBSIDIAN_MORTAR.get(), 1)
+                .pattern("  S")
+                .pattern("BFB")
+                .pattern(" B ")
+                .define('S', Items.STICK)
+                .define('F', Items.FLINT)
+                .define('B', Items.OBSIDIAN)
+                .unlockedBy("has_obsidian", InventoryChangeTrigger.TriggerInstance.hasItems(Items.OBSIDIAN))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "obsidian_mortar"));
 
         //threeByThreeRecipe(FrugalItems.SMALL_RAW_COPPER.get(), Items.RAW_COPPER, "copper", consumer);
         //threeByThreeRecipe(FrugalItems.SMALL_RAW_IRON.get(), Items.RAW_IRON, "iron", consumer);
@@ -426,5 +474,22 @@ public class CraftingRecipe {
                 .unlockedBy("has_" + input.toString(), InventoryChangeTrigger.TriggerInstance.hasItems(input))
                 .save(consumer, new ResourceLocation(Frugality.MODID, material + result.toString() + "_from_" + input.toString()));
     }
+
+    private static void TwoItem(Item input1, Ingredient input2, ItemLike result, int num, String folder, String material, Consumer<FinishedRecipe> consumer){
+        ShapelessRecipeBuilder.shapeless(result, num)
+                .requires(input1)
+                .requires(input2)
+                .unlockedBy("has_" + material, InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(input1).build()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, folder + result.toString()));
+    }
+
+    private static void TwoItem(TagKey<Item> input1, Ingredient input2, ItemLike result, int num, String folder, String material, Consumer<FinishedRecipe> consumer){
+        ShapelessRecipeBuilder.shapeless(result, num)
+                .requires(input1)
+                .requires(input2)
+                .unlockedBy("has_" + material, InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(input1).build()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, folder + result.toString() + "_" + num + "x"));
+    }
+
 
 }
