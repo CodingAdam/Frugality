@@ -174,31 +174,19 @@ public class CraftingRecipe {
 
         ShapelessRecipeBuilder.shapeless(FrugalItems.HEATED_STONE.get(), 1)
                 .requires(FrugalItems.THERMAL_STONE.get())
-                .requires(FrugalItems.BLUE_SALT.get())
-                .unlockedBy("has_blue_salt", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.BLUE_SALT.get()))
+                .requires(FrugalItems.SALT_BLOCK.get().asItem())
+                .requires(Items.REDSTONE, 5)
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SALT_BLOCK.get().asItem()))
                 .unlockedBy("has_thermal_stone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.THERMAL_STONE.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "exothermic_stone"));
 
         ShapelessRecipeBuilder.shapeless(FrugalItems.CHILLED_STONE.get(), 1)
                 .requires(FrugalItems.THERMAL_STONE.get())
-                .requires(FrugalItems.RED_SALT.get())
-                .unlockedBy("has_blue_salt", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.RED_SALT.get()))
+                .requires(FrugalItems.SALT_BLOCK.get().asItem())
+                .requires(Items.LAPIS_LAZULI, 5)
+                .unlockedBy("has_salt_block", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SALT_BLOCK.get().asItem()))
                 .unlockedBy("has_thermal_stone", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.THERMAL_STONE.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "endothermic_stone"));
-
-        ShapelessRecipeBuilder.shapeless(FrugalItems.RED_SALT.get(), 1)
-                .requires(FrugalItems.SALT.get())
-                .requires(Items.REDSTONE)
-                .requires(Items.FLINT)
-                .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SALT.get()))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "red_salt"));
-
-        ShapelessRecipeBuilder.shapeless(FrugalItems.BLUE_SALT.get(), 1)
-                .requires(FrugalItems.SALT.get())
-                .requires(Items.LAPIS_LAZULI)
-                .requires(Items.FLINT)
-                .unlockedBy("has_salt", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SALT.get()))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "blue_salt"));
 
         ShapedRecipeBuilder.shaped(Items.PAPER, 1)
                 .pattern("CCC")
@@ -208,7 +196,7 @@ public class CraftingRecipe {
                 .unlockedBy("has_bark", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.BARK.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "bark_to_paper"));
 
-        ShapedRecipeBuilder.shaped(Items.SANDSTONE, 1)
+        ShapedRecipeBuilder.shaped(FrugalItems.CLAY_BRICK.get(), 1)
                 .pattern("CA ")
                 .pattern("AC ")
                 .pattern("   ")
@@ -218,7 +206,7 @@ public class CraftingRecipe {
                 .unlockedBy("has_bone_meal", InventoryChangeTrigger.TriggerInstance.hasItems(Items.BONE_MEAL))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "clay_brick_from_bones"));
 
-        ShapedRecipeBuilder.shaped(Items.SANDSTONE, 1)
+        ShapedRecipeBuilder.shaped(FrugalItems.CLAY_BRICK.get(), 1)
                 .pattern("CA ")
                 .pattern("   ")
                 .pattern("   ")
@@ -228,6 +216,17 @@ public class CraftingRecipe {
                 .unlockedBy("has_sand", InventoryChangeTrigger.TriggerInstance.hasItems(Items.SAND))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "clay_brick_from_sand"));
 
+        ShapedRecipeBuilder.shaped(FrugalItems.CLAY_BRICK.get(), 2)
+                .pattern("CA ")
+                .pattern("S  ")
+                .pattern("   ")
+                .define('C', Items.CLAY_BALL)
+                .define('A', Items.SAND)
+                .define('S', FrugalItems.SILICA_DUST.get())
+                .unlockedBy("has_clay", InventoryChangeTrigger.TriggerInstance.hasItems(Items.CLAY_BALL))
+                .unlockedBy("has_silica_dust", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA_DUST.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "clay_brick_from_silica"));
+
         ShapedRecipeBuilder.shaped(Items.SANDSTONE, 1)
                 .pattern("CA ")
                 .pattern("AC ")
@@ -236,6 +235,14 @@ public class CraftingRecipe {
                 .define('A', Items.SAND)
                 .unlockedBy("has_silica", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "silica/sandstone_with_silica"));
+
+        ShapedRecipeBuilder.shaped(FrugalItems.CLAY_BRICKS.get().asItem(), 1)
+                .pattern("CC ")
+                .pattern("CC ")
+                .pattern("   ")
+                .define('C', FrugalItems.CLAY_BRICK.get())
+                .unlockedBy("has_clay_brick", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICK.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "clay_bricks"));
 
         ShapedRecipeBuilder.shaped(FrugalItems.BRICK_BLAST_FURNACE.get(), 1)
                 .pattern("III")
@@ -318,6 +325,24 @@ public class CraftingRecipe {
                 .unlockedBy("has_fiber", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.FIBER.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "string_from_fiber"));
 
+        ShapedRecipeBuilder.shaped(FrugalItems.WOODEN_SHEARS.get(), 1)
+                .pattern(" S ")
+                .pattern("S  ")
+                .pattern("   ")
+                .define('S', ItemTags.PLANKS)
+                .unlockedBy("has_planks", InventoryChangeTrigger.TriggerInstance.hasItems(ItemPredicate.Builder.item().of(ItemTags.PLANKS).build()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "wooden_shears"));
+
+        ShapedRecipeBuilder.shaped(FrugalItems.ROSE_GOLD_INGOT.get(), 1)
+                .pattern("CCC")
+                .pattern("CGG")
+                .pattern("GG ")
+                .define('G', Items.GOLD_INGOT)
+                .define('C', Items.COPPER_INGOT)
+                .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
+                .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "wooden_shears"));
+
         twoByTwoRecipe(FrugalItems.CHARRED_SHARDS.get(), Items.CHARCOAL, "", consumer);
         twoByTwoRecipe(FrugalItems.SILICA_DUST.get(), FrugalItems.SILICA_SAND.get().asItem(), "", consumer);
 
@@ -348,7 +373,7 @@ public class CraftingRecipe {
         TwoItem(ModTags.MORTARS, Ingredient.of(Items.QUARTZ_BLOCK), FrugalItems.SILICA_DUST.get(), 4, "mortaring/", "mortar", consumer);
         TwoItem(ModTags.MORTARS, Ingredient.of(Items.GRAVEL), Items.FLINT, 1, "mortaring/", "mortar", consumer);
 
-        TwoItem(ModTags.MORTARS, Ingredient.of(Items.BONE), Items.BONE_MEAL, 3, "mortaring/", "mortar", consumer);
+        TwoItem(ModTags.MORTARS, Ingredient.of(Items.BONE), Items.BONE_MEAL, 4, "mortaring/", "mortar", consumer);
         TwoItem(ModTags.MORTARS, Ingredient.of(Items.GLOW_INK_SAC), Items.GLOWSTONE_DUST, 1, "mortaring/", "mortar", consumer);
 
         TwoItem(ModTags.MORTARS, Ingredient.of(Items.INK_SAC, Items.WITHER_ROSE), Items.BLACK_DYE, 2, "mortaring/", "mortar", consumer);

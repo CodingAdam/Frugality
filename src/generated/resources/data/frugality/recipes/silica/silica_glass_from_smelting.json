@@ -3,7 +3,7 @@
   "ingredient": {
     "item": "frugality:silica_sand"
   },
-  "result": "minecraft:sand",
+  "result": "minecraft:glass",
   "experience": 0.1,
   "cookingtime": 1000
 }

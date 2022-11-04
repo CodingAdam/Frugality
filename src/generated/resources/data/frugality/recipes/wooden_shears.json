@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " S ",
+    "S  ",
+    "   "
+  ],
+  "key": {
+    "S": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "result": {
+    "item": "frugality:wooden_shears"
+  }
+}

@@ -34,6 +34,7 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent("salt_ore",modLoc("block/salt_ore"));
         withExistingParent("salt_block",modLoc("block/salt_block"));
         withExistingParent("silica_sand",modLoc("block/silica_sand"));
+        withExistingParent("clay_bricks",modLoc("block/clay_bricks"));
 
         simpleItem("salt", generated);
         simpleItem("blue_salt", generated);
@@ -46,6 +47,8 @@ public class ItemModels extends ItemModelProvider {
         simpleItem("heated_stone", generated);
         simpleItem("chilled_stone", generated);
         simpleItem("warped_stone", generated);
+
+        simpleItem("wooden_shears", generated);
 
         simpleItem("wooden_mortar", generated);
         simpleItem("stone_mortar", generated);

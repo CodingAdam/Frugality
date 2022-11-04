@@ -24,6 +24,7 @@ public class BlockStates extends BlockStateProvider {
         this.simpleBlock(FrugalItems.SALT_BLOCK.get());
         this.simpleBlock(FrugalItems.SALT_ORE.get());
         this.simpleBlock(FrugalItems.SILICA_SAND.get());
+        this.simpleBlock(FrugalItems.CLAY_BRICKS.get());
 
         this.stairsBlock((StairBlock) FrugalItems.SILICA_STONE_STAIRS.get(), modLoc("block/silica_stone"));
         this.slabBlock((SlabBlock) FrugalItems.SILICA_STONE_SLAB.get(), modLoc("block/silica_stone"), modLoc("block/silica_stone"));

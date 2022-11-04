@@ -54,7 +54,7 @@ public class WashingRecipe {
                 .addDrop(Items.GOLD_NUGGET, 2, 0.01f)
                 .save(consumer, new ResourceLocation(Frugality.MODID + ":washing/" + "red_sand"));
 
-        WashingRecipeBuilder.washingRecipe(Ingredient.of(FrugalItems.CHILLED_STONE.get()), 1, 1)
+        WashingRecipeBuilder.washingRecipe(Ingredient.of(FrugalItems.HEATED_STONE.get()), 1, 1)
                 .addDrop(FrugalItems.THERMAL_STONE.get(), 1)
                 .addDrop(FrugalItems.SALT.get(), 1)
                 .addDrop(FrugalItems.SALT.get(), 2, 0.25f)

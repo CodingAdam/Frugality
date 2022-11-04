@@ -5,7 +5,22 @@
       "item": "frugality:thermal_stone"
     },
     {
-      "item": "frugality:blue_salt"
+      "item": "frugality:salt_block"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
+    },
+    {
+      "item": "minecraft:redstone"
     }
   ],
   "result": {

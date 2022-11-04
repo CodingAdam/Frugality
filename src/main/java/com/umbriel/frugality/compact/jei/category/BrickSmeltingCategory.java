@@ -10,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.BlastingRecipe;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 
-
 public class BrickSmeltingCategory extends AbstractCookingCategory<SmeltingRecipe> {
 
     public BrickSmeltingCategory(IGuiHelper guiHelper) {

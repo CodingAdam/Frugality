@@ -5,11 +5,11 @@
       "tag": "frugality:tools/mortars"
     },
     {
-      "item": "minecraft:bone"
+      "item": "minecraft:dandelion"
     }
   ],
   "result": {
-    "item": "minecraft:bone_meal",
-    "count": 3
+    "item": "minecraft:yellow_dye",
+    "count": 2
   }
 }

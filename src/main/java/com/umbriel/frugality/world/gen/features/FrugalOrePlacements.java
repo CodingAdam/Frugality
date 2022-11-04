@@ -10,7 +10,7 @@ import java.util.List;
 public class FrugalOrePlacements {
 
     public static final Holder<PlacedFeature> ORE_SALT_PLACED = PlacementUtils.register("ore_salt", FrugalOreConfiguredFeatures.ORE_SALT,
-            commonOrePlacement(32, HeightRangePlacement.uniform(
+            commonOrePlacement(8, HeightRangePlacement.uniform(
                     VerticalAnchor.absolute(45),
                     VerticalAnchor.absolute(150)
             )));

@@ -66,8 +66,8 @@ public class FrugalItems {
     public static final RegistryObject<Block> SALT_BLOCK = register("salt_block", () -> new FallingBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL)), false);
     public static final RegistryObject<Block> SALT_ORE = register("salt_ore", () -> new OreBlock(BlockBehaviour.Properties.of(Material.SAND, MaterialColor.SAND).strength(2.0F, 3.0F).sound(SoundType.GRAVEL), UniformInt.of(1, 3)), false);
     public static final RegistryObject<Item> SALT = ITEMS.register("salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
-    public static final RegistryObject<Item> BLUE_SALT = ITEMS.register("blue_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
-    public static final RegistryObject<Item> RED_SALT = ITEMS.register("red_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    // public static final RegistryObject<Item> BLUE_SALT = ITEMS.register("blue_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
+    // public static final RegistryObject<Item> RED_SALT = ITEMS.register("red_salt", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 
 
 
@@ -115,6 +115,8 @@ public class FrugalItems {
     public static final RegistryObject<Block> BRICK_BLAST_FURNACE = register("brick_blast_furnace", () -> new BrickBlastFurnace(BlockBehaviour.Properties.of(Material.STONE).
             requiresCorrectToolForDrops().strength(3.0F).lightLevel(litBlockEmission(12))), false);
 
+    public static final RegistryObject<Block> CLAY_BRICKS = register("clay_bricks", () -> new Block(BlockBehaviour.Properties.of(Material.CLAY, MaterialColor.COLOR_GRAY).strength(1.0F, 3.5F).sound(SoundType.GRAVEL)) ,false);
+
     public static final RegistryObject<Block> CRUSHING_STONE = register("crushing_stone",
             () -> new CrushingBlock(BlockBehaviour.Properties.of(Material.STONE, MaterialColor.STONE).requiresCorrectToolForDrops().strength(1.5F, 6.0F)), false);
     public static final RegistryObject<Block> CRUSHING_TERRACOTTA = register("crushing_terracotta",
@@ -129,6 +131,8 @@ public class FrugalItems {
     public static final RegistryObject<Item> BARK = ITEMS.register("bark", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(50));
 
     public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new StarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
+
+    public static final RegistryObject<Item> WOODEN_SHEARS = ITEMS.register("wooden_shears", () -> new ShearsItem((new Item.Properties()).durability(56).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new StarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
@@ -201,14 +205,6 @@ public class FrugalItems {
         }
 
         return block;
-    }
-
-    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos) {
-        return false;
-    }
-
-    private static boolean never(BlockState state, BlockGetter blockGetter, BlockPos pos, EntityType<?> entityType) {
-        return false;
     }
 
 }

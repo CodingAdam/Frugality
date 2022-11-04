@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CA ",
+    "S  ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:clay_ball"
+    },
+    "A": {
+      "item": "minecraft:sand"
+    },
+    "S": {
+      "item": "frugality:silica_dust"
+    }
+  },
+  "result": {
+    "item": "frugality:clay_brick",
+    "count": 2
+  }
+}

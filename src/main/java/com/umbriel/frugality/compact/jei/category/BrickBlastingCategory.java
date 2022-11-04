@@ -9,7 +9,6 @@ import mezz.jei.plugins.vanilla.cooking.AbstractCookingCategory;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.BlastingRecipe;
 
-
 public class BrickBlastingCategory extends AbstractCookingCategory<BlastingRecipe> {
 
     public BrickBlastingCategory(IGuiHelper guiHelper) {

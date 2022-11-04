@@ -4,9 +4,14 @@
     {
       "tag": "frugality:tools/mortars"
     },
-    {
-      "item": "minecraft:ink_sac"
-    }
+    [
+      {
+        "item": "minecraft:ink_sac"
+      },
+      {
+        "item": "minecraft:wither_rose"
+      }
+    ]
   ],
   "result": {
     "item": "minecraft:black_dye",

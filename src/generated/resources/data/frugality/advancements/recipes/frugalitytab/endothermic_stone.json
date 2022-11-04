@@ -6,13 +6,13 @@
     ]
   },
   "criteria": {
-    "has_blue_salt": {
+    "has_salt_block": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
             "items": [
-              "frugality:red_salt"
+              "frugality:salt_block"
             ]
           }
         ]
@@ -39,7 +39,7 @@
   },
   "requirements": [
     [
-      "has_blue_salt",
+      "has_salt_block",
       "has_thermal_stone",
       "has_the_recipe"
     ]

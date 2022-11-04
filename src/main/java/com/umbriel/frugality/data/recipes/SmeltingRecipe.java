@@ -40,6 +40,11 @@ public class SmeltingRecipe {
                 .unlockedBy("has_silica_sand", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.SILICA_SAND.get()))
                 .save(consumer, new ResourceLocation(Frugality.MODID, "silica/silica_glass_from_smelting"));
 
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(FrugalItems.CLAY_BRICKS.get()),
+                Items.BRICKS, 0.3F, 1000)
+                .unlockedBy("has_clay_bricks", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICKS.get()))
+                .save(consumer, new ResourceLocation(Frugality.MODID, "silica/clay_bricks_from_smelting"));
+
         SimpleCookingRecipeBuilder.campfireCooking(Ingredient.of(FrugalItems.CLAY_BRICK.get()),
                 Items.BRICK, 0.0F, 1000)
                 .unlockedBy("has_clay_brick", InventoryChangeTrigger.TriggerInstance.hasItems(FrugalItems.CLAY_BRICK.get()))

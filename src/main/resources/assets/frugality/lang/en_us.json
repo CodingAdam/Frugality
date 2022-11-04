@@ -26,6 +26,7 @@
   "block.frugality.melter" : "Melter",
   "block.frugality.crushing_stone" : "Crushing Stone",
   "block.frugality.crushing_terracotta" : "Crushing Terracotta",
+  "block.frugality.clay_bricks" : "Clay Bricks",
 
   "block.frugality.silica_stone" : "Silica Stone",
   "block.frugality.silica_stone_slab" : "Silica Stone Slab",
@@ -55,6 +56,7 @@
   "item.frugality.rose_gold_hammer" : "Rose Gold Hammer",
   "item.frugality.rose_gold_ingot" : "Rose Gold Ingot",
 
+  "item.frugality.wooden_shears" : "Wooden Shears",
   "item.frugality.wooden_hammer" : "Wooden Hammer",
   "item.frugality.stone_hammer" : "Stone Hammer",
   "item.frugality.iron_hammer" : "Iron Hammer",

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CC ",
+    "CC ",
+    "   "
+  ],
+  "key": {
+    "C": {
+      "item": "frugality:clay_brick"
+    }
+  },
+  "result": {
+    "item": "frugality:clay_bricks"
+  }
+}

@@ -4,9 +4,14 @@
     {
       "tag": "frugality:tools/mortars"
     },
-    {
-      "item": "minecraft:lapis_lazuli"
-    }
+    [
+      {
+        "item": "minecraft:lapis_lazuli"
+      },
+      {
+        "item": "minecraft:cornflower"
+      }
+    ]
   ],
   "result": {
     "item": "minecraft:blue_dye",

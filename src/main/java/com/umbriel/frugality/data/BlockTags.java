@@ -48,6 +48,7 @@ public class BlockTags extends BlockTagsProvider {
 
         tag(net.minecraft.tags.BlockTags.MINEABLE_WITH_SHOVEL)
                 .add(FrugalItems.SALT_BLOCK.get())
+                .add(FrugalItems.CLAY_BRICKS.get())
                 .add(FrugalItems.SALT_ORE.get())
                 .add(FrugalItems.MUD_BLOCK.get());
 

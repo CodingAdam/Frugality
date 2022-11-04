@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:mortaring/brown_dye_2x"
+    ]
+  },
+  "criteria": {
+    "has_mortar": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "frugality:tools/mortars"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:mortaring/brown_dye_2x"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_mortar",
+      "has_the_recipe"
+    ]
+  ]
+}

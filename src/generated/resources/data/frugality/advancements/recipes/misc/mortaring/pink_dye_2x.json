@@ -2,7 +2,7 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frugality:mortaring/bone_meal_3x"
+      "frugality:mortaring/pink_dye_2x"
     ]
   },
   "criteria": {
@@ -19,7 +19,7 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frugality:mortaring/bone_meal_3x"
+        "recipe": "frugality:mortaring/pink_dye_2x"
       }
     }
   },

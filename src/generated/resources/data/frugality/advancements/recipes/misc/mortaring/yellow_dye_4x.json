@@ -2,18 +2,16 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "frugality:blue_salt"
+      "frugality:mortaring/yellow_dye_4x"
     ]
   },
   "criteria": {
-    "has_salt": {
+    "has_mortar": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "items": [
-              "frugality:salt"
-            ]
+            "tag": "frugality:tools/mortars"
           }
         ]
       }
@@ -21,13 +19,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "frugality:blue_salt"
+        "recipe": "frugality:mortaring/yellow_dye_4x"
       }
     }
   },
   "requirements": [
     [
-      "has_salt",
+      "has_mortar",
       "has_the_recipe"
     ]
   ]

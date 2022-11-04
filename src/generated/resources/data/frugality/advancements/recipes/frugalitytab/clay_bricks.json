@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "frugality:clay_bricks"
+    ]
+  },
+  "criteria": {
+    "has_clay_brick": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "frugality:clay_brick"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "frugality:clay_bricks"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_clay_brick",
+      "has_the_recipe"
+    ]
+  ]
+}
