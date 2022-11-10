@@ -101,10 +101,10 @@ public class CrushingCategory implements IRecipeCategory<CrushingRecipe> {
         List<ChanceItem> results = recipe.getItemResult();
 
         builder.addSlot(INPUT, 1, -1)
-                .addIngredients(Ingredient.of(recipe.getTool().getItems()));
+                .addIngredients(Ingredient.of(recipe.getSecondIngredient().getItems()));
 
         builder.addSlot(INPUT, 26, 1)
-                .addIngredients(Ingredient.of(recipe.getInput().getItems()));
+                .addIngredients(Ingredient.of(recipe.getFirstIngredient().getItems()));
 
         ItemStack crushingItem = new ItemStack(FrugalItems.CRUSHING_STONE.get().asItem());
         crushingItem.setCount(recipe.getHits());

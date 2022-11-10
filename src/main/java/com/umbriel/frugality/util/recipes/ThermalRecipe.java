@@ -101,7 +101,7 @@ public class ThermalRecipe extends FrugalRecipe {
         @Override
         public void toNetwork(FriendlyByteBuf buffer, ThermalRecipe recipe) {
             buffer.writeUtf(recipe.group);
-            recipe.input.toNetwork(buffer);
+            recipe.ingredient1.toNetwork(buffer);
             if(recipe.fluidOutput != null)
                 recipe.fluidOutput.writeToPacket(buffer);
             buffer.writeInt(recipe.stoneType);

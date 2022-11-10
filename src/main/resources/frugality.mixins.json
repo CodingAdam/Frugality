@@ -1,0 +1,13 @@
+{
+  "required": true,
+  "package": "com.umbriel.frugality.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "frugality.refmap.json",
+  "mixins": [
+    "FireMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "minVersion": "0.8"
+}

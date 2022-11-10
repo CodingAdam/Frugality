@@ -50,7 +50,6 @@ public class Frugality
         setupRenderLayers();
     }
     public static void setupRenderLayers() {
-        ItemBlockRenderTypes.setRenderLayer(SLOW_FIRE.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(MELTER.get(), RenderType.translucent());
     }
 

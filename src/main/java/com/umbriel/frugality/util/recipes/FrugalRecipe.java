@@ -17,8 +17,8 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
 
     protected final ResourceLocation identifier;
     protected final String group;
-    protected final Ingredient input;
-    protected final Ingredient tool;
+    protected final Ingredient ingredient1;
+    protected final Ingredient ingredient2;
     protected final FluidStack fluidOutput;
     protected final NonNullList<ChanceItem> itemOutputs;
     protected final int stoneType;
@@ -27,11 +27,11 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
     protected final int level;
     protected boolean hidden;
 
-    protected FrugalRecipe(ResourceLocation identifier, String group, Ingredient input, Ingredient tool, FluidStack fluidOutput, NonNullList<ChanceItem> itemOutputs, int stoneType, int hits, int type, int level, boolean hidden) {
+    protected FrugalRecipe(ResourceLocation identifier, String group, Ingredient ingredient1, Ingredient ingredient2, FluidStack fluidOutput, NonNullList<ChanceItem> itemOutputs, int stoneType, int hits, int type, int level, boolean hidden) {
         this.identifier = identifier;
         this.group = group;
-        this.input = input;
-        this.tool = tool;
+        this.ingredient1 = ingredient1;
+        this.ingredient2 = ingredient2;
         this.fluidOutput = fluidOutput;
         this.itemOutputs = itemOutputs;
         this.stoneType = stoneType;
@@ -51,12 +51,12 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
         return this.identifier;
     }
 
-    public Ingredient getInput() {
-        return this.input;
+    public Ingredient getFirstIngredient() {
+        return this.ingredient1;
     }
 
-    public Ingredient getTool() {
-        return this.tool;
+    public Ingredient getSecondIngredient() {
+        return this.ingredient2;
     }
 
     public int getStoneType(){
@@ -80,7 +80,7 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
     public boolean matches(RecipeWrapper inv, Level worldIn) {
         if (inv.isEmpty())
             return false;
-        return input.test(inv.getItem(0));
+        return ingredient1.test(inv.getItem(0));
     }
 
     @Override
@@ -99,7 +99,7 @@ public abstract class FrugalRecipe implements Recipe<RecipeWrapper> {
     }
 
     public boolean doesMatch(ItemStack item) {
-        return this.input.test(item);
+        return this.ingredient1.test(item);
     }
 
     public List<ItemStack> getOutputsAsItems() {

@@ -1,17 +1,13 @@
 package com.umbriel.frugality.event;
 
 
-import com.umbriel.frugality.block.cauldron.CustomCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLavaCauldron;
 import com.umbriel.frugality.block.cauldron.CustomLayeredCauldron;
 import com.umbriel.frugality.block.cauldron.CustomSnowCauldron;
 import com.umbriel.frugality.init.FrugalItems;
-import com.umbriel.frugality.init.FrugalRecipes;
 import com.umbriel.frugality.item.ChanceItem;
 import com.umbriel.frugality.util.ParticleHelper;
 import com.umbriel.frugality.util.recipes.CauldronRecipe;
-import com.umbriel.frugality.util.recipes.CrushingRecipe;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
@@ -29,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
-import net.minecraft.world.item.crafting.RecipeManager;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
@@ -39,14 +34,8 @@ import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.util.thread.EffectiveSide;
-import net.minecraftforge.items.wrapper.RecipeWrapper;
-import net.minecraftforge.server.ServerLifecycleHooks;
-
-import javax.annotation.Nullable;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.umbriel.frugality.init.FrugalRecipes.cauldronRecipeType;
@@ -193,7 +182,7 @@ public class CommonEvents {
 
                 player.swing(player.getUsedItemHand());
                 ParticleHelper.spawnParticles(particles, world, 0.3F, pos, 30);
-                ParticleHelper.spawnItemParticles(world, 0.7D, 0.3F, pos, recipe.getInput().getItems()[0], 30);
+                ParticleHelper.spawnItemParticles(world, 0.7D, 0.3F, pos, recipe.getFirstIngredient().getItems()[0], 30);
 
                 event.setCanceled(true);
                 event.setCancellationResult(InteractionResult.CONSUME);

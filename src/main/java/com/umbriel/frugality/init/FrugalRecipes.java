@@ -29,6 +29,7 @@ public class FrugalRecipes {
     public static RegistryObject<RecipeType<CauldronRecipe>> cauldronRecipeType = RECIPE_TYPES.register("washing", () -> registerType("washing"));
     public static RegistryObject<RecipeType<CrushingRecipe>> crushingBlockRecipeType = RECIPE_TYPES.register("crushing", () -> registerType("crushing"));
     public static RegistryObject<RecipeType<ThermalRecipe>> thermalRecipeType = RECIPE_TYPES.register("thermal_stone",  () -> registerType("thermal_stone"));
+    public static RegistryObject<RecipeType<ThermalRecipe>> tapRecipeType = RECIPE_TYPES.register("tap",  () -> registerType("tap"));
 
     public static <T extends Recipe<?>> RecipeType<T> registerType(final String identifier) {
         return new RecipeType<>()

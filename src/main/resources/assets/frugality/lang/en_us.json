@@ -88,7 +88,7 @@
   "container.brick_furnace" : "Brick Furnace",
   "container.brick_blast_furnace" : "Brick Blast Furnace",
   "item.frugality.fire_starter" : "Fire Starter",
-  "item.frugality.copper_starter" : "Copper Starter",
+  "item.frugality.copper_lighter" : "Copper Lighter",
 
   "recipe.frugality.washing" : "Cauldron Washing",
   "recipe.frugality.bottle_amount" : " Bottle",

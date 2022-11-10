@@ -1,7 +1,7 @@
 {
   "type": "frugality:washing",
   "input": {
-    "item": "frugality:chilled_stone"
+    "item": "frugality:heated_stone"
   },
   "fluidType": 1,
   "fluidLevel": 1,

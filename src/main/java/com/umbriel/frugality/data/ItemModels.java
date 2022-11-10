@@ -1,7 +1,15 @@
 package com.umbriel.frugality.data;
 
 import com.umbriel.frugality.Frugality;
+import com.umbriel.frugality.init.FrugalItems;
 import net.minecraft.data.DataGenerator;
+import net.minecraft.data.models.blockstates.Condition;
+import net.minecraft.data.models.blockstates.MultiPartGenerator;
+import net.minecraft.data.models.blockstates.Variant;
+import net.minecraft.data.models.blockstates.VariantProperties;
+import net.minecraft.data.models.model.TextureMapping;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -14,7 +22,6 @@ public class ItemModels extends ItemModelProvider {
     @Override
     protected void registerModels() {
         ModelFile generated = getExistingFile(mcLoc("item/generated"));
-
 
         withExistingParent("silica_stone",modLoc("block/silica_stone"));
         withExistingParent("silica_stone_slab", modLoc("block/silica_stone_slab"));
@@ -35,6 +42,8 @@ public class ItemModels extends ItemModelProvider {
         withExistingParent("salt_block",modLoc("block/salt_block"));
         withExistingParent("silica_sand",modLoc("block/silica_sand"));
         withExistingParent("clay_bricks",modLoc("block/clay_bricks"));
+        withExistingParent("rose_gold_block",modLoc("block/rose_gold_block"));
+        withExistingParent("charred_log",modLoc("block/charred_log"));
 
         simpleItem("salt", generated);
         simpleItem("blue_salt", generated);

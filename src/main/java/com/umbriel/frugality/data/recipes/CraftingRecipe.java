@@ -341,7 +341,7 @@ public class CraftingRecipe {
                 .define('C', Items.COPPER_INGOT)
                 .unlockedBy("has_gold", InventoryChangeTrigger.TriggerInstance.hasItems(Items.GOLD_INGOT))
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))
-                .save(consumer, new ResourceLocation(Frugality.MODID, "wooden_shears"));
+                .save(consumer, new ResourceLocation(Frugality.MODID, "rose_gold_alloy"));
 
         twoByTwoRecipe(FrugalItems.CHARRED_SHARDS.get(), Items.CHARCOAL, "", consumer);
         twoByTwoRecipe(FrugalItems.SILICA_DUST.get(), FrugalItems.SILICA_SAND.get().asItem(), "", consumer);
@@ -398,7 +398,7 @@ public class CraftingRecipe {
         singleItem(Items.COPPER_INGOT, FrugalItems.COPPER_NUGGET.get(), 9, "materials/copper/", consumer);
         singleItem(Items.GRASS, FrugalItems.FIBER.get(), 1, "", consumer);
         singleItem(Items.TALL_GRASS, FrugalItems.FIBER.get(), 2, "", consumer);
-        ShapelessRecipeBuilder.shapeless(FrugalItems.COPPER_STARTER.get(), 1)
+        ShapelessRecipeBuilder.shapeless(FrugalItems.COPPER_LIGHTER.get(), 1)
                 .requires(Items.COPPER_INGOT)
                 .requires(Items.FLINT)
                 .unlockedBy("has_copper", InventoryChangeTrigger.TriggerInstance.hasItems(Items.COPPER_INGOT))

@@ -107,7 +107,7 @@ public class CauldronCategory implements IRecipeCategory<CauldronRecipe> {
         List<ChanceItem> results = recipe.getItemResult();
 
         builder.addSlot(INPUT, 1, 1)
-                .addIngredients(Ingredient.of(recipe.getInput().getItems()[0]));
+                .addIngredients(Ingredient.of(recipe.getFirstIngredient().getItems()[0]));
 
         if(recipe.getFill() == 1){
             builder.addSlot(INPUT, 26, 1)

@@ -124,17 +124,17 @@ public class FrugalItems {
 
 
 
-    public static final RegistryObject<Block> SLOW_FIRE = BLOCKS.register("slow_fire", () -> new SlowFireBlock(BlockBehaviour.Properties.of(Material.FIRE, MaterialColor.COLOR_ORANGE).noCollission().instabreak().lightLevel((state) -> 15).sound(SoundType.WOOL)));
+
 
     public static final RegistryObject<Item> CHARRED_SHARDS = ITEMS.register("charred_shards", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(400));
 
     public static final RegistryObject<Item> BARK = ITEMS.register("bark", () -> new FuelItem(new Item.Properties().tab(Frugality.TAB)).setBurnTime(50));
 
-    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new StarterItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
+    public static final RegistryObject<Item> FIRE_STARTER = ITEMS.register("fire_starter", () -> new FlintAndSteelItem((new Item.Properties()).durability(15).tab(Frugality.TAB)));
+
+    public static final RegistryObject<Item> COPPER_LIGHTER = ITEMS.register("copper_lighter", () -> new FlintAndSteelItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> WOODEN_SHEARS = ITEMS.register("wooden_shears", () -> new ShearsItem((new Item.Properties()).durability(56).tab(Frugality.TAB)));
-
-    public static final RegistryObject<Item> COPPER_STARTER = ITEMS.register("copper_starter", () -> new StarterItem((new Item.Properties()).durability(55).tab(Frugality.TAB)));
 
     public static final RegistryObject<Item> COPPER_CUP = ITEMS.register("copper_cup", () -> new Item(new Item.Properties().tab(Frugality.TAB)));
 

@@ -114,7 +114,7 @@ public class ThermalCategory implements IRecipeCategory<ThermalRecipe> {
         }
 
         builder.addSlot(INPUT, 49, 25)
-                .addIngredients(Ingredient.of(recipe.getInput().getItems()));
+                .addIngredients(Ingredient.of(recipe.getFirstIngredient().getItems()));
 
 
         if(recipe.getItemResult() != null) {

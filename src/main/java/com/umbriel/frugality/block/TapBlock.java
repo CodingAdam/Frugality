@@ -113,10 +113,8 @@ public class TapBlock extends Block implements SimpleWaterloggedBlock {
                 fluidLevel = CustomLayeredCauldron.LEVEL;
             }
             float ranValue = random.nextFloat();
-            System.out.println(ranValue);
             if (ranValue < 0.90F) {
                 if(isLayered(getCauldronBlock(worldIn, pos))){
-                    System.out.println(isLayered(getCauldronBlock(worldIn, pos)));
                     if (getCauldronBlock(worldIn, pos).getValue(fluidLevel) < 3) {
                         worldIn.setBlockAndUpdate(pos.below(), getCauldronBlock(worldIn, pos).setValue(fluidLevel, getCauldronBlock(worldIn, pos).getValue(fluidLevel) + 1));
                     }

@@ -109,7 +109,7 @@ public class CrushingBlockEntity extends BlockEntity {
             List<CrushingRecipe> recipes = level.getRecipeManager()
                     .getAllRecipesFor(FrugalRecipes.crushingBlockRecipeType.get());
             CrushingRecipe recipe = (CrushingRecipe)findRecipeById(recipes, recipeID);
-            if (recipe != null && recipe.matches(wrapper, level) && recipe.getTool().test(tool)) {
+            if (recipe != null && recipe.matches(wrapper, level) && recipe.getSecondIngredient().test(tool)) {
                 return Optional.of(recipe);
             }
         }
@@ -118,7 +118,7 @@ public class CrushingBlockEntity extends BlockEntity {
         if (recipeList.isEmpty()) {
             return Optional.empty();
         }
-        Optional<CrushingRecipe> recipe = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getTool().test(tool)).findFirst();
+        Optional<CrushingRecipe> recipe = recipeList.stream().filter(cuttingRecipe -> cuttingRecipe.getSecondIngredient().test(tool)).findFirst();
         if (!recipe.isPresent()) {
             return Optional.empty();
         }
